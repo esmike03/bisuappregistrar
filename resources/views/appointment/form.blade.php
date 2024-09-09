@@ -10,7 +10,8 @@
                 selectedDate: @js(old('date') ?: ''),
                 status: @js(old('status') ?: ''),
                 isGraduated() { return this.status === 'Graduated'; }
-            }" @date-selected.window="selectedDate = $event.detail">
+            }"
+                @date-selected.window="selectedDate = $event.detail">
                 <h1 class="mb-4 text-2xl font-bold leading-none text-gray-900">Appointment Form</h1>
                 <form action="/appointment" method="POST">
                     @csrf
@@ -53,7 +54,8 @@
                         <!-- Campus Select -->
                         <select required name="campus" id="campus"
                             class="mt-4 bg-gray-50 border font-bold border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-gray-500">
-                            <option value="" disabled selected>Campus <span class="text-red-400  text-md">*</span></option>
+                            <option value="" disabled selected>Campus <span class="text-red-400  text-md">*</span>
+                            </option>
                             <option value="MAIN" {{ old('campus') == 'MAIN' ? 'selected' : '' }}>MAIN</option>
                             <option value="BALILIHAN" {{ old('campus') == 'BALILIHAN' ? 'selected' : '' }}>BALILIHAN
                             </option>
@@ -143,8 +145,8 @@
                                     Year Graduated <span class="text-red-400  text-md">*</span>
                                 </label>
                                 <input type="number" name="ygrad" id="ygrad" placeholder="20XX" min="4"
-                                    value="{{ old('ygrad') }}"
-                                    x-bind:disabled="!isGraduated()" x-bind:required="isGraduated()"
+                                    value="{{ old('ygrad') }}" x-bind:disabled="!isGraduated()"
+                                    x-bind:required="isGraduated()"
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base disabled:bg-red-100 font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                 @error('ygrad')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
@@ -162,7 +164,8 @@
                                 <label for="ismis" class="mb-3 block text-base font-medium text-[#07074D]">
                                     ISMIS ID
                                 </label>
-                                <input x-bind:disabled="isGraduated()" type="number" name="ismis" placeholder="000000" value="{{ old('ismis') }}"
+                                <input x-bind:disabled="isGraduated()" type="number" name="ismis" placeholder="000000"
+                                    value="{{ old('ismis') }}"
                                     class="disabled:bg-red-100 w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                 @error('ismis')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
@@ -214,7 +217,8 @@
                                     Appointment Date <span class="text-red-400  text-md">*</span>
                                 </label>
                                 <input @click="calendarOpen = true" type="text" x-model="selectedDate" name="appdate"
-                                    id="date" placeholder="Month/Day/Year" value="{{ old('date') }}" required readonly
+                                    id="date" placeholder="Month/Day/Year" value="{{ old('date') }}" required
+                                    readonly
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                 @error('appdate')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
@@ -225,18 +229,32 @@
                         </div>
                     </div>
 
-                    <div class="w-full flex justify-end gap-7">
-                        <a href="/" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
-                            class="hover:shadow-form rounded-md bg-[#e0e0e0] py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                            Cancel
-                        </a>
-                        <button @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
-                            class="hover:shadow-form rounded-md bg-[#500862] py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                            Request
-                        </button>
-                    </div>
 
+                    <x-confirm-modal x-cloak>
+                        <p
+                            class="text-gray-300 p-4 text-xs sm:text-base md:text-md lg:text-md text-justify leading-relaxed">
+                            By clicking 'Confirm', you acknowledge that all the information you have provided is accurate
+                            and complete to the
+                            best of your knowledge.
+                        </p>
+
+                        <div class="w-full flex justify-end pb-4 px-2 ">
+                            <button @click="modalConfirm = false" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)" type="submit" class="bg-amber-500 px-6 text-white rounded-md p-2 mx-2">
+                                Confirm
+                            </button>
+                        </div>
+                    </x-confirm-modal>
                 </form>
+                <div class="w-full flex justify-end gap-7">
+                    <a href="/" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
+                        class="hover:shadow-form rounded-md bg-[#e0e0e0] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                        Cancel
+                    </a>
+                    <button @click="modalConfirm = true" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
+                        class="hover:shadow-form rounded-md bg-[#500862] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                        Request
+                    </button>
+                </div>
             </div>
         </div>
     </div>

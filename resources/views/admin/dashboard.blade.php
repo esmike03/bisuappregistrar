@@ -140,7 +140,7 @@
                                             <div class="flex items-center text-sm">
                                                 <!-- Avatar with inset shadow -->
                                                 <div>
-                                                    <p class="font-semibold uppercase">{{ $appointment->lname }},
+                                                    <p class="font-semibold text-white uppercase">{{ $appointment->lname }},
                                                         {{ $appointment->fname }} {{ $appointment->mname }}</p>
                                                     <p class="text-xs text-gray-600 dark:text-gray-400">
                                                         {{ $appointment->created_at }}
@@ -148,7 +148,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="px-4 py-3 text-sm text-amber-400">
+                                        <td class="px-4 py-3 text-sm font-bold text-green-400">
                                             {{ $appointment->request }}
                                         </td>
                                         <td class="px-4 py-3 text-xs">
