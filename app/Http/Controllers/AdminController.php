@@ -18,10 +18,19 @@ class AdminController extends Controller
     //Dashboard
     public function dashboard()
     {
+        $category = auth()->guard('admin')->user()->campus; // Get the category for the current admin
 
-        $appointments = Appointment::all();
-        return view('admin.dashboard', ['appointments' => $appointments]);
+        $appointmentCount = Appointment::where('campus', $category)
+        ->where('appstatus', 'pending')
+        ->count();
+
+        // Paginate the appointments with filtering by category
+        $appointments = Appointment::where('campus', $category)
+            ->paginate(3); // Adjust the number of items per page as needed
+
+        return view('admin.dashboard', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount]);
     }
+
 
     //Authenticate admin
     public function authenticate(Request $request){
