@@ -114,4 +114,14 @@ class AdminController extends Controller
 
         return view('admin.partials.archive', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount]);
     }
+
+    //Delete Table row/ appointments
+    public function destroy($id)
+    {
+
+        $appointment = Appointment::findOrFail($id);
+        $appointment->delete();
+
+        return redirect('/admin/dashboard')->with('message', 'Appointment deleted successfully.');
+    }
 }

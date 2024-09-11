@@ -7,10 +7,9 @@
                 class="text-sm font-medium">8:00 AM to 5:00 PM</span>
         </a>
         <h1
-            class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white slide-in">
-            Welcome!</h1>
-        <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 slide-in">Important
-            Notice: This appointment request form is exclusively for scheduling priority slots. It cannot be used to
+            class="font-[Bangers] tracking-widest mb-4 text-5xl font-extrabold leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white slide-in">
+            WELCOME!</h1>
+        <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 slide-in">This appointment request form is exclusively for scheduling priority slots. It cannot be used to
             request online documents. After you complete the form, further instructions will be sent to your email.</p>
         <div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
             <a href="/appointment/form" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"

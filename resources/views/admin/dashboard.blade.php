@@ -24,14 +24,17 @@
                         </svg>
 
                     </div>
-                    <div>
-                        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                            Pending Appointments
-                        </p>
-                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                            {{ $appointmentCount }}
-                        </p>
-                    </div>
+                    <a href="/admin/dashboard">
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Pending Appointments
+                            </p>
+                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                                {{ $appointmentCount }}
+                            </p>
+                        </div>
+                    </a>
+
                 </div>
                 <!-- Card -->
                 <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
@@ -184,9 +187,20 @@
 
                                         </td>
                                         <td class="px-4 py-3 text-sm flex items-center justify-center h-16">
-                                            <i class="fas fa-check bg-green-500 rounded-sm p-2 text-white cursor-pointer mx-2"></i>
-                                            <i class="fas fa-close bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2"></i>
-                                            <i class="fas fa-trash bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2"></i>
+                                            <i
+                                                class="fas fa-check bg-green-500 rounded-sm p-2 text-white cursor-pointer mx-2"></i>
+                                            <i
+                                                class="fas fa-close bg-orange-500 rounded-sm p-2 text-white cursor-pointer mx-2"></i>
+
+                                            <form action="{{ route('appointments.destroy', $appointment->id) }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Are you sure you want to delete this appointment?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
+                                                    class="fas fa-trash bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2"></button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -207,4 +221,12 @@
 
         </div>
     </div>
+
+    <script>
+        // Redirect after 15 seconds (5000 milliseconds)
+        setTimeout(function() {
+            window.location.href = '/admin/dashboard'; // Change this to your desired URL
+        }, 25000); // Time in milliseconds
+    </script>
+
 @endsection

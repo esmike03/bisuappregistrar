@@ -20,6 +20,9 @@
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
     <link rel="icon" href="images/favicon.ico" />
@@ -81,7 +84,8 @@
                         <form method="POST" action="/logout">
                             @csrf
                             <li class="mt-2 sm:mt-0">
-                                <button type="submit" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
+                                <button type="submit"
+                                    @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
                                     <a
                                         class="rounded-xl border-2 border-amber-500 px-6 py-2 font-medium text-amber-500 hover:bg-amber-500 hover:text-white"><i
                                             class="fa-solid fa-door-closed"> </i> Logout</a>
@@ -90,7 +94,7 @@
                             </li>
                         </form>
                     @else
-                        <h1 class="text-white italic font-semibold text-lg">BOHOL ISLAND STATE UNIVERSITY</h1>
+                        <h1 class="text-white font-[Bangers] font-semibold text-lg tracking-widest">BOHOL ISLAND STATE UNIVERSITY</h1>
                     @endauth
 
                 </ul>

@@ -37,3 +37,7 @@ Route::get('/completed', [AdminController::class, 'completed']);
 
 //To archive
 Route::get('/archive', [AdminController::class, 'archive']);
+
+//To delete data
+Route::delete('/appointments/{id}', [AdminController::class, 'destroy'])->name('appointments.destroy');
+
