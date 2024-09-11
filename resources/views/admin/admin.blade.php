@@ -47,7 +47,7 @@
     <header
         class="fixed top-0 left-0 right-0 mb-2 px-4 shadow bg-purple-950 z-50 backdrop-filter backdrop-blur-xl bg-opacity-30">
         <div class="relative mx-auto flex max-w-screen-lg flex-col py-4 sm:flex-row sm:items-center sm:justify-between">
-            <a class="flex items-center text-2xl font-black"
+            <a class="flex items-center text-2xl font-black" href="/admin/dashboard"
                 @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
                 <img src="/images/logo.png" class="h-11 w-11 mr-2" alt="BISU Logo" />
                 <span class="text-2xl text-neutral-200 font-normal" @click="success = false">
@@ -81,7 +81,7 @@
                         <form method="POST" action="/logout">
                             @csrf
                             <li class="mt-2 sm:mt-0">
-                                <button type="submit">
+                                <button type="submit" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
                                     <a
                                         class="rounded-xl border-2 border-amber-500 px-6 py-2 font-medium text-amber-500 hover:bg-amber-500 hover:text-white"><i
                                             class="fa-solid fa-door-closed"> </i> Logout</a>
@@ -103,6 +103,9 @@
         @yield('dashboard')
         @yield('admin-content')
         @yield('main')
+        @yield('records')
+        @yield('completed')
+        @yield('archive')
     </main>
 
     <!-- Background Image -->

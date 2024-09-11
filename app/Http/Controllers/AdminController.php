@@ -21,11 +21,12 @@ class AdminController extends Controller
         $category = auth()->guard('admin')->user()->campus; // Get the category for the current admin
 
         $appointmentCount = Appointment::where('campus', $category)
-        ->where('appstatus', 'pending')
-        ->count();
+            ->where('appstatus', 'pending')
+            ->count();
 
         // Paginate the appointments with filtering by category
         $appointments = Appointment::where('campus', $category)
+            ->orderBy('created_at', 'desc')
             ->paginate(3); // Adjust the number of items per page as needed
 
         return view('admin.dashboard', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount]);
@@ -33,7 +34,8 @@ class AdminController extends Controller
 
 
     //Authenticate admin
-    public function authenticate(Request $request){
+    public function authenticate(Request $request)
+    {
 
         $formFields = $request->validate([
             'campus' => 'required',
@@ -41,7 +43,7 @@ class AdminController extends Controller
         ]);
 
         // Attempt to authenticate using the admin guard
-        if(Auth::guard('admin')->attempt($formFields)){
+        if (Auth::guard('admin')->attempt($formFields)) {
             $request->session()->regenerate();
             return redirect('/admin/dashboard')->with('message', 'Logged In!');
         }
@@ -50,12 +52,66 @@ class AdminController extends Controller
     }
 
     //logout admin
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect('/admin')->with('message', 'You have been logout!');
+    }
+
+    //records
+    public function records()
+    {
+
+        $category = auth()->guard('admin')->user()->campus; // Get the category for the current admin
+
+        $appointmentCount = Appointment::where('campus', $category)
+            ->where('appstatus', 'pending')
+            ->count();
+
+        // Paginate the appointments with filtering by category
+        $appointments = Appointment::where('campus', $category)
+            ->orderBy('created_at', 'desc')
+            ->paginate(3); // Adjust the number of items per page as needed
+
+        return view('admin.partials.records', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount]);
+    }
+    //completed
+    public function completed()
+    {
+
+        $category = auth()->guard('admin')->user()->campus; // Get the category for the current admin
+
+        $appointmentCount = Appointment::where('campus', $category)
+            ->where('appstatus', 'pending')
+            ->count();
+
+        // Paginate the appointments with filtering by category
+        $appointments = Appointment::where('campus', $category)
+            ->orderBy('created_at', 'desc')
+            ->paginate(3); // Adjust the number of items per page as needed
+
+        return view('admin.partials.completed', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount]);
+    }
+
+    //archive
+    public function archive()
+    {
+
+        $category = auth()->guard('admin')->user()->campus; // Get the category for the current admin
+
+        $appointmentCount = Appointment::where('campus', $category)
+            ->where('appstatus', 'pending')
+            ->count();
+
+        // Paginate the appointments with filtering by category
+        $appointments = Appointment::where('campus', $category)
+            ->orderBy('created_at', 'desc')
+            ->paginate(3); // Adjust the number of items per page as needed
+
+        return view('admin.partials.archive', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount]);
     }
 }

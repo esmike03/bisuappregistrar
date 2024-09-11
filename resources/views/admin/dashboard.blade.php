@@ -43,14 +43,17 @@
                         </svg>
 
                     </div>
-                    <div>
-                        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                            Appointment Records
-                        </p>
-                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                            $ 46,760.89
-                        </p>
-                    </div>
+                    <a href="/records" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Appointment Records
+                            </p>
+                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                                $ 46,760.89
+                            </p>
+                        </div>
+                    </a>
+
                 </div>
                 <!-- Card -->
                 <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
@@ -61,14 +64,17 @@
                         </svg>
 
                     </div>
-                    <div>
-                        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                            Completed
-                        </p>
-                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                            376
-                        </p>
-                    </div>
+                    <a href="/completed" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Completed
+                            </p>
+                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                                376
+                            </p>
+                        </div>
+                    </a>
+
                 </div>
                 <!-- Card -->
                 <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
@@ -80,14 +86,17 @@
                         </svg>
 
                     </div>
-                    <div>
-                        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                            Archive
-                        </p>
-                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                            35
-                        </p>
-                    </div>
+                    <a href="/archive" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Archive
+                            </p>
+                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                                35
+                            </p>
+                        </div>
+                    </a>
+
                 </div>
             </div>
 
@@ -123,6 +132,7 @@
                                 <th class="px-4 py-3">Status</th>
                                 <th class="px-4 py-3">Appointment Date</th>
                                 <th class="px-4 py-3">Code</th>
+                                <th class="px-4 py-3">Action</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -169,9 +179,14 @@
                                         </td>
                                         <td class="px-4 py-3 text-sm">
                                             <p
-                                                class="bg-amber-500 text-center text-purple-900 p-1 rounded-md font-semibold">
+                                                class="bg-amber-400 text-center text-purple-900 p-1 rounded-md font-semibold">
                                                 {{ $appointment->tracking_code }}</p>
 
+                                        </td>
+                                        <td class="px-4 py-3 text-sm flex items-center justify-center h-16">
+                                            <i class="fas fa-check bg-green-500 rounded-sm p-2 text-white cursor-pointer mx-2"></i>
+                                            <i class="fas fa-close bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2"></i>
+                                            <i class="fas fa-trash bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2"></i>
                                         </td>
                                     </tr>
                                 @endforeach

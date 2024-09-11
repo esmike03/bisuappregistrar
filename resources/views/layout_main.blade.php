@@ -67,9 +67,6 @@
                     <li @click="modalOpen = true">
                         <button class="text-gray-100 hover:text-blue-600">Tracking</button>
                     </li>
-                    <li>
-                        <button class="text-gray-100 hover:text-blue-600">Reschedule</button>
-                    </li>
                     <li class="mt-2 sm:mt-0">
                         <a class="rounded-xl border-2 border-amber-500 px-6 py-2 font-medium text-amber-500 hover:bg-amber-500 hover:text-white"
                             href="#">Login</a>

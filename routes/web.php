@@ -5,14 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 
+//User
 //Home
 Route::get('/', [HomeController::class, 'index']);
-
-//Admin
-Route::get('/admin', [AdminController::class, 'admin']);
-
-//Dashboard
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
 
 //Appointment Form
 Route::get('/appointment/form', [HomeController::class, 'form']);
@@ -22,8 +17,23 @@ Route::get('/search', [HomeController::class, 'search'])->name('appointment.sear
 //Submit Appointment
 Route::post('/appointment', [HomeController::class, 'store']);
 
+//Admin
+Route::get('/admin', [AdminController::class, 'admin']);
+
+//Dashboard
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
+
 //login admin
 Route::get('/admin/authenticate', [AdminController::class, 'authenticate'] );
 
 //Logout admin
 Route::post('/logout', [AdminController::class, 'logout']);
+
+//To records
+Route::get('/records', [AdminController::class, 'records']);
+
+//To completed
+Route::get('/completed', [AdminController::class, 'completed']);
+
+//To archive
+Route::get('/archive', [AdminController::class, 'archive']);

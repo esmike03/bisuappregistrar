@@ -40,8 +40,6 @@ class HomeController extends Controller
             ->exists();
 
         // Corrected check for ISMIS existence
-        $ismisexists = Appointment::where('ismis', $request->input('ismis'))
-            ->exists();
 
         $emailexists = Appointment::where('email', $request->input('email'))
             ->exists();
@@ -52,11 +50,6 @@ class HomeController extends Controller
                 ->withInput(); // Keeps the current form input
         }
 
-        if ($ismisexists) {
-            // If ISMIS ID already exists, return back with an error message
-            return back()->withErrors(['duplicate' => 'Please check your ISMIS ID.'])
-                ->withInput(); // Keeps the current form input
-        }
 
         if ($emailexists) {
             // If ISMIS ID already exists, return back with an error message
