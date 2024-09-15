@@ -9,7 +9,7 @@
         <h1
             class="font-[Bangers] tracking-widest mb-4 text-5xl font-extrabold leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white slide-in">
             WELCOME!</h1>
-        <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 slide-in">This appointment request form is exclusively for scheduling priority slots. It cannot be used to
+        <p class="mb-8 text-sm font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 slide-in">This appointment request form is exclusively for scheduling priority slots. It cannot be used to
             request online documents. After you complete the form, further instructions will be sent to your email.</p>
         <div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
             <a href="/appointment/form" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
@@ -24,7 +24,7 @@
             </a>
         </div>
         <div class="px-4 mx-auto text-center md:max-w-screen-md lg:max-w-screen-lg lg:px-16">
-            <span class="font-semibold text-gray-400 uppercase slide-in">Main Campus | Balilihan Campus | Bilar Campus | Calape
+            <span class=" text-gray-400 uppercase slide-in">Main Campus | Balilihan Campus | Bilar Campus | Calape
                 Campus | Candijay Campus | Clarin Campus</span>
         </div>
 

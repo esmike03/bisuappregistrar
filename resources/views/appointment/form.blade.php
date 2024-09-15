@@ -6,7 +6,7 @@
         <div class="flex items-center justify-center p-12">
             <!-- Author: FormBold Team -->
             <!-- Learn More: https://formbold.com -->
-            <div class="mx-auto w-full max-w-[550px] bg-white p-10 rounded-lg" x-data="{
+            <div class="mx-auto w-full max-w-[550px] bg-white p-6 rounded-lg" x-data="{
                 selectedDate: @js(old('date') ?: ''),
                 status: @js(old('status') ?: ''),
                 isGraduated() { return this.status === 'Graduated'; }

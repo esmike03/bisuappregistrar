@@ -222,11 +222,12 @@
         </div>
     </div>
 
+    <x-notification />
     <script>
         // Redirect after 15 seconds (5000 milliseconds)
         setTimeout(function() {
             window.location.href = '/admin/dashboard'; // Change this to your desired URL
-        }, 25000); // Time in milliseconds
+        }, 35000); // Time in milliseconds
     </script>
 
 @endsection

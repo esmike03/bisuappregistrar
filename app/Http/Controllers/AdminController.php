@@ -18,6 +18,10 @@ class AdminController extends Controller
     //Dashboard
     public function dashboard()
     {
+        if (!auth()->guard('admin')->check()) {
+            // Redirect to the login page if not authenticated
+            return redirect('/admin')->with('message', 'Please log in to access this page.');
+        }
         $category = auth()->guard('admin')->user()->campus; // Get the category for the current admin
 
         $appointmentCount = Appointment::where('campus', $category)
@@ -66,6 +70,10 @@ class AdminController extends Controller
     public function records()
     {
 
+        if (!auth()->guard('admin')->check()) {
+            // Redirect to the login page if not authenticated
+            return redirect('/admin')->with('message', 'Please log in to access this page.');
+        }
         $category = auth()->guard('admin')->user()->campus; // Get the category for the current admin
 
         $appointmentCount = Appointment::where('campus', $category)
@@ -82,7 +90,10 @@ class AdminController extends Controller
     //completed
     public function completed()
     {
-
+        if (!auth()->guard('admin')->check()) {
+            // Redirect to the login page if not authenticated
+            return redirect('/admin')->with('message', 'Please log in to access this page.');
+        }
         $category = auth()->guard('admin')->user()->campus; // Get the category for the current admin
 
         $appointmentCount = Appointment::where('campus', $category)
@@ -100,7 +111,10 @@ class AdminController extends Controller
     //archive
     public function archive()
     {
-
+        if (!auth()->guard('admin')->check()) {
+            // Redirect to the login page if not authenticated
+            return redirect('/admin')->with('message', 'Please log in to access this page.');
+        }
         $category = auth()->guard('admin')->user()->campus; // Get the category for the current admin
 
         $appointmentCount = Appointment::where('campus', $category)

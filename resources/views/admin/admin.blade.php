@@ -74,7 +74,8 @@
                 <ul class="flex flex-col gap-y-4 sm:flex-row sm:gap-x-8">
                     @auth('admin')
                         <li @click="modalOpen = true">
-                            <button class="text-gray-100 hover:text-blue-600"><i class="fa-solid fa-bell"> </i>
+                            <button onclick="notificationHandler(false)" class="text-gray-100 hover:text-blue-600"><i
+                                    class="fa-solid fa-bell"> </i>
                                 Notifications</button>
                         </li>
                         <li>
@@ -94,7 +95,8 @@
                             </li>
                         </form>
                     @else
-                        <h1 class="text-white font-[Bangers] font-semibold text-lg tracking-widest">BOHOL ISLAND STATE UNIVERSITY</h1>
+                        <h1 class="text-white font-[Bangers] font-semibold text-lg tracking-widest">BOHOL ISLAND STATE
+                            UNIVERSITY</h1>
                     @endauth
 
                 </ul>

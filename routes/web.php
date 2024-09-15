@@ -23,6 +23,7 @@ Route::get('/admin', [AdminController::class, 'admin']);
 //Dashboard
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
 
+
 //login admin
 Route::get('/admin/authenticate', [AdminController::class, 'authenticate'] );
 
