@@ -26,14 +26,14 @@
                       <label for="code"
                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Code</label>
                       <input type="text" name="query" id="code"
-                          class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                          class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:border-gray-500 dark:placeholder-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
                           placeholder="XXXXXX" required="">
                   </div>
                   <div class="col-span-2 sm:col-span-1">
                       <label for="category"
                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Campus</label>
                       <select id="category" name="campus"
-                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5  dark:border-gray-500 dark:placeholder-gray-400  dark:focus:ring-primary-500 dark:focus:border-primary-500">
                           <option value="Main">Main</option>
                           <option value="Balilihan">Balilihan</option>
                           <option value="Bilar">Bilar</option>

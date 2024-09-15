@@ -79,7 +79,7 @@ class HomeController extends Controller
         return view('appointment.form');
     }
 
-
+    //search appointment
     public function search(Request $request)
     {
         $search_text = $request->query('query');
@@ -95,4 +95,51 @@ class HomeController extends Controller
 
         return view('appointment.track', compact('code'));
     }
+
+    //Show edit Appointment
+    public function edit(Request $request, $tracking_code)
+    {
+        // Fetch a single appointment by tracking_code
+        $code = Appointment::where('tracking_code', $tracking_code)->first();
+
+        // If no appointment found, return with a message
+        if (!$code) {
+            return back()->with('message', 'Appointment not found.');
+        }
+
+        return view('appointment.edit', compact('code'));
+    }
+
+    public function update(Request $request, $code)
+    {
+        // Find the appointment by tracking code
+        $appointment = Appointment::where('tracking_code', $code)->firstOrFail();
+
+        // Validate the incoming request data
+        $formFields = $request->validate([
+            'fName' => 'required',
+            'lName' => 'required',
+            'mName' => 'nullable',
+            'email' => 'required',
+            'ygrad' => 'nullable',
+            'ismis' => 'nullable',
+            'status' => 'required',
+            'campus' => 'required',
+            'request' => 'required',
+            'appdate' => 'required|date',
+        ]);
+
+        // Dump the form fields and the current appointment instance for debugging
+
+
+        // Perform the update operation
+        $appointment->update($formFields);
+
+        // Optionally dump the updated appointment for debugging
+
+        // Redirect with a success message
+        return redirect('/')->with('message', 'Appointment Updated Successfully!');
+    }
+
+
 }

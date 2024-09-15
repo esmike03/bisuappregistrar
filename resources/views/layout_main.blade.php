@@ -68,6 +68,9 @@
             <nav aria-label="Header Navigation" class="peer-checked:block hidden pl-2 py-6 sm:block sm:py-0">
                 <ul class="flex flex-col gap-y-4 sm:flex-row sm:gap-x-8">
                     <li @click="modalOpen = true">
+                        <button class="text-gray-100 hover:text-blue-600">Message</button>
+                    </li>
+                    <li @click="modalOpen = true">
                         <button class="text-gray-100 hover:text-blue-600">Tracking</button>
                     </li>
                 </ul>
@@ -81,6 +84,7 @@
         @yield('steps')
         @yield('track')
         @yield('success')
+        @yield('edit')
     </main>
 
     <footer class="bg-white rounded-lg shadow dark:bg-gray-800 bottom-0 w-full mt-10">
@@ -104,8 +108,6 @@
             </ul>
         </div>
     </footer>
-
-    <x-fab/>
 
     <!-- Track Modal Component -->
     <x-track-modal x-show="modalOpen" x-cloak />

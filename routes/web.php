@@ -14,8 +14,15 @@ Route::get('/appointment/form', [HomeController::class, 'form']);
 
 Route::get('/search', [HomeController::class, 'search'])->name('appointment.search');
 
+
 //Submit Appointment
 Route::post('/appointment', [HomeController::class, 'store']);
+
+//Edit Appointment
+Route::get('/appointment/{code}/edit', [HomeController::class, 'edit']);
+
+//Update Appointment
+Route::put('/appointment/{code}', [HomeController::class, 'update']);
 
 //Admin
 Route::get('/admin', [AdminController::class, 'admin']);

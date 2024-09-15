@@ -19,7 +19,7 @@
                             'bg-green-500': status === 'approved',
                             'bg-red-500': status === 'rejected'
                         }"
-                        class="bg-amber-400 rounded-md px-3 py-1 text-purple-800 uppercase">
+                        class="bg-amber-400 rounded-md px-3 py-1 text-purple-200 uppercase">
                         {{ ucfirst($code->appstatus) }}
                     </p>
                 </div>
@@ -44,15 +44,16 @@
                         </button>
                     </a>
 
-                    <a @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
+                    <button x-data="{ isPending: '{{ $code->appstatus }}' === 'pending' }"
+                        @click="if (isPending) window.location.href = `/appointment/{{ $code->tracking_code }}/edit`"
                         class="hover:bg-purple-900 cursor-pointer bg-purple-600 px-12 py-2 rounded-md mx-2 my-2 w-full text-white text-center"
-                        :class="{ ' opacity-50 cursor-not-allowed': '{{ $code->appstatus }}'
-                            !== 'pending' }"
-                        :disabled="{{ $code->appstatus !== 'pending ' ? 'true' : 'false' }}">
-                        <button>
-                            Edit
-                        </button>
-                    </a>
+                        :class="{ 'opacity-50 cursor-not-allowed': !isPending }" :disabled="!isPending">
+                        Edit
+                    </button>
+
+
+
+
 
                 </div>
             </div>

@@ -13,8 +13,9 @@
             <!-- Cards -->
             <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
                 <!-- Card -->
-                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                    <div class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
+                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs ">
+                    <div
+                        class="p-3 mr-4 text-orange-500 shadow-md bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
                         <!-- Form icon SVG -->
 
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -26,10 +27,10 @@
                     </div>
                     <a href="/admin/dashboard">
                         <div>
-                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                            <p class="mb-2 text-sm font-medium text-gray-600 ">
                                 Pending Appointments
                             </p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                            <p class="text-lg font-semibold text-gray-700 ">
                                 {{ $appointmentCount }}
                             </p>
                         </div>
@@ -37,8 +38,9 @@
 
                 </div>
                 <!-- Card -->
-                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                    <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
+                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs ">
+                    <div
+                        class="p-3 mr-4 text-green-500 shadow-md bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path
                                 d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-.586-1.414l-4-4A2 2 0 0012 0H4zm7 1.5V6h3.5L11 1.5zM4 4h5v2H4V4zm0 4h10v2H4V8zm0 4h10v2H4v-2z">
@@ -48,10 +50,10 @@
                     </div>
                     <a href="/records" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
                         <div>
-                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                            <p class="mb-2 text-sm font-medium text-gray-600 ">
                                 Appointment Records
                             </p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                            <p class="text-lg font-semibold text-gray-700 ">
                                 $ 46,760.89
                             </p>
                         </div>
@@ -59,8 +61,9 @@
 
                 </div>
                 <!-- Card -->
-                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                    <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
+                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs ">
+                    <div
+                        class="p-3 mr-4 text-blue-500 shadow-md bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path fill="none" d="M0 0h24v24H0z" />
                             <path d="M9 16.17l-3.59-3.59L4 13l5 5 10-10-1.41-1.41z" />
@@ -69,10 +72,10 @@
                     </div>
                     <a href="/completed" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
                         <div>
-                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                            <p class="mb-2 text-sm font-medium text-gray-600 ">
                                 Completed
                             </p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                            <p class="text-lg font-semibold text-gray-700 ">
                                 376
                             </p>
                         </div>
@@ -80,8 +83,10 @@
 
                 </div>
                 <!-- Card -->
-                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                    <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
+                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs ">
+                    <div
+                        class="p-3 mr-4 text-teal-500 shadow-md
+                     bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M8 2v2H5v3H4v12h16V7h-1V4h-3V2H8zm0 2h8v2H8V4zm-4 5h16v10H4V9zm2 2v6h2v-6H6zm4 0v6h2v-6h-2zm4 0v6h2v-6h-2z">
@@ -91,10 +96,10 @@
                     </div>
                     <a href="/archive" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
                         <div>
-                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                            <p class="mb-2 text-sm font-medium text-gray-600 ">
                                 Archive
                             </p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                            <p class="text-lg font-semibold text-gray-700 ">
                                 35
                             </p>
                         </div>
@@ -107,7 +112,7 @@
             <form class="w-full mx-auto">
                 @csrf
                 <label for="default-search"
-                    class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                    class="mb-2 text-sm font-medium text-gray-900 sr-only ">Search</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -117,7 +122,7 @@
                         </svg>
                     </div>
                     <input type="search" id="default-search"
-                        class="uppercase block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="uppercase block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 mb-2 focus:ring-blue-500 focus:border-blue-500  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Tracking Code" required />
                     <button type="submit"
                         class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
@@ -129,7 +134,7 @@
                     <table class="w-full whitespace-no-wrap">
                         <thead>
                             <tr
-                                class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                                class="text-xs font-semibold tracking-wide text-left text-gray-800 uppercase border-b border-gray-300 bg-gray-50 ">
                                 <th class="px-4 py-3">Client</th>
                                 <th class="px-4 py-3">Request</th>
                                 <th class="px-4 py-3">Status</th>
@@ -138,7 +143,7 @@
                                 <th class="px-4 py-3">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                        <tbody class="bg-white divide-y dark:divide-gray-400 ">
 
                             @php
                                 // Filter appointments based on the category
@@ -149,12 +154,12 @@
 
                             @if ($filteredAppointments->isNotEmpty())
                                 @foreach ($filteredAppointments as $appointment)
-                                    <tr class="text-gray-700 dark:text-gray-400">
+                                    <tr class="text-gray-700 ">
                                         <td class="px-4 py-3">
                                             <div class="flex items-center text-sm">
                                                 <!-- Avatar with inset shadow -->
                                                 <div>
-                                                    <p class="font-semibold text-white uppercase">{{ $appointment->lname }},
+                                                    <p class="font-semibold text-black uppercase">{{ $appointment->lname }},
                                                         {{ $appointment->fname }} {{ $appointment->mname }}</p>
                                                     <p class="text-xs text-gray-600 dark:text-gray-400">
                                                         {{ $appointment->created_at }}
@@ -162,7 +167,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="px-4 py-3 text-sm font-bold text-green-400">
+                                        <td class="px-4 py-3 text-sm font-bold text-purple-800">
                                             {{ $appointment->request }}
                                         </td>
                                         <td class="px-4 py-3 text-xs">
@@ -213,7 +218,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class=" p-4 bg-gray-800">
+                <div class=" p-4 bg-gray-100">
                     {{ $appointments->links() }}
                 </div>
 
@@ -224,7 +229,7 @@
 
     <x-notification />
     <script>
-        // Redirect after 15 seconds (5000 milliseconds)
+        // Redirect after 35 seconds (35000 milliseconds)
         setTimeout(function() {
             window.location.href = '/admin/dashboard'; // Change this to your desired URL
         }, 35000); // Time in milliseconds
