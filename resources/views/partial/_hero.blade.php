@@ -1,15 +1,28 @@
 <section class="bg-transparent mt-0">
     <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12 ">
         <a href="#"
-            class="slide-in inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
+            class="slide-in inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm rounded-full bg-gray-800 text-white  hover:bg-gray-700"
             role="alert"><i class="fa-solid fa-clock pl-4"> </i><span
                 class="text-xs bg-primary-600 rounded-full text-white px-4 py-1.5 mr-3">Business Hours</span> <span
                 class="text-sm font-medium">8:00 AM to 5:00 PM</span>
         </a>
-        <h1
-            class="font-[Bangers] tracking-widest mb-4 text-5xl font-extrabold leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white slide-in">
-            WELCOME!</h1>
-        <p class="mb-8 text-sm font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 slide-in">This appointment request form is exclusively for scheduling priority slots. It cannot be used to
+        <div class="px-2 mx-auto my-8 text-center md:max-w-screen-md lg:max-w-screen-lg lg:px-16">
+            <div
+                class="font-extrabold text-4xl md:text-4xl [text-wrap:balance] bg-clip-text text-transparent bg-gradient-to-r from-slate-300/70 to-50% to-slate-100">
+                Registrar <span
+                    class="text-amber-500 inline-flex flex-col h-[calc(theme(fontSize.4xl)*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.4xl)*theme(lineHeight.tight))] overflow-hidden">
+                    <ul class="block animate-text-slide-5 text-left leading-tight [&_li]:block">
+                        <li>Main</li>
+                        <li>Balilihan</li>
+                        <li>Bilar</li>
+                        <li>Calape</li>
+                        <li>Candijay</li>
+                        <li aria-hidden="true">Clarin</li>
+                    </ul>
+                </span></div>
+        </div>
+        <p class="mb-8 text-sm font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 slide-in">This
+            appointment request form is exclusively for scheduling priority slots. It cannot be used to
             request online documents. After you complete the form, further instructions will be sent to your email.</p>
         <div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
             <a href="/appointment/form" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
@@ -23,10 +36,7 @@
                 </svg>
             </a>
         </div>
-        <div class="px-4 mx-auto text-center md:max-w-screen-md lg:max-w-screen-lg lg:px-16">
-            <span class=" text-gray-400 uppercase slide-in">Main Campus | Balilihan Campus | Bilar Campus | Calape
-                Campus | Candijay Campus | Clarin Campus</span>
-        </div>
+
 
     </div>
 </section>
