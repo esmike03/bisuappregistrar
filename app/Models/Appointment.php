@@ -9,6 +9,6 @@ use Illuminate\Support\Str;
 class Appointment extends Model
 {
     use HasFactory;
-    protected $fillable = ['fName', 'lName', 'mName', 'email', 'ygrad', 'ismis', 'campus','status', 'request', 'appdate', 'tracking_code'];
+    protected $fillable = ['fName', 'lName', 'mName', 'email', 'ygrad', 'ismis', 'campus','status', 'appstatus', 'request', 'appdate', 'tracking_code'];
 
 }

@@ -68,10 +68,10 @@
             <nav aria-label="Header Navigation" class="peer-checked:block hidden pl-2 py-6 sm:block sm:py-0">
                 <ul class="flex flex-col gap-y-4 sm:flex-row sm:gap-x-8">
                     <li @click="modalOpen = true">
-                        <button class="text-gray-100 hover:text-blue-600">Message</button>
+                        <button class="text-gray-100 hover:text-blue-600"><i class="fa-solid fa-envelope"></i> Message</button>
                     </li>
                     <li @click="modalOpen = true">
-                        <button class="text-gray-100 hover:text-blue-600">Tracking</button>
+                        <button class="text-gray-100 hover:text-blue-600"><i class="fa-solid fa-file-export"></i> Track</button>
                     </li>
                 </ul>
             </nav>

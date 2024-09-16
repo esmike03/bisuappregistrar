@@ -111,8 +111,7 @@
 
             <form class="w-full mx-auto">
                 @csrf
-                <label for="default-search"
-                    class="mb-2 text-sm font-medium text-gray-900 sr-only ">Search</label>
+                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only ">Search</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -192,11 +191,35 @@
 
                                         </td>
                                         <td class="px-4 py-3 text-sm flex items-center justify-center h-16">
-                                            <i
-                                                class="fas fa-check bg-green-500 rounded-sm p-2 text-white cursor-pointer mx-2"></i>
-                                            <i
-                                                class="fas fa-close bg-orange-500 rounded-sm p-2 text-white cursor-pointer mx-2"></i>
+                                            <!-- Status Change Form -->
+                                            <form action="{{ route('appointments.updateStatus', $appointment->id) }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Approve this appointment?');">
+                                                @csrf
+                                                @method('PATCH')
+                                                <input type="hidden" name="appstatus" value="approved">
+                                                <button type="submit"
+                                                    class="fas fa-check bg-green-500 rounded-sm p-2 text-white cursor-pointer mx-2"
+                                                    title="Approve">
+                                                    <!-- SVG for check icon -->
+                                                </button>
+                                            </form>
 
+                                            <!--reject-->
+                                            <form action="{{ route('appointments.updateStatus', $appointment->id) }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Reject this appointment?');">
+                                                @csrf
+                                                @method('PATCH')
+                                                <input type="hidden" name="appstatus" value="rejected">
+                                                <button type="submit"
+                                                    class="fas fa-close bg-orange-500 rounded-sm p-2 text-white cursor-pointer mx-2"
+                                                    title="Reject">
+                                                    <!-- SVG for check icon -->
+                                                </button>
+                                            </form>
+
+                                            <!--Delete-->
                                             <form action="{{ route('appointments.destroy', $appointment->id) }}"
                                                 method="POST"
                                                 onsubmit="return confirm('Are you sure you want to delete this appointment?');">

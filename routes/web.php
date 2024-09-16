@@ -49,3 +49,6 @@ Route::get('/archive', [AdminController::class, 'archive']);
 //To delete data
 Route::delete('/appointments/{id}', [AdminController::class, 'destroy'])->name('appointments.destroy');
 
+//To Approve Appointmnet
+Route::patch('/appointments/{id}/status', [AdminController::class, 'updateStatus'])->name('appointments.updateStatus');
+

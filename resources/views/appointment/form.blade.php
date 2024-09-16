@@ -3,7 +3,7 @@
 @section('steps')
     <div class="mt-0">
         <!-- Form -->
-        <div class="flex items-center justify-center p-12">
+        <div class="flex items-center justify-center p-4">
             <!-- Author: FormBold Team -->
             <!-- Learn More: https://formbold.com -->
             <div class="mx-auto w-full max-w-[550px] bg-white p-6 rounded-lg" x-data="{
@@ -24,21 +24,21 @@
                                 <div class="flex items-center">
                                     <input type="radio" id="status-graduated" name="status" value="Graduated" required
                                         class="h-4 w-4" x-model="status" />
-                                    <label for="status-graduated" class="pl-1 text-base font-medium text-[#07074D]">
+                                    <label for="status-graduated" class="pl-1 text-base text-sm font-medium text-[#07074D]">
                                         Graduated
                                     </label>
                                 </div>
                                 <div class="flex items-center">
                                     <input type="radio" id="status-enrolled" name="status" value="Enrolled"
                                         class="h-4 w-4" x-model="status" />
-                                    <label for="status-enrolled" class="pl-1 text-base font-medium text-[#07074D]">
+                                    <label for="status-enrolled" class="pl-1 text-sm text-base font-medium text-[#07074D]">
                                         Enrolled
                                     </label>
                                 </div>
                                 <div class="flex items-center">
                                     <input type="radio" id="status-not-enrolled" name="status" value="Not Enrolled"
                                         class="h-4 w-4" x-model="status" />
-                                    <label for="status-not-enrolled" class="pl-1 text-base font-medium text-[#07074D]">
+                                    <label for="status-not-enrolled" class="pl-1 text-sm text-base font-medium text-[#07074D]">
                                         Not Enrolled <span class="text-red-400  text-md">*</span>
                                     </label>
                                 </div>

@@ -12,6 +12,9 @@ class AdminController extends Controller
     //Home
     public function admin()
     {
+        if (auth()->guard('admin')->check()) {
+            return redirect('/admin/dashboard')->with('message', 'Already log in to this page.'); // Change 'dashboard' to the name of your dashboard route
+        }
         return view('admin.login.admin-index');
     }
 
@@ -137,5 +140,17 @@ class AdminController extends Controller
         $appointment->delete();
 
         return redirect('/admin/dashboard')->with('message', 'Appointment deleted successfully.');
+    }
+
+    //Approved Appointment
+    public function updateStatus(Request $request, $id)
+    {
+        $appointment = Appointment::findOrFail($id);
+
+        $appointment->update([
+            'appstatus' => $request->input('appstatus'),
+        ]);
+
+        return redirect('/admin/dashboard')->with('message', 'Appointment status updated successfully.');
     }
 }
