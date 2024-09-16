@@ -132,7 +132,7 @@
     @if (session('formData'))
         <!-- Main modal -->
         <div x-data="{ success: true }" x-show="success" x-cloak
-            class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-30">
+            class="fixed inset-0 flex items-center justify-center z-50 bg-black backdrop-filter backdrop-blur-lg bg-opacity-5">
             <div x-ref="modal" @click.away="success = false"
                 class="relative p-4 w-full max-w-md h-fit m-1 md:h-auto pop fade-in bg-purple-900 backdrop-filter backdrop-blur-lg bg-opacity-70 rounded-lg shadow-lg transform transition-transform duration-300">
                 <!-- Modal content -->
