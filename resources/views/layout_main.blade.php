@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ modalConfirm: false, modalError: true, open: false, modalOpen: false, calendarOpen: false, loading: false, success: false }" x-cloak>
+<html lang="en" x-data="{ messageOpen: false, modalConfirm: false, modalError: true, open: false, modalOpen: false, calendarOpen: false, loading: false, success: false }" x-cloak>
 
 <head>
     <meta charset="UTF-8" />
@@ -67,7 +67,7 @@
             </label>
             <nav aria-label="Header Navigation" class="peer-checked:block hidden pl-2 py-6 sm:block sm:py-0">
                 <ul class="flex flex-col gap-y-4 sm:flex-row sm:gap-x-8">
-                    <li @click="modalOpen = true">
+                    <li @click="messageOpen = true">
                         <button class="text-gray-100 hover:text-blue-600"><i class="fa-solid fa-envelope"></i> Message</button>
                     </li>
                     <li @click="modalOpen = true">
@@ -111,6 +111,8 @@
 
     <!-- Track Modal Component -->
     <x-track-modal x-show="modalOpen" x-cloak />
+    <!--Message Moda-->
+    <x-message-modal x-show="messageOpen" x-cloak />
 
     <!-- Calendar Component -->
     <x-calendar x-show="calendarOpen" x-cloak />
@@ -134,7 +136,7 @@
         <div x-data="{ success: true }" x-show="success" x-cloak
             class="fixed inset-0 flex items-center justify-center z-50 bg-black backdrop-filter backdrop-blur-lg bg-opacity-5">
             <div x-ref="modal" @click.away="success = false"
-                class="relative p-4 w-full max-w-md h-fit m-1 md:h-auto pop fade-in bg-purple-900 backdrop-filter backdrop-blur-lg bg-opacity-70 rounded-lg shadow-lg transform transition-transform duration-300">
+                class="relative p-4 w-full max-w-md h-fit m-1 md:h-auto pop fade-in bg-purple-900 backdrop-filter backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg transform transition-transform duration-300">
                 <!-- Modal content -->
                 <div id="capture" class="relative p-2 text-center">
                     <button type="button"
@@ -160,8 +162,8 @@
                     </div>
                     <p class="text-gray-500">Tracking Code</p>
                     <p class="mb-1 text-4xl font-bold text-amber-500">{{ session('formData.tracking_code') }}</p>
-                    <p class="text-gray-500">{{ session('formData.appdate') }}</p>
-                    <p class="text-amber-600">Please note your tracking code. You will need to present it on the day of
+                    <p class="text-gray-400">{{ session('formData.appdate') }}</p>
+                    <p class="text-amber-400">Please note your tracking code. You will need to present it on the day of
                         your appointment.</p>
                     <button @click="success = false" id="screenshotButton" class="pt-4 px-3 text-green-300"><i
                             class="fa-solid fa-download"> </i> Download</button>
