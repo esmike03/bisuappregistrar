@@ -1,9 +1,9 @@
 <section class="mt-10 px-4 lg:px-8">
     <div class="ml-4 md:ml-10 lg:ml-14">
-        <h1 class="mb-4 text-3xl md:text-4xl lg:text-5xl font-extrabold leading-none tracking-tighttext-white">
+        <h1 class="mb-4 text-3xl md:text-4xl lg:text-5xl font-extrabold leading-none tracking-tight text-white">
             News & Events
         </h1>
-        <p class="text-base md:text-lg lg:text-xl font-normal text-gray-500 dark:text-gray-400">
+        <p class="text-base md:text-lg lg:text-xl font-normal text-gray-400">
             Get the latest updates on news and events at Bohol Island State University.
         </p>
     </div>
