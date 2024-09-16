@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ modalError: true, open: false, modalOpen: false, calendarOpen: false, loading: false, success: false }" x-cloak>
+<html lang="en" x-data="{ notifications: false, message: false, modalError: true, open: false, modalOpen: false, calendarOpen: false, loading: false, success: false }" x-cloak>
 
 <head>
     <meta charset="UTF-8" />
@@ -74,12 +74,13 @@
                 <ul class="flex flex-col gap-y-4 sm:flex-row sm:gap-x-8">
                     @auth('admin')
                         <li @click="modalOpen = true">
-                            <button onclick="notificationHandler(false)" class="text-gray-100 hover:text-blue-600"><i
+                            <button @click="notifications = true" class="text-gray-100 hover:text-blue-600"><i
                                     class="fa-solid fa-bell"> </i>
                                 Notifications</button>
                         </li>
                         <li>
-                            <button class="text-gray-100 hover:text-blue-600"><i class="fa-solid fa-message"> </i>
+                            <button @click="message = true" class="text-gray-100 hover:text-blue-600"><i
+                                    class="fa-solid fa-message"> </i>
                                 Message</button>
                         </li>
                         <form method="POST" action="/logout">

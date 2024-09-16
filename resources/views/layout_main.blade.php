@@ -116,7 +116,7 @@
     <x-calendar x-show="calendarOpen" x-cloak />
 
     <!-- Background Image -->
-    <img src="/images/gate (1).png" class="h-fit w-full  absolute bottom-0 opacity-50 -z-10"
+    <img src="/images/gate (1).png" class="h-fit w-full bg-cover absolute bottom-0 opacity-50 -z-10"
         alt="Background Image" />
 
     <!-- Loading Spinner -->

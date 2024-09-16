@@ -7,9 +7,20 @@
     @endphp
     <div class="h-full overflow-y-auto">
         <div class="container px-6 mx-auto grid">
-            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                Dashboard
-            </h2>
+            <div class="flex m-6 align-middle content-center justify-between">
+                <h2 class=" text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                    Dashboard
+                </h2>
+                <a href="/admin/dashboard" class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:text-gray-400 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150" aria-label="{{ __('Refresh') }}">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill="none" d="M0 0h24v24H0z"/>
+                        <path d="M12 4V1L8 5l4 4V6c4.41 0 8 3.59 8 8s-3.59 8-8 8-8-3.59-8-8h2c0 3.31 2.69 6 6 6s6-2.69 6-6-2.69-6-6-6z"/>
+                    </svg>
+
+                </a>
+
+            </div>
+
             <!-- Cards -->
             <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
                 <!-- Card -->
@@ -109,9 +120,9 @@
             </div>
 
 
-            <form class="w-full mx-auto">
+            <form action="/admin/dashboard" method="GET" class="w-full mx-auto">
                 @csrf
-                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only ">Search</label>
+                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -120,13 +131,16 @@
                                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="search" id="default-search"
-                        class="uppercase block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 mb-2 focus:ring-blue-500 focus:border-blue-500  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Tracking Code" required />
+                    <input type="search" name="search" id="default-search" value="{{ request()->input('search') }}"
+                        class="uppercase block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 mb-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Tracking Code" />
                     <button type="submit"
-                        class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                        class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Search
+                    </button>
                 </div>
             </form>
+
             <!-- New Table -->
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
                 <div class="w-full overflow-x-auto">
@@ -142,7 +156,7 @@
                                 <th class="px-4 py-3">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y dark:divide-gray-400 ">
+                        <tbody class="bg-white divide-y dark:divide-gray-200 ">
 
                             @php
                                 // Filter appointments based on the category
@@ -193,8 +207,7 @@
                                         <td class="px-4 py-3 text-sm flex items-center justify-center h-16">
                                             <!-- Status Change Form -->
                                             <form action="{{ route('appointments.updateStatus', $appointment->id) }}"
-                                                method="POST"
-                                                onsubmit="return confirm('Approve this appointment?');">
+                                                method="POST" onsubmit="return confirm('Approve this appointment?');">
                                                 @csrf
                                                 @method('PATCH')
                                                 <input type="hidden" name="appstatus" value="approved">
@@ -207,8 +220,7 @@
 
                                             <!--reject-->
                                             <form action="{{ route('appointments.updateStatus', $appointment->id) }}"
-                                                method="POST"
-                                                onsubmit="return confirm('Reject this appointment?');">
+                                                method="POST" onsubmit="return confirm('Reject this appointment?');">
                                                 @csrf
                                                 @method('PATCH')
                                                 <input type="hidden" name="appstatus" value="rejected">
@@ -242,7 +254,8 @@
                     </table>
                 </div>
                 <div class=" p-4 bg-gray-100">
-                    {{ $appointments->links() }}
+                    {{ $appointments->links('vendor.pagination.tailwind') }}
+
                 </div>
 
             </div>
@@ -251,6 +264,7 @@
     </div>
 
     <x-notification />
+    <x-messages />
     <script>
         // Redirect after 35 seconds (35000 milliseconds)
         setTimeout(function() {

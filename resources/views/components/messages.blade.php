@@ -1,20 +1,19 @@
-<div x-show="notifications" x-transition:enter="transition ease-in-out duration-700"
+<div x-show="message" x-transition:enter="transition ease-in-out duration-700"
     x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0"
     x-transition:leave="transition ease-in-out duration-700" x-transition:leave-start="transform translate-x-0"
     x-transition:leave-end="transform translate-x-full"
     class="w-full h-full mt-3 bg-gray-800 backdrop-filter backdrop-blur-lg bg-opacity-10 top-16 overflow-y-hidden overflow-x-hiddens fixed sticky-0"
-    @keydown.window.escape="notifications = false" @click.away="notifications = false">
+    @keydown.window.escape="message = false" @click.away="message = false">
     <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
 
-    <div class="w-full absolute z-100 right-0 h-full overflow-x-hidden" id="notifications">
+    <div class="w-full absolute z-100 right-0 h-full overflow-x-hidden" id="message">
         <div class="2xl:w-4/12 bg-gray-50 h-screen overflow-y-auto p-8 absolute right-0">
             <div class="flex items-center justify-between">
-                <p tabindex="0" class="focus:outline-none text-2xl font-semibold leading-6 text-gray-800">
-                    Notifications
+                <p tabindex="0" class="focus:outline-none text-2xl font-semibold leading-6 text-gray-800">Messages
                 </p>
                 <button role="button" aria-label="close modal"
                     class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 rounded-md cursor-pointer"
-                    @click="notifications = false">
+                    @click="message = false">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path d="M18 6L6 18" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round"

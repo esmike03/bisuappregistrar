@@ -18,26 +18,34 @@ class AdminController extends Controller
         return view('admin.login.admin-index');
     }
 
-    //Dashboard
-    public function dashboard()
+    public function dashboard(Request $request)
     {
         if (!auth()->guard('admin')->check()) {
             // Redirect to the login page if not authenticated
             return redirect('/admin')->with('message', 'Please log in to access this page.');
         }
+
         $category = auth()->guard('admin')->user()->campus; // Get the category for the current admin
 
         $appointmentCount = Appointment::where('campus', $category)
             ->where('appstatus', 'pending')
             ->count();
 
-        // Paginate the appointments with filtering by category
-        $appointments = Appointment::where('campus', $category)
-            ->orderBy('created_at', 'desc')
-            ->paginate(3); // Adjust the number of items per page as needed
+        // Initialize the query
+        $query = Appointment::where('campus', $category);
+
+        // Check for search input and filter by tracking_code
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('tracking_code', 'LIKE', "%{$searchTerm}%");
+        }
+
+        // Paginate the filtered appointments
+        $appointments = $query->orderBy('created_at', 'desc')->paginate(3); // Adjust the number of items per page as needed
 
         return view('admin.dashboard', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount]);
     }
+
 
 
     //Authenticate admin
