@@ -8,7 +8,7 @@
     <div class="h-full overflow-y-auto">
         <div class="container px-6 mx-auto grid">
             <div class="flex m-6 align-middle content-center justify-between">
-                <h2 class=" text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                <h2 class=" text-2xl font-semibold text-gray-200">
                     Dashboard
                 </h2>
                 <a href="/admin/dashboard" class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:text-gray-400 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150" aria-label="{{ __('Refresh') }}">
