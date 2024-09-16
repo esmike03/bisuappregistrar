@@ -21,7 +21,7 @@
                     </ul>
                 </span></div>
         </div>
-        <p class="mb-8 text-sm font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 slide-in">This
+        <p class="mb-8 text-sm font-normal lg:text-xl sm:px-16 xl:px-48 text-gray-300 slide-in">This
             appointment request form is exclusively for scheduling priority slots. It cannot be used to
             request online documents. After you complete the form, further instructions will be sent to your email.</p>
         <div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">

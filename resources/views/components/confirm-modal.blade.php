@@ -2,10 +2,10 @@
 <div x-show="modalConfirm" class="bg-black bg-opacity-15 m-auto flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-md max-h-full">
         <!-- Modal content -->
-        <div class="pop relative rounded-lg shadow bg-purple-950 backdrop-filter backdrop-blur-lg bg-opacity-90 " @click.away="modalConfirm = false">
+        <div class="pop relative m-1 rounded-lg shadow bg-purple-950 backdrop-filter backdrop-blur-lg bg-opacity-90 " @click.away="modalConfirm = false">
           <!-- Modal header -->
           <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            <h3 class="text-lg font-semibold text-white">
                 Confirm Appointment
             </h3>
             <button @click="modalConfirm = false" type="button"
