@@ -12,7 +12,11 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&display=swap"
+        rel="stylesheet">
     <noscript>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
             integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -53,7 +57,7 @@
             <a class="flex items-center text-2xl font-black" href="/"
                 @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
                 <img src="/images/logo.png" class="h-11 w-11 mr-2" alt="BISU Logo" />
-                <span class="text-xl text-neutral-200 font-normal" @click="success = false">REGISTRAR
+                <span class="text-lg text-neutral-200 font-normal" @click="success = false">REGISTRAR
                     APPOINTMENT</span>
             </a>
             <input class="peer hidden" type="checkbox" id="navbar-open" />
@@ -68,10 +72,12 @@
             <nav aria-label="Header Navigation" class="peer-checked:block hidden pl-2 py-6 sm:block sm:py-0">
                 <ul class="flex flex-col gap-y-4 sm:flex-row sm:gap-x-8">
                     <li @click="messageOpen = true">
-                        <button class="text-gray-100 hover:text-blue-600"><i class="fa-solid fa-envelope"></i> Message</button>
+                        <button class="text-gray-100 hover:text-blue-600"><i class="fa-solid fa-envelope"></i>
+                            Message</button>
                     </li>
                     <li @click="modalOpen = true">
-                        <button class="text-gray-100 hover:text-blue-600"><i class="fa-solid fa-file-export"></i> Track</button>
+                        <button class="text-gray-100 hover:text-blue-600"><i class="fa-solid fa-file-export"></i>
+                            Track</button>
                     </li>
                 </ul>
             </nav>
@@ -122,8 +128,7 @@
         alt="Background Image" />
 
     <!-- Loading Spinner -->
-    <div x-show="loading" x-cloak
-        class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+    <div x-show="loading" x-cloak class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
         <img src="{{ asset('images/ball-triangle.svg') }}" alt="Loading Spinner" class="w-16 h-16" />
     </div>
 
