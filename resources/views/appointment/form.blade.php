@@ -38,7 +38,8 @@
                                 <div class="flex items-center">
                                     <input type="radio" id="status-not-enrolled" name="status" value="Not Enrolled"
                                         class="h-4 w-4" x-model="status" />
-                                    <label for="status-not-enrolled" class="pl-1 text-sm text-base font-medium text-[#07074D]">
+                                    <label for="status-not-enrolled"
+                                        class="pl-1 text-sm text-base font-medium text-[#07074D]">
                                         Not Enrolled <span class="text-red-400  text-md">*</span>
                                     </label>
                                 </div>
@@ -144,10 +145,11 @@
                                 <label for="ygrad" class="mb-3 block text-base font-medium text-[#07074D]">
                                     Year Graduated <span class="text-red-400  text-md">*</span>
                                 </label>
-                                <input type="number" name="ygrad" id="ygrad" placeholder="20XX" min="4"
-                                    value="{{ old('ygrad') }}" x-bind:disabled="!isGraduated()"
-                                    x-bind:required="isGraduated()"
+                                <input type="number" name="ygrad" id="ygrad" placeholder="20XX" min="1998"
+                                    :max="currentYear" value="{{ old('ygrad') }}" x-bind:disabled="!isGraduated()"
+                                    x-bind:required="isGraduated()" x-data="{ currentYear: new Date().getFullYear() }"
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base disabled:bg-red-100 font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+
                                 @error('ygrad')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
                                         {{ $message }}
@@ -239,7 +241,9 @@
                         </p>
 
                         <div class="w-full flex justify-end pb-4 px-2 ">
-                            <button @click="modalConfirm = false" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)" type="submit" class="bg-amber-500 px-6 text-white rounded-md p-2 mx-2">
+                            <button @click="modalConfirm = false"
+                                @click="loading = true; fetch('/api/endpoint').then(() => loading = false)" type="submit"
+                                class="bg-amber-500 px-6 text-white rounded-md p-2 mx-2">
                                 Confirm
                             </button>
                         </div>
@@ -250,7 +254,8 @@
                         class="hover:shadow-form rounded-md bg-[#e0e0e0] py-3 px-8 text-center text-base font-semibold text-white outline-none">
                         Cancel
                     </a>
-                    <button @click="modalConfirm = true" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
+                    <button @click="modalConfirm = true"
+                        @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
                         class="hover:shadow-form rounded-md bg-[#500862] py-3 px-8 text-center text-base font-semibold text-white outline-none">
                         Request
                     </button>

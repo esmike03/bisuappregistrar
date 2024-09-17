@@ -6,6 +6,14 @@ export default {
             colors: {
                 primary: "#ef3b2d",
             },
+            backgroundImage: {
+                'purple-to-transparent': 'linear-gradient(to right, #2e0848, transparent)',
+              },
+            variants: {
+                extend: {
+                  display: ['orientation'],
+                },
+              },
             fontFamily: {
                 orbitron: ['Orbitron', 'sans-serif'], // Adding Orbitron font
                 chakra: ['Chakra Petch', 'regular'],

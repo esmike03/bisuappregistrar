@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Holiday;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -77,27 +78,24 @@ class AdminController extends Controller
         return redirect('/admin')->with('message', 'You have been logout!');
     }
 
-    //records
     public function records()
     {
-
         if (!auth()->guard('admin')->check()) {
             // Redirect to the login page if not authenticated
             return redirect('/admin')->with('message', 'Please log in to access this page.');
         }
+
         $category = auth()->guard('admin')->user()->campus; // Get the category for the current admin
 
-        $appointmentCount = Appointment::where('campus', $category)
-            ->where('appstatus', 'pending')
-            ->count();
+        // Paginate holidays
+        $holidays = Holiday::paginate(10); // Adjust the number 10 to the number of items per page
 
-        // Paginate the appointments with filtering by category
-        $appointments = Appointment::where('campus', $category)
-            ->orderBy('created_at', 'desc')
-            ->paginate(3); // Adjust the number of items per page as needed
-
-        return view('admin.partials.records', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount]);
+        return view('admin.partials.records', [
+            'holidays' => $holidays, // Pass the holidays data to the view
+        ]);
     }
+
+
     //completed
     public function completed()
     {

@@ -99,4 +99,19 @@
     animation: pop 0.3s ease-in-out; /* Duration and easing can be adjusted */
   }
 
+  @media only screen and (orientation: portrait) {
+    .bg-mobile-portrait {
+      display: block;
+    }
+  }
+
+  @media only screen and (orientation: landscape) {
+    .bg-mobile-portrait {
+      display: none;
+    }
+  }
+  .gradient-black-to-transparent {
+    background: linear-gradient(to right, purple, transparent);
+}
+
 

@@ -44,25 +44,25 @@
         currentYear: new Date().getFullYear(),
         currentMonth: new Date().getMonth(),
         selectedDate: null,
-
-        philippineHolidays: [
-            new Date(2024, 0, 1), // New Year's Day, January 1
-            new Date(2024, 3, 9), // Araw ng Kagitingan, April 9
-            new Date(2024, 3, 10), // Maundy Thursday, April 10
-            new Date(2024, 3, 11), // Good Friday, April 11
-            new Date(2024, 4, 1), // Labor Day, May 1
-            new Date(2024, 5, 12), // Independence Day, June 12
-            new Date(2024, 7, 21), // Ninoy Aquino Day, August 21
-            new Date(2024, 10, 30), // Bonifacio Day, November 30
-            new Date(2024, 11, 25), // Christmas Day, December 25
-            new Date(2024, 11, 30), // Rizal Day, December 30
-        ],
+        philippineHolidays: [],
 
         init() {
+            this.fetchHolidays();
             this.generateCalendar();
             this.$watch('selectedDate', (value) => {
                 this.$dispatch('date-selected', value);
             });
+        },
+
+        async fetchHolidays() {
+            try {
+                const response = await fetch('/holidays');
+                const holidays = await response.json();
+                this.philippineHolidays = holidays.map(holiday => new Date(holiday.holiday_date));
+                this.generateCalendar(); // Regenerate calendar after fetching holidays
+            } catch (error) {
+                console.error('Error fetching holidays:', error);
+            }
         },
 
         generateCalendar() {
@@ -73,10 +73,7 @@
 
             calendarElement.innerHTML = '';
 
-            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
-                'September',
-                'October', 'November', 'December'
-            ];
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             this.currentMonthName = monthNames[this.currentMonth];
 
             const firstDayOfWeek = firstDayOfMonth.getDay();
@@ -101,16 +98,11 @@
 
                 const dateToCheck = new Date(this.currentYear, this.currentMonth, day);
 
-                if (dateToCheck < currentDate || dateToCheck.getDay() === 0 || dateToCheck.getDay() === 6 ||
-                    this.philippineHolidays.some(holiday =>
-                        holiday.getDate() === dateToCheck.getDate() &&
-                        holiday.getMonth() === dateToCheck.getMonth() &&
-                        holiday.getFullYear() === dateToCheck.getFullYear())) {
+                if (dateToCheck < currentDate || dateToCheck.getDay() === 0 || dateToCheck.getDay() === 6 || this.isHoliday(dateToCheck)) {
                     dayElement.classList.add('disabled-day');
                 }
 
-                if (this.currentYear === currentDate.getFullYear() && this.currentMonth === currentDate
-                    .getMonth() && day === currentDate.getDate()) {
+                if (this.currentYear === currentDate.getFullYear() && this.currentMonth === currentDate.getMonth() && day === currentDate.getDate()) {
                     dayElement.classList.add('bg-blue-500', 'text-white');
                 }
 
@@ -124,14 +116,17 @@
             }
         },
 
+        isHoliday(dateToCheck) {
+            return this.philippineHolidays.some(holiday =>
+                holiday.getDate() === dateToCheck.getDate() &&
+                holiday.getMonth() === dateToCheck.getMonth() &&
+                holiday.getFullYear() === dateToCheck.getFullYear()
+            );
+        },
+
         selectDate(dayElement, date) {
             this.clearSelectedDate();
-            const options = {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            };
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             this.selectedDate = date.toLocaleDateString(undefined, options);
             dayElement.classList.add('selected-day');
             this.$dispatch('date-selected', this.selectedDate);
@@ -161,5 +156,6 @@
         }
     };
 }
+
 
 </script>

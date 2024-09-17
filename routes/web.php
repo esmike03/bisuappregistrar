@@ -4,6 +4,7 @@ use App\Models\Appointment;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HolidayController;
 
 //User
 //Home
@@ -51,4 +52,14 @@ Route::delete('/appointments/{id}', [AdminController::class, 'destroy'])->name('
 
 //To Approve Appointmnet
 Route::patch('/appointments/{id}/status', [AdminController::class, 'updateStatus'])->name('appointments.updateStatus');
+
+//Calendar Holiday
+Route::get('/holidays', [HolidayController::class, 'getHolidays']);
+
+//Add Date
+Route::post('/date', [HolidayController::class, 'date']);
+
+//Delete Holiday
+Route::delete('/holidays/{id}', [HolidayController::class, 'destroy'])->name('holidays.destroy');
+
 

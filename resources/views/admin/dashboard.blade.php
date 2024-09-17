@@ -11,10 +11,13 @@
                 <h2 class=" text-2xl font-semibold text-gray-200">
                     Dashboard
                 </h2>
-                <a href="/admin/dashboard" class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:text-gray-400 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150" aria-label="{{ __('Refresh') }}">
+                <a href="/admin/dashboard"
+                    class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:text-gray-400 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
+                    aria-label="{{ __('Refresh') }}">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path fill="none" d="M0 0h24v24H0z"/>
-                        <path d="M12 4V1L8 5l4 4V6c4.41 0 8 3.59 8 8s-3.59 8-8 8-8-3.59-8-8h2c0 3.31 2.69 6 6 6s6-2.69 6-6-2.69-6-6-6z"/>
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path
+                            d="M12 4V1L8 5l4 4V6c4.41 0 8 3.59 8 8s-3.59 8-8 8-8-3.59-8-8h2c0 3.31 2.69 6 6 6s6-2.69 6-6-2.69-6-6-6z" />
                     </svg>
 
                 </a>
@@ -52,20 +55,20 @@
                 <div class="flex items-center p-4 bg-white rounded-lg shadow-xs ">
                     <div
                         class="p-3 mr-4 text-green-500 shadow-md bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-.586-1.414l-4-4A2 2 0 0012 0H4zm7 1.5V6h3.5L11 1.5zM4 4h5v2H4V4zm0 4h10v2H4V8zm0 4h10v2H4v-2z">
-                            </path>
+                        <svg class="w-6 h-6 " fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M6 2a1 1 0 011-1h1a1 1 0 110 2H7v1H5V3a1 1 0 011-1zm10 0a1 1 0 011-1h1a1 1 0 110 2h-1v1h-2V3a1 1 0 011-1zM5 6h14a2 2 0 012 2v11a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2zm0 2v11h14V8H5zm3 3a1 1 0 100 2h2a1 1 0 100-2H8zm4 0a1 1 0 100 2h2a1 1 0 100-2h-2zm-4 4a1 1 0 100 2h2a1 1 0 100-2H8zm4 0a1 1 0 100 2h2a1 1 0 100-2h-2z"
+                                clip-rule="evenodd"></path>
                         </svg>
-
                     </div>
                     <a href="/records" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 ">
-                                Appointment Records
+                                Set Available Date
                             </p>
                             <p class="text-lg font-semibold text-gray-700 ">
-                                $ 46,760.89
+                                Appointment Calendar
                             </p>
                         </div>
                     </a>
