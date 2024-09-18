@@ -184,9 +184,18 @@
                                 <select required name="request" id="request"
                                     class="w-full bg-gray-50 border font-bold border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-gray-500">
                                     <option value="" disabled selected>Request</option>
-                                    <option value="Transcript of Records"
-                                        {{ old('request') == 'Transcript of Records' ? 'selected' : '' }}>
-                                        Transcript of Records
+                                    <option value="Transcript of Records for Board Exam"
+                                        {{ old('request') == 'Transcript of Records for Board Exam' ? 'selected' : '' }}>
+                                        Transcript of Records for Board Exam
+                                    </option>
+
+                                    <option value="Transcript of Records for Employment"
+                                        {{ old('request') == 'Transcript of Records for Employment' ? 'selected' : '' }}>
+                                        Transcript of Records for Employment
+                                    </option>
+                                    <option value="Transcript of Records for Transfer"
+                                        {{ old('request') == 'Transcript of Records for Transfer' ? 'selected' : '' }}>
+                                        Transcript of Records for Transfer
                                     </option>
                                     <option value="Certificate of Good Moral"
                                         {{ old('request') == 'Certificate of Good Moral' ? 'selected' : '' }}>
@@ -195,6 +204,14 @@
                                     <option value="Certificate of Transfer of Credentials"
                                         {{ old('request') == 'Certificate of Transfer of Credentials' ? 'selected' : '' }}>
                                         Certificate of Transfer of Credentials
+                                    </option>
+                                    <option value="Certificate of Graduation"
+                                        {{ old('request') == 'Certificate of Graduation' ? 'selected' : '' }}>
+                                        Certificate of Graduation
+                                    </option>
+                                    <option value="Course Prospectus"
+                                        {{ old('request') == 'Course Prospectus' ? 'selected' : '' }}>
+                                        Course Prospectus
                                     </option>
                                     <option value="Clients Request Slip"
                                         {{ old('request') == 'Clients Request Slip' ? 'selected' : '' }}>

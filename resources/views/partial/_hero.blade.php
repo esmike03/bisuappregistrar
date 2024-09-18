@@ -25,11 +25,11 @@
         <!-- Business Hours -->
         <a class="slide-in gap-1 flex mb-2 text-left mt-4 items-center text-sm text-gray-400" role="alert">
             <i class="fa-solid fa-clock"> </i>
-            <span class="text-xs font-chakra font-medium">8:00 am to 5:00 pm</span>
+            <span class="text-sm font-chakra font-medium">8:00 am to 5:00 pm</span>
         </a>
 
         <!-- Description Paragraph -->
-        <p class="mb-8 text-justify text-sm leading-relaxed font-medium lg:text-xl text-gray-300 slide-in lg:pr-36 xl:pr-48">
+        <p class="mb-8 text-justify text-md leading-relaxed font-medium lg:text-xl text-gray-300 slide-in lg:pr-36 xl:pr-48">
             This appointment request form is exclusively for scheduling priority slots. It cannot be used to request online documents. After you complete the form, further instructions will be sent to your email.
         </p>
 
