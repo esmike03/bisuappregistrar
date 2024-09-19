@@ -1,5 +1,5 @@
-<section class="mt-10 px-4 lg:px-8">
-    <div class="py-8 mt-8 mx-auto max-w-screen-xl lg:py-16 lg:px-12">
+<section class="mt-10 px-2 lg:px-2">
+    <div class="py-8 mt-8 mx-auto max-w-screen-xl lg:py-16 lg:px-10">
         <div class="ml-4 md:ml-10 lg:ml-14">
             <h1 class="mb-4 text-3xl md:text-4xl lg:text-5xl font-extrabold leading-none tracking-tight text-white">
                 News & Events
@@ -15,7 +15,7 @@
 
             <div class="flex flex-wrap justify-center items-center mx-auto mt-8 gap-6">
                 <figure
-                    class="relative max-w-xs transition-all duration-300 cursor-pointer filter grayscale-0 hover:grayscale">
+                    class="relative max-w-xs transition-transform duration-300 cursor-pointer transform hover:scale-105">
                     <a href="#">
                         <img class="rounded-lg w-full" src="images/test.jpg" alt="Newly Appointed CHED Commissioner">
                     </a>
@@ -26,7 +26,7 @@
                 </figure>
 
                 <figure
-                    class="relative max-w-xs transition-all duration-300 cursor-pointer filter grayscale-0 hover:grayscale">
+                    class="relative max-w-xs transition-transform duration-300 cursor-pointer transform hover:scale-105">
                     <a href="#">
                         <img class="rounded-lg w-full" src="images/test2.jpg"
                             alt="New President and Chair of the AACUP">
@@ -38,7 +38,7 @@
                 </figure>
 
                 <figure
-                    class="relative max-w-xs transition-all duration-300 cursor-pointer filter grayscale-0 hover:grayscale">
+                    class="relative max-w-xs transition-transform duration-300 cursor-pointer transform hover:scale-105">
                     <a href="#">
                         <img class="rounded-lg w-full" src="images/test3.jpg"
                             alt="Update on Individual Inventory Record">
@@ -51,5 +51,4 @@
             </div>
         </div>
     </div>
-
 </section>

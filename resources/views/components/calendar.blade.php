@@ -7,7 +7,7 @@
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 rounded-t dark:border-gray-600">
                 <button @click="calendarOpen = false" type="button"
-                    class="text-amber-400 bg-transparent hover:bg-gray-200 hover:text-amber-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-amber-600 dark:hover:text-white"
+                    class="text-red-400 bg-transparent hover:bg-red-400 hover:text-white rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
                     data-modal-toggle="crud-modal">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 14 14">

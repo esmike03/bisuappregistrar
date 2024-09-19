@@ -20,7 +20,7 @@
 
 .disabled-day {
     opacity: 0.5;
-    background: #ff6f6fd3;
+    background: #ff818194;
     cursor: not-allowed;
     border-radius: 8px;
     pointer-events: none;

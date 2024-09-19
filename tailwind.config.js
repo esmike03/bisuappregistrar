@@ -14,6 +14,10 @@ export default {
                   display: ['orientation'],
                 },
               },
+              screens: {
+                'sc': '360px',
+                'ls': '500px', // Custom breakpoint for 340px width devices
+              },
             fontFamily: {
                 orbitron: ['Orbitron', 'sans-serif'], // Adding Orbitron font
                 chakra: ['Chakra Petch', 'regular'],

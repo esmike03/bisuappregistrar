@@ -1,7 +1,7 @@
 <section class="bg-transparent mt-0 relative">
-    <div class="py-8 px-6 mx-auto max-w-screen-xl lg:py-16 lg:px-12">
+    <div class="py-8 px-3 mx-auto max-w-screen-xl lg:py-16 lg:px-24">
         <!-- Registrar Heading with Location List -->
-        <div class="mx-auto mt-24 mb-10 text-left bg-purple-to-transparent">
+        <div class="mx-auto mt-24 lg:mt-14 mb-10 text-left bg-purple-to-transparent">
             <div class="font-extrabold text-4xl md:text-4xl sm:text-2xl [text-wrap:balance] bg-clip-text text-transparent bg-gradient-to-r from-slate-300/70 to-50% to-slate-100">
                 Registrar
                 <span class="text-amber-500 inline-flex flex-col h-[calc(theme(fontSize.4xl)*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.4xl)*theme(lineHeight.tight))] overflow-hidden">
@@ -41,5 +41,5 @@
             </a>
         </div>
     </div>
-    <img src="/images/gatebisu2.png" class="h-fit w-fit bg-fixed absolute top-0 left-0 opacity-70 -z-10 bg-mobile-portrait" alt="Background Image" />
+    <img src="/images/gatebisu2.png" class="h-fit w-fit bg-fixed absolute top-0 left-0 opacity-70 -z-10 ls:hidden bg-mobile-portrait" alt="Background Image" />
 </section>
