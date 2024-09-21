@@ -22,7 +22,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form class="p-4 md:p-5" method="GET" action="">
+            <form action="/message" class="p-4 md:p-5" method="POST" action="">
                 @csrf
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2 sm:col-span-1">
@@ -32,8 +32,8 @@
                             maxlength="30" minlength="6" placeholder="abc@gmail.com" required>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="category" class="block mb-2 text-sm font-medium text-white">Campus</label>
-                        <select id="category" name="campus"
+                        <label for="campus" class="block mb-2 text-sm font-medium text-white">Campus</label>
+                        <select id="campus" name="campus" required
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5  dark:border-gray-500 dark:placeholder-gray-400  dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option value="Main">Main</option>
                             <option value="Balilihan">Balilihan</option>

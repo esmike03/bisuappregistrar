@@ -7,9 +7,11 @@
         isGraduated() { return this.status === 'Graduated'; }
     }" @date-selected.window="selectedDate = $event.detail">
         <div class="container px-6 mx-auto grid">
-            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                Appointment Calendar
-            </h2>
+            <a href="/admin/dashboard">
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                    <i class="fa fa-arrow-left text-xl"></i> Appointment Calendar
+                </h2>
+            </a>
             <form method="POST" action="/date">
                 @csrf
                 <div class="-mx-3 flex flex-wrap">

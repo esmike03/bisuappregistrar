@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HolidayController;
+use App\Http\Controllers\MessageController;
 
 //User
 //Home
@@ -62,4 +63,9 @@ Route::post('/date', [HolidayController::class, 'date']);
 //Delete Holiday
 Route::delete('/holidays/{id}', [HolidayController::class, 'destroy'])->name('holidays.destroy');
 
+//Show Appointment
+Route::get('/appointment/{appointment}', [AdminController::class, 'show']);
+
+//Send Message
+Route::post('/message', [MessageController::class, 'message']);
 

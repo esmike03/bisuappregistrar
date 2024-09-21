@@ -9,45 +9,10 @@
             </p>
         </div>
 
-        <div class="px-4 mx-auto text-center max-w-screen-md lg:max-w-screen-2xl lg:px-8">
-            <img src="images/test4.jpg" class="rounded-lg mt-8 w-full max-w-md md:max-w-lg lg:max-w-xl mx-auto"
-                alt="Main Event Image" />
-
-            <div class="flex flex-wrap justify-center items-center mx-auto mt-8 gap-6">
-                <figure
-                    class="relative max-w-xs transition-transform duration-300 cursor-pointer transform hover:scale-105">
-                    <a href="#">
-                        <img class="rounded-lg w-full" src="images/test.jpg" alt="Newly Appointed CHED Commissioner">
-                    </a>
-                    <figcaption
-                        class="absolute inset-x-0 bottom-6 px-4 text-base md:text-lg lg:text-xl text-white bg-amber-500">
-                        <p class="font-bold">Newly Appointed CHED Commissioner</p>
-                    </figcaption>
-                </figure>
-
-                <figure
-                    class="relative max-w-xs transition-transform duration-300 cursor-pointer transform hover:scale-105">
-                    <a href="#">
-                        <img class="rounded-lg w-full" src="images/test2.jpg"
-                            alt="New President and Chair of the AACUP">
-                    </a>
-                    <figcaption
-                        class="absolute inset-x-0 bottom-6 px-4 text-base md:text-lg lg:text-xl text-white bg-amber-500">
-                        <p class="font-bold">New President and Chair of the AACUP</p>
-                    </figcaption>
-                </figure>
-
-                <figure
-                    class="relative max-w-xs transition-transform duration-300 cursor-pointer transform hover:scale-105">
-                    <a href="#">
-                        <img class="rounded-lg w-full" src="images/test3.jpg"
-                            alt="Update on Individual Inventory Record">
-                    </a>
-                    <figcaption
-                        class="absolute inset-x-0 bottom-6 px-4 text-base md:text-lg lg:text-xl text-white bg-amber-500">
-                        <p class="font-bold">Update on Individual Inventory Record</p>
-                    </figcaption>
-                </figure>
+            <!-- RSS Widget Section -->
+            <div class="mt-8">
+                <rssapp-wall id="SUvhTh7tJugfuHTA"></rssapp-wall>
+                <script src="https://widget.rss.app/v1/wall.js" type="text/javascript" async></script>
             </div>
         </div>
     </div>

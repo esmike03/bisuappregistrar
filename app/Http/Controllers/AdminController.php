@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Holiday;
+use App\Models\Message;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,10 +42,12 @@ class AdminController extends Controller
             $query->where('tracking_code', 'LIKE', "%{$searchTerm}%");
         }
 
+        $messages = Message::all();
+
         // Paginate the filtered appointments
         $appointments = $query->orderBy('created_at', 'desc')->paginate(3); // Adjust the number of items per page as needed
 
-        return view('admin.dashboard', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount]);
+        return view('admin.dashboard', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount, 'messages' => $messages,]);
     }
 
 
@@ -158,5 +161,14 @@ class AdminController extends Controller
         ]);
 
         return redirect('/admin/dashboard')->with('message', 'Appointment status updated successfully.');
+    }
+
+    //Show Appointment
+    public function show(Appointment $appointment, Request $request)
+    {
+
+        return view('admin.partials.show', [
+            'appointment' => $appointment,
+        ]);
     }
 }

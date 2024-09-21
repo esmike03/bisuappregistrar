@@ -29,7 +29,7 @@
         </a>
 
         <!-- Description Paragraph -->
-        <p class="mb-8 text-justify text-md leading-relaxed font-medium lg:text-xl text-gray-300 slide-in lg:pr-36 xl:pr-48">
+        <p class="mb-8 text-md leading-relaxed font-medium lg:text-xl text-gray-300 slide-in lg:pr-36 xl:pr-48">
             This appointment request form is exclusively for scheduling priority slots. It cannot be used to request online documents. After you complete the form, further instructions will be sent to your email.
         </p>
 

@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
     //Home
     public function index()
     {
+
         return view('appointment.index');
     }
 
@@ -140,6 +142,5 @@ class HomeController extends Controller
         // Redirect with a success message
         return redirect('/')->with('message', 'Appointment Updated Successfully!');
     }
-
 
 }

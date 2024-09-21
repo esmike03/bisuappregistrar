@@ -24,14 +24,15 @@
                                 <div class="flex items-center">
                                     <input type="radio" id="status-graduated" name="status" value="Graduated" required
                                         class="h-4 w-4" x-model="status" />
-                                    <label for="status-graduated" class="pl-1 text-base text-sm font-medium text-[#07074D]">
+                                    <label for="status-graduated"
+                                        class="pl-1 text-xs font-medium xl:text-lg text-[#07074D]">
                                         Graduated
                                     </label>
                                 </div>
                                 <div class="flex items-center">
                                     <input type="radio" id="status-enrolled" name="status" value="Enrolled"
                                         class="h-4 w-4" x-model="status" />
-                                    <label for="status-enrolled" class="pl-1 text-sm text-base font-medium text-[#07074D]">
+                                    <label for="status-enrolled" class="pl-1 text-xs font-medium xl:text-lg text-[#07074D]">
                                         Enrolled
                                     </label>
                                 </div>
@@ -39,7 +40,7 @@
                                     <input type="radio" id="status-not-enrolled" name="status" value="Not Enrolled"
                                         class="h-4 w-4" x-model="status" />
                                     <label for="status-not-enrolled"
-                                        class="pl-1 text-sm text-base font-medium text-[#07074D]">
+                                        class="pl-1 text-xs font-medium xl:text-lg text-[#07074D]">
                                         Not Enrolled <span class="text-red-400  text-md">*</span>
                                     </label>
                                 </div>
@@ -168,7 +169,9 @@
                                 </label>
                                 <input x-bind:disabled="isGraduated()" type="number" name="ismis" placeholder="000000"
                                     value="{{ old('ismis') }}"
+                                    x-on:input="if ($event.target.value.length > 6) $event.target.value = $event.target.value.slice(0, 6)"
                                     class="disabled:bg-red-100 w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+
                                 @error('ismis')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
                                         {{ $message }}

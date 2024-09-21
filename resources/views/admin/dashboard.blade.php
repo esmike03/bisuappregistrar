@@ -170,7 +170,7 @@
 
                             @if ($filteredAppointments->isNotEmpty())
                                 @foreach ($filteredAppointments as $appointment)
-                                    <tr class="text-gray-700 ">
+                                    <tr class="text-gray-700 hover:cursor-pointer " @click="window.location='/appointment/{{ $appointment->id }}'">
                                         <td class="px-4 py-3">
                                             <div class="flex items-center text-sm">
                                                 <!-- Avatar with inset shadow -->
@@ -246,6 +246,7 @@
                                             </form>
                                         </td>
                                     </tr>
+
                                 @endforeach
                             @else
                                 <p class="text-amber-500">No Appointment Found.</p>
@@ -267,12 +268,13 @@
     </div>
 
     <x-notification />
-    <x-messages />
+    <x-messages :messages="$messages" />
+
     <script>
-        // Redirect after 35 seconds (35000 milliseconds)
+        // Redirect after 2:00 minutes (120000 milliseconds)
         setTimeout(function() {
             window.location.href = '/admin/dashboard'; // Change this to your desired URL
-        }, 35000); // Time in milliseconds
+        }, 120000); // Time in milliseconds
     </script>
 
 @endsection
