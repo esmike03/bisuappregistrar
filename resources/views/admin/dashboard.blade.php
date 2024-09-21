@@ -157,6 +157,7 @@
                                 <th class="px-4 py-3">Appointment Date</th>
                                 <th class="px-4 py-3">Code</th>
                                 <th class="px-4 py-3">Action</th>
+                                <th class="px-4 py-3">Expand</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y dark:divide-gray-200 ">
@@ -170,7 +171,7 @@
 
                             @if ($filteredAppointments->isNotEmpty())
                                 @foreach ($filteredAppointments as $appointment)
-                                    <tr class="text-gray-700 hover:cursor-pointer " @click="window.location='/appointment/{{ $appointment->id }}'">
+                                    <tr class="text-gray-700 ">
                                         <td class="px-4 py-3">
                                             <div class="flex items-center text-sm">
                                                 <!-- Avatar with inset shadow -->
@@ -245,8 +246,12 @@
                                                     class="fas fa-trash bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2"></button>
                                             </form>
                                         </td>
+                                        <td class="px-4 py-3 text-sm">
+                                            <a href="/appointment/{{ $appointment->id }}">
+                                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                            </a>
+                                        </td>
                                     </tr>
-
                                 @endforeach
                             @else
                                 <p class="text-amber-500">No Appointment Found.</p>

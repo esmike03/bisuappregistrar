@@ -137,44 +137,65 @@
 
     <!--Success Modal-->
     @if (session('formData'))
-        <!-- Main modal -->
-        <div x-data="{ success: true }" x-show="success" x-cloak
-            class="fixed inset-0 flex items-center justify-center z-50 bg-black backdrop-filter backdrop-blur-lg bg-opacity-5">
-            <div x-ref="modal" @click.away="success = false"
-                class="relative p-4 w-full max-w-md h-fit m-1 md:h-auto mx-2 pop fade-in bg-purple-900 backdrop-filter backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg transform transition-transform duration-300">
-                <!-- Modal content -->
-                <div id="capture" class="relative p-2 text-center">
-                    <button type="button"
-                        class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                        @click="success = false">
-                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <div
-                        class="w-12 h-12 rounded-full bg-purple-700 p-2 flex items-center justify-center mx-auto mb-3.5">
-                        <svg aria-hidden="true" class="w-8 h-8 text-green-500" fill="currentColor"
-                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="sr-only">Success</span>
-                    </div>
-                    <p class="text-gray-500">Tracking Code</p>
-                    <p class="mb-1 text-4xl font-bold text-amber-500">{{ session('formData.tracking_code') }}</p>
-                    <p class="text-gray-400">{{ session('formData.appdate') }}</p>
-                    <p class="text-amber-400">Please note your tracking code. You will need to present it on the day of
-                        your appointment.</p>
-                    <button @click="success = false" id="screenshotButton" class="pt-4 px-3 text-green-300"><i
-                            class="fa-solid fa-download"> </i> Download</button>
+    <!-- Main modal -->
+    <div x-data="{ success: true }" x-show="success" x-cloak
+        class="fixed inset-0 flex items-center px-2 justify-center z-50 bg-black backdrop-filter backdrop-blur-lg bg-opacity-5">
+        <div x-ref="modal" @click.away="success = false"
+            class="relative p-4 w-full max-w-md h-fit m-1 md:h-auto mx-2 pop fade-in bg-purple-900 backdrop-filter backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg transform transition-transform duration-300">
+            <!-- Modal content -->
+            <div id="capture" class="relative p-2 text-center">
+                <button type="button"
+                    class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                    @click="success = false">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="w-12 h-12 rounded-full bg-purple-700 p-2 flex items-center justify-center mx-auto mb-3.5">
+                    <svg aria-hidden="true" class="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Success</span>
                 </div>
+                <p class="text-gray-500">Tracking Code</p>
+                <p class="mb-1 text-4xl font-bold text-amber-500">{{ session('formData.tracking_code') }}</p>
+                <p class="text-gray-400">{{ session('formData.appdate') }}</p>
+                <p class="text-gray-400"> <span
+                        class="font-extrabold">{{ session('formData.request') }}</span></p>
+
+                <div x-data="{
+                    amount: '{{ session('formData.request') }}',
+                    messages: {
+                        'Certificate of Good Moral': 'P30',
+                        'Certificate of Transfer of Credentials': 'P40',
+                        'Course Prospectus': 'P50',
+                        'Transcript of Records for Board Exam': 'P70',
+                        'Transcript of Records for Employment': 'P70',
+                        'Transcript of Records for Transfer': 'P70'
+                        'Client Request Slip': 'P20'
+                        'Certificate of Graduation': 'P50'
+                    }
+                }">
+                    <p class="text-gray-400">
+                        Amount Payable:
+                        <span x-text="messages[amount]" x-show="messages[amount]" class="text-green-500 font-extrabold"></span>
+                    </p>
+                </div>
+
+                <p class="text-amber-400">Please note your tracking code. You will need to present it on the day of
+                    your appointment.</p>
+                <button @click="success = false" id="screenshotButton" class="pt-4 px-3 text-green-300 mb-2"><i
+                        class="fa-solid fa-download"> </i> Download</button>
             </div>
         </div>
+    </div>
     @endif
 
 
