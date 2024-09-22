@@ -2,7 +2,7 @@
     <div class="py-8 px-3 mx-auto max-w-screen-xl lg:py-16 lg:px-24">
         <!-- Registrar Heading with Location List -->
         <div class="mx-auto mt-24 lg:mt-14 mb-10 text-left bg-purple-to-transparent">
-            <div class="font-extrabold text-4xl md:text-4xl sm:text-2xl [text-wrap:balance] bg-clip-text text-transparent bg-gradient-to-r from-slate-300/70 to-50% to-slate-100">
+            <div class="font-extrabold text-4xl md:text-4xl sm:text-2xl [text-wrap:balance] bg-clip-text text-transparent bg-gradient-to-r from-slate-300/70 to-10% to-slate-100">
                 Registrar
                 <span class="text-amber-500 inline-flex flex-col h-[calc(theme(fontSize.4xl)*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.4xl)*theme(lineHeight.tight))] overflow-hidden">
                     <ul class="block animate-text-slide-6 text-left leading-tight [&_li]:block">
@@ -29,7 +29,7 @@
         </a>
 
         <!-- Description Paragraph -->
-        <p class="mb-8 text-md leading-relaxed font-medium lg:text-xl text-gray-300 slide-in lg:pr-36 xl:pr-48">
+        <p class="mb-8 text-md leading-relaxed font-medium lg:text-xl text-gray-400 slide-in lg:pr-36 xl:pr-48">
             This appointment request form is exclusively for scheduling priority slots. It cannot be used to request online documents. After you complete the form, further instructions will be sent to your email.
         </p>
 

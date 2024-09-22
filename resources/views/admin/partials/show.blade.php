@@ -8,9 +8,9 @@
                     <i class="fa fa-arrow-left text-xl"></i> Details
                 </h2>
             </a>
-            <div class="w-full overflow-hidden bg-white p-6 rounded-md shadow-xs">
+            <div class="w-full overflow-hidden bg-slate-50 rounded-md shadow-xs">
                 <div class="grid grid-cols-1 gap-4">
-                    <div class="grid grid-cols-4">
+                    <div class="grid grid-cols-4 bg-blue-100 p-6 border-b-2 border-dashed border-gray-300">
                         <div class="">
                             <h4 class="text-gray-500 pb-2">Tracking Code</h4>
                             <p class="text-amber-700 text-xl">{{ $appointment->tracking_code }}</p>
@@ -24,9 +24,8 @@
                             <p class="text-amber-700 text-xl">{{ $appointment->appdate }}</p>
                         </div>
                     </div>
-                    <div class="w-full border-gray-300 mb-6 border-b-2">
-                    </div>
-                    <div class="grid grid-cols-4 gap-4">
+
+                    <div class="grid grid-cols-4 gap-4 p-6">
                         <div class="">
                             <h4 class="text-gray-500 pb-2">ID Number</h4>
                             <p class="text-black text-xl">{{ $appointment->ismis }}</p>
@@ -62,7 +61,7 @@
                 </div>
                 <div class="flex justify-end">
                     <button
-                        class="mt-6 hover:shadow-form rounded-md bg-[#500862] py-3 px-8 text-center text-base font-semibold text-white outline-none"
+                        class="mt-2 m-6 hover:shadow-form rounded-md bg-[#500862] py-3 px-8 text-center text-base font-semibold text-white outline-none"
                         @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
                         <i class="fa fa-check"> </i> Mark as Completed
                     </button>
