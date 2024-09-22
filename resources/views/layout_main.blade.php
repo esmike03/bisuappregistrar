@@ -141,7 +141,7 @@
     <div x-data="{ success: true }" x-show="success" x-cloak
         class="fixed inset-0 flex items-center px-2 justify-center z-50 bg-black backdrop-filter backdrop-blur-lg bg-opacity-5">
         <div x-ref="modal" @click.away="success = false"
-            class="relative p-4 w-full max-w-md h-fit m-1 md:h-auto mx-2 pop fade-in bg-purple-900 backdrop-filter backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg transform transition-transform duration-300">
+            class="relative p-2 w-full max-w-md h-fit m-1 md:h-auto mx-2 pop fade-in bg-purple-900 backdrop-filter backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg transform transition-transform duration-300">
             <!-- Modal content -->
             <div id="capture" class="relative p-2 text-center">
                 <button type="button"
@@ -166,9 +166,10 @@
                 </div>
                 <p class="text-gray-500">Tracking Code</p>
                 <p class="mb-1 text-4xl font-bold text-amber-500">{{ session('formData.tracking_code') }}</p>
+                <p class="text-amber-400">Please note your tracking code. You will need to present it on the day of
+                    your appointment.</p>
                 <p class="text-gray-400">{{ session('formData.appdate') }}</p>
-                <p class="text-gray-400"> <span
-                        class="font-extrabold">{{ session('formData.request') }}</span></p>
+                <p class="text-gray-400"> <span class="font-extrabold">{{ session('formData.request') }}</span></p>
 
                 <div x-data="{
                     amount: '{{ session('formData.request') }}',
@@ -178,22 +179,24 @@
                         'Course Prospectus': 'P50',
                         'Transcript of Records for Board Exam': 'P70',
                         'Transcript of Records for Employment': 'P70',
-                        'Transcript of Records for Transfer': 'P70'
-                        'Client Request Slip': 'P20'
-                        'Certificate of Graduation': 'P50'
+                        'Transcript of Records for Transfer': 'P70',
+                        'Client Request Slip': 'P20',
+                        'Certificate of Graduation': 'P50',
                     }
                 }">
                     <p class="text-gray-400">
                         Amount Payable:
-                        <span x-text="messages[amount]" x-show="messages[amount]" class="text-green-500 font-extrabold"></span>
+                        <span x-text="messages[amount]" x-show="messages[amount]"
+                            class="text-green-500 font-extrabold"></span>
                     </p>
                 </div>
-
-                <p class="text-amber-400">Please note your tracking code. You will need to present it on the day of
-                    your appointment.</p>
-                <button @click="success = false" id="screenshotButton" class="pt-4 px-3 text-green-300 mb-2"><i
-                        class="fa-solid fa-download"> </i> Download</button>
             </div>
+            <div class="w-full flex justify-center">
+                <button @click="success = false" id="screenshotButton"
+                    class="border rounded-md hover:bg-green-300 hover:text-white mt-4 px-3 text-green-300 mb-2"><i
+                        class="fa-solid fa-save"> </i> Save</button>
+            </div>
+
         </div>
     </div>
     @endif
