@@ -93,27 +93,72 @@
         @yield('edit')
     </main>
 
-    <footer class="bg-white rounded-lg shadow bottom-0 w-full mt-10">
-        <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-            <span class="text-sm text-gray-500 sm:text-center ">© 2024 <a href="https://flowbite.com/"
-                    class="hover:underline">BOHOL ISLAND STATE UNIVERSITY</a>. All Rights Reserved.
-            </span>
-            <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500  sm:mt-0">
-                <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">About</a>
-                </li>
-                <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
-                </li>
-                <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
-                </li>
-                <li>
-                    <a href="#" class="hover:underline">Contact</a>
-                </li>
-            </ul>
+
+
+    <footer class="bg-gray-950 z-50 backdrop-filter backdrop-blur-xl bg-opacity-30 overflow-hidden relative">
+        <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+            <div class="md:flex md:justify-between">
+                <div class="mb-6 md:mb-0">
+                    <a href="https://flowbite.com/" class="flex items-center">
+                        <img src="/images/logo.png" class="h-12 me-3" alt="BISU Logo" />
+                        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                            BISU REGISTRAR
+                        </span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                    <div>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                            <li class="mb-4">
+                                <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
+                            </li>
+                            <li>
+                                <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                            <li class="mb-4">
+                                <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
+                            </li>
+                            <li>
+                                <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                            <li class="mb-4">
+                                <a href="#" class="hover:underline">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+                    © 2024 <a href="https://flowbite.com/" class="hover:underline">Bohol Island State University</a>.
+                    All Rights Reserved.
+                </span>
+                <div class="flex mt-4 sm:justify-center sm:mt-0">
+                    <!-- Social icons here -->
+                </div>
+            </div>
+            <!-- Image with overflow -->
+            <img src="/images/logo.png" class="absolute bottom-0 right-0 h-80 opacity-10 -z-10 transform translate-x-1/4 translate-y-1/4 overflow-hidden"
+                alt="Background Image" />
         </div>
     </footer>
+
+
 
     <!-- Track Modal Component -->
     <x-track-modal x-show="modalOpen" x-cloak />
@@ -128,7 +173,8 @@
         alt="Background Image" />
 
     <!-- Loading Spinner -->
-    <div x-show="loading" x-cloak class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+    <div x-show="loading" x-cloak
+        class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
         <img src="{{ asset('images/ball-triangle.svg') }}" alt="Loading Spinner" class="w-16 h-16" />
     </div>
 
@@ -137,68 +183,70 @@
 
     <!--Success Modal-->
     @if (session('formData'))
-    <!-- Main modal -->
-    <div x-data="{ success: true }" x-show="success" x-cloak
-        class="fixed inset-0 flex items-center px-2 justify-center z-50 bg-black backdrop-filter backdrop-blur-lg bg-opacity-5">
-        <div x-ref="modal" @click.away="success = false"
-            class="relative p-2 w-full max-w-md h-fit m-1 md:h-auto mx-2 pop fade-in bg-purple-900 backdrop-filter backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg transform transition-transform duration-300">
-            <!-- Modal content -->
-            <div id="capture" class="relative p-2 text-center">
-                <button type="button"
-                    class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                    @click="success = false">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-                <div class="w-12 h-12 rounded-full bg-purple-700 p-2 flex items-center justify-center mx-auto mb-3.5">
-                    <svg aria-hidden="true" class="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="sr-only">Success</span>
-                </div>
-                <p class="text-gray-500">Tracking Code</p>
-                <p class="mb-1 text-4xl font-bold text-amber-500">{{ session('formData.tracking_code') }}</p>
-                <p class="text-amber-400">Please note your tracking code. You will need to present it on the day of
-                    your appointment.</p>
-                <p class="text-gray-400">{{ session('formData.appdate') }}</p>
-                <p class="text-gray-400"> <span class="font-extrabold">{{ session('formData.request') }}</span></p>
-
-                <div x-data="{
-                    amount: '{{ session('formData.request') }}',
-                    messages: {
-                        'Certificate of Good Moral': 'P30',
-                        'Certificate of Transfer of Credentials': 'P40',
-                        'Course Prospectus': 'P50',
-                        'Transcript of Records for Board Exam': 'P70',
-                        'Transcript of Records for Employment': 'P70',
-                        'Transcript of Records for Transfer': 'P70',
-                        'Client Request Slip': 'P20',
-                        'Certificate of Graduation': 'P50',
-                    }
-                }">
-                    <p class="text-gray-400">
-                        Amount Payable:
-                        <span x-text="messages[amount]" x-show="messages[amount]"
-                            class="text-green-500 font-extrabold"></span>
+        <!-- Main modal -->
+        <div x-data="{ success: true }" x-show="success" x-cloak
+            class="fixed inset-0 flex items-center px-2 justify-center z-50 bg-black backdrop-filter backdrop-blur-lg bg-opacity-5">
+            <div x-ref="modal" @click.away="success = false"
+                class="relative p-2 w-full max-w-md h-fit m-1 md:h-auto mx-2 pop fade-in bg-purple-900 backdrop-filter backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg transform transition-transform duration-300">
+                <!-- Modal content -->
+                <div id="capture" class="relative p-2 text-center">
+                    <button type="button"
+                        class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                        @click="success = false">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div
+                        class="w-12 h-12 rounded-full bg-purple-700 p-2 flex items-center justify-center mx-auto mb-3.5">
+                        <svg aria-hidden="true" class="w-8 h-8 text-green-500" fill="currentColor"
+                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Success</span>
+                    </div>
+                    <p class="text-gray-500">Tracking Code</p>
+                    <p class="mb-1 text-4xl font-bold text-amber-500">{{ session('formData.tracking_code') }}</p>
+                    <p class="text-amber-400">Please note your tracking code. You will need to present it on the day of
+                        your appointment.</p>
+                    <p class="text-gray-400">{{ session('formData.appdate') }}</p>
+                    <p class="text-gray-400"> <span class="font-extrabold">{{ session('formData.request') }}</span>
                     </p>
-                </div>
-            </div>
-            <div class="w-full flex justify-center">
-                <button @click="success = false" id="screenshotButton"
-                    class="border rounded-md hover:bg-green-300 hover:text-white mt-4 px-3 text-green-300 mb-2"><i
-                        class="fa-solid fa-save"> </i> Save</button>
-            </div>
 
+                    <div x-data="{
+                        amount: '{{ session('formData.request') }}',
+                        messages: {
+                            'Certificate of Good Moral': 'P30',
+                            'Certificate of Transfer of Credentials': 'P40',
+                            'Course Prospectus': 'P50',
+                            'Transcript of Records for Board Exam': 'P70',
+                            'Transcript of Records for Employment': 'P70',
+                            'Transcript of Records for Transfer': 'P70',
+                            'Client Request Slip': 'P20',
+                            'Certificate of Graduation': 'P50',
+                        }
+                    }">
+                        <p class="text-gray-400">
+                            Amount Payable:
+                            <span x-text="messages[amount]" x-show="messages[amount]"
+                                class="text-green-500 font-extrabold"></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full flex justify-center">
+                    <button @click="success = false" id="screenshotButton"
+                        class="border rounded-md hover:bg-green-300 hover:text-white mt-4 px-3 text-green-300 mb-2"><i
+                            class="fa-solid fa-save"> </i> Save</button>
+                </div>
+
+            </div>
         </div>
-    </div>
     @endif
 
 
