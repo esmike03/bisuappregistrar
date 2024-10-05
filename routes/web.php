@@ -1,9 +1,12 @@
 <?php
 
+use App\Mail\Email;
 use App\Models\Appointment;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\MessageController;
 
@@ -68,4 +71,7 @@ Route::get('/appointment/{appointment}', [AdminController::class, 'show']);
 
 //Send Message
 Route::post('/message', [MessageController::class, 'message']);
+
+//Send Email
+Route::get('/send-email', [EmailController::class, 'sendEmail']);
 

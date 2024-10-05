@@ -14,6 +14,12 @@ return [
     |
     */
 
+    'mailgun' => [
+        'domain' => env('MAILGUN_DOMAIN'), // The domain for your Mailgun account
+        'secret' => env('MAILGUN_SECRET'), // Your Mailgun API key
+        'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'), // Optional, default endpoint
+    ],
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

@@ -246,13 +246,6 @@
                                     </option>
                                 </select>
 
-                                {{-- <select name="countries" id="countries" multiple>
-                                    <option value="1">Afghanistan</option>
-                                    <option value="2">Australia</option>
-                                    <option value="3">Germany</option>
-                                    <option value="4">Canada</option>
-                                    <option value="5">Russia</option>
-                                </select> --}}
                                 @error('request')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
                                         {{ $message }}

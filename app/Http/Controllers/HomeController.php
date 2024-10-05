@@ -6,6 +6,8 @@ use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AppointmentConfirmation;
 
 class HomeController extends Controller
 {
@@ -70,6 +72,12 @@ class HomeController extends Controller
 
         // Create the appointment with the form fields including the tracking code
         Appointment::create($formFields);
+
+        // Prepare data for the email
+        $data = $request->only(['fName', 'lName', 'email', 'status', 'campus', 'request', 'appdate']);
+        $data['tracking_code'] = $trackingCode;
+
+        Mail::to($request->email)->send(new AppointmentConfirmation($data));
 
         return redirect('/')->with('formData', $formFields)->with('message', 'Appointment Set Successfully!');
     }
@@ -143,5 +151,4 @@ class HomeController extends Controller
         // Redirect with a success message
         return redirect('/')->with('message', 'Appointment Updated Successfully!');
     }
-
 }
