@@ -135,6 +135,7 @@
                                 @enderror
                             </div>
                         </div>
+
                     </div>
 
                     <!-- Email and Year Graduated -->

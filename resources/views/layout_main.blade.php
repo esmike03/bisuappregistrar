@@ -22,6 +22,10 @@
             integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
     </noscript>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/css/multi-select-tag.css">
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/js/multi-select-tag.js"></script>
+
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     <!-- FONTS -->
@@ -30,6 +34,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
     <link rel="icon" href="images/favicon.ico" />
+
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <!--html2canvas for taking screenshot-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -47,18 +52,24 @@
             });
         });
     </script>
+
 </head>
 
 <body class="flex flex-col font-[Nunito] bg-gradient-to-t from-[#500862] to-[#2b0846] min-h-screen mb-2">
 
     <header
-        class="fixed top-0 left-0 right-0 mb-2 px-4 shadow bg-purple-950 z-50 backdrop-filter backdrop-blur-xl bg-opacity-30">
+        class="fixed border-b-4 border-amber-500 top-0 left-0 right-0 mb-2 px-4 shadow bg-purple-950 z-50 backdrop-filter backdrop-blur-xl bg-opacity-30">
+
         <div class="relative mx-auto flex max-w-screen-lg flex-col py-4 sm:flex-row sm:items-center sm:justify-between">
             <a class="flex items-center text-2xl font-black" href="/"
                 @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
                 <img src="/images/logo.png" class="h-11 w-11 mr-2" alt="BISU Logo" />
-                <span class="text-lg text-neutral-200 font-normal" @click="success = false">REGISTRAR
-                    APPOINTMENT</span>
+                <div class="flex flex-col items-start">
+                    <span class="text-lg text-neutral-200 font-normal" @click="success = false">REGISTRAR
+                        APPOINTMENT</span>
+                    <span class="text-sm text-neutral-400 font-light">Bohol Island State University</span>
+                </div>
+
             </a>
             <input class="peer hidden" type="checkbox" id="navbar-open" />
             <label class="absolute right-0 mt-1 cursor-pointer text-white text-xl sm:hidden" for="navbar-open">
@@ -72,11 +83,11 @@
             <nav aria-label="Header Navigation" class="peer-checked:block hidden pl-2 py-6 sm:block sm:py-0">
                 <ul class="flex flex-col gap-y-4 sm:flex-row sm:gap-x-8">
                     <li @click="messageOpen = true">
-                        <button class="text-gray-100 hover:text-blue-600"><i class="fa-solid fa-envelope"></i>
+                        <button class="text-gray-100 hover:text-amber-600"><i class="fa-solid fa-envelope"></i>
                             Message</button>
                     </li>
                     <li @click="modalOpen = true">
-                        <button class="text-gray-100 hover:text-blue-600"><i class="fa-solid fa-file-export"></i>
+                        <button class="text-gray-100 hover:text-amber-600"><i class="fa-solid fa-file-export"></i>
                             Track</button>
                     </li>
                 </ul>
@@ -122,10 +133,22 @@
                         <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
                         <ul class="text-gray-500 dark:text-gray-400 font-medium">
                             <li class="mb-4">
-                                <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
+                                <a href="https://github.com/themesberg/flowbite" class="hover:underline ">BISU Main</a>
+                            </li>
+                            <li class="mb-4">
+                                <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">BISU Bilar</a>
+                            </li>
+                            <li class="mb-4">
+                                <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">BISU Balilihan</a>
+                            </li>
+                            <li class="mb-4">
+                                <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">BISU Calape</a>
+                            </li>
+                            <li class="mb-4">
+                                <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">BISU Candijay</a>
                             </li>
                             <li>
-                                <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
+                                <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">BISU Clarin</a>
                             </li>
                         </ul>
                     </div>
@@ -153,7 +176,8 @@
                 </div>
             </div>
             <!-- Image with overflow -->
-            <img src="/images/logo.png" class="absolute bottom-0 right-0 h-80 opacity-10 -z-10 transform translate-x-1/4 translate-y-1/4 overflow-hidden"
+            <img src="/images/logo.png"
+                class="absolute bottom-0 right-0 h-80 opacity-10 -z-10 transform translate-x-1/4 translate-y-1/4 overflow-hidden"
                 alt="Background Image" />
         </div>
     </footer>
@@ -270,7 +294,7 @@
         </x-modal>
     @endif
 
-
+</body>
 </body>
 
 </html>

@@ -76,8 +76,8 @@
                     </div>
 
                     <!-- Personal Details -->
-                    <div class="-mx-3 flex flex-wrap">
-                        <div class="w-full px-3 sm:w-1/3">
+                    <div class="-mx-2 flex flex-wrap">
+                        <div class="w-full px-2 sm:w-1/4">
                             <div class="mb-5">
                                 <label for="fName" class="mb-3 block text-base font-medium text-[#07074D]">
                                     First Name <span class="text-red-400  text-md">*</span>
@@ -92,7 +92,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="w-full px-3 sm:w-1/3">
+                        <div class="w-full px-2 sm:w-1/4">
                             <div class="mb-5">
                                 <label for="lName" class="mb-3 block text-base font-medium text-[#07074D]">
                                     Last Name <span class="text-red-400  text-md">*</span>
@@ -107,7 +107,8 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="w-full px-3 sm:w-1/3">
+
+                        <div class="w-full px-2 sm:w-1/4">
                             <div class="mb-5">
                                 <label for="mName" class="mb-3 block text-base font-medium text-[#07074D]">
                                     Middle Name
@@ -116,6 +117,29 @@
                                     value="{{ old('mName') }}" pattern="[A-Za-z\s]+"
                                     class="uppercase w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                 @error('mName')
+                                    <div class="text-xs text-red-800 sm:text-base lg:text-md">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="w-full px-2 sm:w-1/6">
+                            <div class="mb-5">
+                                <label for="suffix" class="mb-3 block text-base font-medium text-[#07074D]">
+                                    Suffix
+                                </label>
+                                <select name="suffix" id="suffix"
+                                    class="mt-4 bg-gray-50 border font-bold border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-gray-500">
+                                    <option value="" disabled selected>...</option>
+                                    <option value="Jr." {{ old('suffix') == 'Jr.' ? 'selected' : '' }}>Jr.</option>
+                                    <option value="Sr." {{ old('suffix') == 'Sr.' ? 'selected' : '' }}>Sr.</option>
+                                    <option value="II" {{ old('suffix') == 'II' ? 'selected' : '' }}>II</option>
+                                    <option value="III" {{ old('suffix') == 'III' ? 'selected' : '' }}>III</option>
+                                    <option value="IV" {{ old('suffix') == 'IV' ? 'selected' : '' }}>IV</option>
+                                    <option value="V" {{ old('suffix') == 'V' ? 'selected' : '' }}>V</option>
+                                </select>
+
+                                @error('suffix')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
                                         {{ $message }}
                                     </div>
@@ -222,6 +246,13 @@
                                     </option>
                                 </select>
 
+                                {{-- <select name="countries" id="countries" multiple>
+                                    <option value="1">Afghanistan</option>
+                                    <option value="2">Australia</option>
+                                    <option value="3">Germany</option>
+                                    <option value="4">Canada</option>
+                                    <option value="5">Russia</option>
+                                </select> --}}
                                 @error('request')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
                                         {{ $message }}
@@ -229,6 +260,7 @@
                                 @enderror
                             </div>
                         </div>
+
                     </div>
 
                     <!-- Appointment Date -->
@@ -241,7 +273,7 @@
                                 <input @click="calendarOpen = true" type="text" x-model="selectedDate" name="appdate"
                                     id="date" placeholder="Month/Day/Year" value="{{ old('appdate') }}" required
                                     readonly
-                                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                    class="w-full text-green-600 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium  outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                 @error('appdate')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
                                         {{ $message }}

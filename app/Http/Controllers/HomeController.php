@@ -23,6 +23,7 @@ class HomeController extends Controller
             'fName' => 'required',
             'lName' => 'required',
             'mName' => 'nullable', // Middle name can be optional
+            'suffix' => 'nullable',
             'email' => 'required', // Ensure 'appointments' is the correct table name
             'ygrad' => 'nullable', // Optional field with reasonable range checks
             'ismis' => 'nullable', // Optional field, assuming ISMIS ID is numeric

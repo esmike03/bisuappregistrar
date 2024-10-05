@@ -65,7 +65,7 @@
                     <a href="/records" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 ">
-                                Set Available Date
+                                Set None Available Date
                             </p>
                             <p class="text-lg font-semibold text-gray-700 ">
                                 Appointment Calendar
@@ -177,7 +177,7 @@
                                                 <!-- Avatar with inset shadow -->
                                                 <div>
                                                     <p class="font-semibold text-black uppercase">{{ $appointment->lname }},
-                                                        {{ $appointment->fname }} {{ $appointment->mname }}</p>
+                                                        {{ $appointment->fname }} {{ $appointment->suffix}} {{ $appointment->mname }}</p>
                                                     <p class="text-xs text-gray-600 dark:text-gray-400">
                                                         {{ $appointment->created_at }}
                                                     </p>

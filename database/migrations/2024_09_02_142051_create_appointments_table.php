@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('fname');
             $table->string('lname');
             $table->string('mname')->nullable()->change();
+            $table->string('suffix')->nullable()->change();
             $table->string('email');
             $table->integer('ygrad')->nullable()->change();
             $table->integer('ismis')->nullable()->change();

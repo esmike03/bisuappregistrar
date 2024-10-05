@@ -1,6 +1,11 @@
 <section class="bg-transparent mt-0 relative">
 
-    <svg class="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+    <div class="right-0 pr-8 wrap flex gap-4 py-2 top-2 absolute bg-gradient-to-l from-amber-400 to-transparent">
+        <img src="/images/Bagong_Pilipinas_logo.webp" class="h-10"/>
+        <img src="/images/QMS_cert_9108658239_en.webp" class="h-10"/>
+    </div>
+
+    <svg class="absolute inset-0 -z-10 h-full w-full stroke-white/30 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
         aria-hidden="true">
         <defs>
             <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc" width="200" height="200" x="100%" y="-1"
