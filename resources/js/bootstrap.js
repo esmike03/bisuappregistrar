@@ -3,27 +3,26 @@ window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-new MultiSelectTag('countries', {
-    rounded: true, // Keep rounded corners for modern look
-    shadow: true,  // Add shadow for slight depth
-    placeholder: 'Search...', // Minimal placeholder text
-    tagColor: {
-        textColor: '#ffffff',   // White text for good contrast
-        borderColor: '#333333', // Dark gray border for subtle separation
-        bgColor: '#000000',     // Black background for sleek design
-    },
-    maxWidth: '100%',  // Responsive width
-    minWidth: '250px', // Ensure it doesn’t get too small
-    responsive: true,  // Enable responsive behavior
-    onChange: function(values) {
-        console.log(values);
-    }
+document.getElementById('screenshotButton').addEventListener('click', function () {
+    // Select the element you want to capture
+    var captureElement = document.getElementById('capture');
+
+    // Use html2canvas to take a screenshot
+    html2canvas(captureElement).then(canvas => {
+        // Create an image from the canvas
+        var imgData = canvas.toDataURL('image/png');
+
+        // Create a link to download the image
+        var link = document.createElement('a');
+        link.href = imgData;
+        link.download = 'screenshot.png';
+
+        // Trigger the download
+        link.click();
+    }).catch(error => {
+        console.error('Screenshot capture failed:', error);
+    });
 });
-
-
-  document.addEventListener('DOMContentLoaded', function () {
-    var multiSelect = new coreui.MultiSelect(document.getElementById('ms1'));
-  });
 
 
 
