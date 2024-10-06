@@ -22,10 +22,6 @@
             integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
     </noscript>
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/css/multi-select-tag.css">
-    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/js/multi-select-tag.js"></script>
-
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     <!-- FONTS -->
@@ -102,6 +98,8 @@
         @yield('track')
         @yield('success')
         @yield('edit')
+        @yield('verify')
+        @yield('send-email')
     </main>
 
 
@@ -210,7 +208,7 @@
         <!-- Main modal -->
         <div x-data="{ success: true }" x-show="success" x-cloak
             class="fixed inset-0 flex items-center px-2 justify-center z-50 bg-black backdrop-filter backdrop-blur-lg bg-opacity-5">
-            <div x-ref="modal" @click.away="success = false"
+            <div x-ref="modal"
                 class="relative p-2 w-full max-w-md h-fit m-1 md:h-auto mx-2 pop fade-in bg-purple-900 backdrop-filter backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg transform transition-transform duration-300">
                 <!-- Modal content -->
                 <div id="capture" class="relative p-2 text-center">
@@ -264,7 +262,7 @@
                     </div>
                 </div>
                 <div class="w-full flex justify-center">
-                    <button @click="success = false" id="screenshotButton"
+                    <button id="screenshotButton"
                         class="border rounded-md hover:bg-green-300 hover:text-white mt-4 px-3 text-green-300 mb-2"><i
                             class="fa-solid fa-save"> </i> Save</button>
                 </div>
@@ -294,7 +292,6 @@
         </x-modal>
     @endif
 
-</body>
 </body>
 
 </html>

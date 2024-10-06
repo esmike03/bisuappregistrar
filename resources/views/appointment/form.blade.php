@@ -6,7 +6,7 @@
         <div class="flex items-center justify-center p-4">
             <!-- Author: FormBold Team -->
             <!-- Learn More: https://formbold.com -->
-            <div class="mx-auto w-full max-w-[550px] bg-white p-6 rounded-lg" x-data="{
+            <div class="mx-auto w-fit bg-white p-6 rounded-lg" x-data="{
                 selectedDate: @js(old('date') ?: ''),
                 status: @js(old('status') ?: ''),
                 isGraduated() { return this.status === 'Graduated'; }
@@ -76,7 +76,7 @@
                     </div>
 
                     <!-- Personal Details -->
-                    <div class="-mx-2 flex flex-wrap">
+                    <div class="-mx-2 flex flex-wrap justify-between">
                         <div class="w-full px-2 sm:w-1/4">
                             <div class="mb-5">
                                 <label for="fName" class="mb-3 block text-base font-medium text-[#07074D]">
@@ -150,7 +150,7 @@
 
                     <!-- Email and Year Graduated -->
                     <div class="-mx-3 flex flex-wrap">
-                        <div class="w-full px-3 sm:w-1/2">
+                        <div class="w-full px-3 sm:w-1/3">
                             <div class="mb-5">
                                 <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
                                     Email <span class="text-red-400  text-md">*</span>
@@ -165,7 +165,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="w-full px-3 sm:w-1/2">
+                        <div class="w-full px-3 sm:w-1/3">
                             <div class="mb-5">
                                 <label for="ygrad" class="mb-3 block text-base font-medium text-[#07074D]">
                                     Year Graduated <span class="text-red-400  text-md">*</span>
@@ -182,11 +182,7 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-
-                    <!-- ISMIS ID and Request -->
-                    <div class="-mx-3 flex flex-wrap">
-                        <div class="w-full px-3 sm:w-1/2">
+                        <div class="w-full px-3 sm:w-1/3">
                             <div class="mb-5">
                                 <label for="ismis" class="mb-3 block text-base font-medium text-[#07074D]">
                                     ISMIS ID
@@ -203,12 +199,17 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="w-full px-3 sm:w-1/2">
+                    </div>
+
+                    <!-- ISMIS ID and Request -->
+                    <div class="-mx-3 flex flex-wrap">
+
+                        <div class="w-full px-3">
                             <div class="mb-5">
                                 <label for="request" class="mb-3 block text-base font-medium text-[#07074D]">
                                     Request <span class="text-red-400  text-md">*</span>
                                 </label>
-                                <select required name="request" id="request"
+                                <select required multiple name="request" id="request"
                                     class="w-full bg-gray-50 border font-bold border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-gray-500">
                                     <option value="" disabled selected>Request</option>
                                     <option value="Transcript of Records for Board Exam"
@@ -255,6 +256,7 @@
                         </div>
 
                     </div>
+
 
                     <!-- Appointment Date -->
                     <div class="-mx-3 flex flex-wrap">

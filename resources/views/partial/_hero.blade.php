@@ -1,8 +1,8 @@
 <section class="bg-transparent mt-0 relative">
 
     <div class="right-0 pr-8 wrap flex gap-4 py-2 top-2 absolute bg-gradient-to-l from-amber-400 to-transparent">
-        <img src="/images/Bagong_Pilipinas_logo.webp" class="h-10"/>
-        <img src="/images/QMS_cert_9108658239_en.webp" class="h-10"/>
+        <img src="/images/Bagong_Pilipinas_logo.webp" class="h-10" />
+        <img src="/images/QMS_cert_9108658239_en.webp" class="h-10" />
     </div>
 
     <svg class="absolute inset-0 -z-10 h-full w-full stroke-white/30 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
@@ -58,8 +58,15 @@
         </p>
 
         <!-- Request Button -->
-        <div class="flex flex-col mb-12 lg:mb-16 space-y-4 sm:flex-row sm:justify-start sm:space-y-0 sm:space-x-4">
+        {{-- <div class="flex flex-col mb-12 lg:mb-16 space-y-4 sm:flex-row sm:justify-start sm:space-y-0 sm:space-x-4">
             <a href="/appointment/form" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
+                class="inline-flex gap-2 justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:ring-amber-500 dark:focus:ring-primary-900 slide-in">
+                <span class="text-amber-500"> |</span> Request an Appointment
+                <i class="fa-solid fa-angles-right"> </i>
+            </a>
+        </div> --}}
+        <div class="flex flex-col mb-12 lg:mb-16 space-y-4 sm:flex-row sm:justify-start sm:space-y-0 sm:space-x-4">
+            <a href="/send-email" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
                 class="inline-flex gap-2 justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:ring-amber-500 dark:focus:ring-primary-900 slide-in">
                 <span class="text-amber-500"> |</span> Request an Appointment
                 <i class="fa-solid fa-angles-right"> </i>

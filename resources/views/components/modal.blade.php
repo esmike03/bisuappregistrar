@@ -5,7 +5,7 @@
         <div class="pop relative rounded-lg shadow bg-purple-950 backdrop-filter backdrop-blur-lg bg-opacity-90 " @click.away="modalOpen = false">
           <!-- Modal header -->
           <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            <h3 class="text-lg font-semibold text-white">
                 Error
             </h3>
             <button @click="modalError = false" type="button"

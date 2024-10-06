@@ -2,6 +2,7 @@
 
 use App\Mail\Email;
 use App\Models\Appointment;
+use App\Http\Controllers\Verify;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -75,3 +76,10 @@ Route::post('/message', [MessageController::class, 'message']);
 //Send Email
 Route::get('/send-email', [EmailController::class, 'sendEmail']);
 
+//Verify
+Route::get('/verify', [Verify::class, 'verify']);
+Route::get('/send-email', [Verify::class, 'sendemail']);
+
+//send code and verify
+Route::post('/send-verification', [Verify::class, 'sendVerificationCode'])->name('send.verification');
+Route::post('/verify-code', [Verify::class, 'verifyCode'])->name('verify.code');
