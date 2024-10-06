@@ -60,7 +60,14 @@ class Verify extends Controller
             Session::forget('verification_attempts');
             Session::forget('verification_code'); // Clear the verification code from the session
 
-            return redirect('/appointment/form')->with('message', 'Verification successful!'); // Change 'success' to your success route
+            // Retrieve the email from the session
+            $email = session('email');
+
+            // Redirect to the appointment form and pass the email address
+            return redirect('/appointment/form')->with([
+                'message' => 'Verification successful!',
+                'email' => $email, // Send the email to the appointment form
+            ]);
         } else {
             // Increment the attempts counter
             $currentAttempts++;
@@ -78,5 +85,4 @@ class Verify extends Controller
             }
         }
     }
-
 }

@@ -5,7 +5,7 @@
         <div
             class="max-w-screen-xl m-24 mx-6  bg-purple-900 backdrop-filter backdrop-blur-md bg-opacity-20 text-center px-4 sm:px-8 py-10 rounded-xl shadow">
             <header class="mb-8">
-                <h1 class="text-2xl font-bold mb-1 text-white mx-14 flex items-center">
+                <h1 class="text-2xl font-bold mb-1 text-white justify-center mx-12 flex items-center">
                     <i class="fas fa-envelope mr-2"></i>
                     Email Verification
                 </h1>

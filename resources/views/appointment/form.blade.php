@@ -84,7 +84,7 @@
                                 </label>
                                 <input type="text" name="fName" id="fName" placeholder="First Name"
                                     value="{{ old('fName') }}" required pattern="[A-Za-z\s]+"
-                                    class="uppercase w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                    class="uppercase w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#181818] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                 @error('fName')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
                                         {{ $message }}
@@ -99,7 +99,7 @@
                                 </label>
                                 <input type="text" name="lName" id="lName" placeholder="Last Name" required
                                     value="{{ old('lName') }}" pattern="[A-Za-z\s]+"
-                                    class="uppercase w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                    class="uppercase w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#181818] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                 @error('lName')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
                                         {{ $message }}
@@ -115,7 +115,7 @@
                                 </label>
                                 <input type="text" name="mName" id="mName" placeholder="Middle Name"
                                     value="{{ old('mName') }}" pattern="[A-Za-z\s]+"
-                                    class="uppercase w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                    class="uppercase w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#181818] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                 @error('mName')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
                                         {{ $message }}
@@ -156,8 +156,9 @@
                                     Email <span class="text-red-400  text-md">*</span>
                                 </label>
                                 <input type="email" name="email" id="email" placeholder="abc@gmail.com"
-                                    value="{{ old('email') }}" required
-                                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                    value="{{ session('email') ?? old('email') }}" required
+                                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#181818] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+
                                 @error('email')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
                                         {{ $message }}
@@ -173,7 +174,7 @@
                                 <input type="number" name="ygrad" id="ygrad" placeholder="20XX" min="1998"
                                     :max="currentYear" value="{{ old('ygrad') }}" x-bind:disabled="!isGraduated()"
                                     x-bind:required="isGraduated()" x-data="{ currentYear: new Date().getFullYear() }"
-                                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base disabled:bg-red-100 font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base disabled:bg-red-100 font-medium text-[#181818] outline-none focus:border-[#6A64F1] focus:shadow-md" />
 
                                 @error('ygrad')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
@@ -190,7 +191,7 @@
                                 <input x-bind:disabled="isGraduated()" type="number" name="ismis" placeholder="000000"
                                     value="{{ old('ismis') }}"
                                     x-on:input="if ($event.target.value.length > 6) $event.target.value = $event.target.value.slice(0, 6)"
-                                    class="disabled:bg-red-100 w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                    class="disabled:bg-red-100 w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#181818] outline-none focus:border-[#6A64F1] focus:shadow-md" />
 
                                 @error('ismis')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
