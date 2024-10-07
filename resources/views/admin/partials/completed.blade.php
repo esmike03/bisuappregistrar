@@ -9,14 +9,21 @@
         <div class="container px-6 mx-auto grid">
             <div class="flex m-6 align-middle content-center justify-between items-center">
                 <a href="/admin/dashboard">
-                    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                    <h2 class="my-6 text-2xl font-semibold text-gray-100">
                         <i class="fa fa-arrow-left text-xl"></i> Completed
                     </h2>
                 </a>
                 <!-- Added id to the print link -->
-                <a href="javascript:void(0);" id="printTable">
-                    <i class="fa-solid fa-print text-white"> Print</i>
-                </a>
+                <div>
+                    <a href="/archive" class="mx-2">
+                        <i class="fa-solid fa-trash text-white"> Archive</i>
+                    </a>
+
+                    <a href="javascript:void(0);" id="printTable" class="mx-2">
+                        <i class="fa-solid fa-print text-white"> Print</i>
+                    </a>
+                </div>
+
             </div>
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
                 <div class="w-full overflow-x-auto" id="tableContainer">
@@ -39,15 +46,17 @@
                                     return $appointment->campus === $category;
                                 });
                             @endphp
-
+{{-- @click="window.location='/appointment/{{ $appointment->id }}'" --}}
                             @if ($filteredAppointments->isNotEmpty())
                                 @foreach ($filteredAppointments as $appointment)
-                                    <tr class="text-gray-700 hover:cursor-pointer" @click="window.location='/appointment/{{ $appointment->id }}'">
+                                    <tr class="text-gray-700 hover:cursor-pointer"
+                                       >
                                         <td class="px-4 py-3">
                                             <div class="flex items-center text-sm">
                                                 <!-- Avatar with inset shadow -->
                                                 <div>
-                                                    <p class="font-semibold text-black uppercase">{{ $appointment->lname }}, {{ $appointment->fname }} {{ $appointment->mname }}</p>
+                                                    <p class="font-semibold text-black uppercase">{{ $appointment->lname }},
+                                                        {{ $appointment->fname }} {{ $appointment->mname }}</p>
                                                     <p class="text-xs text-gray-600 dark:text-gray-400">
                                                         {{ $appointment->created_at }}
                                                     </p>
@@ -72,31 +81,41 @@
                                             {{ $appointment->appdate }}
                                         </td>
                                         <td class="px-4 py-3 text-sm">
-                                            <p class="bg-amber-400 text-center text-purple-900 p-1 rounded-md font-semibold">
+                                            <p
+                                                class="bg-amber-400 text-center text-purple-900 p-1 rounded-md font-semibold">
                                                 {{ $appointment->tracking_code }}</p>
                                         </td>
                                         <td class="px-4 py-3 text-sm flex items-center justify-center h-16">
                                             <!-- Status Change Form -->
-                                            <form action="{{ route('appointments.updateStatus', $appointment->id) }}" method="POST" onsubmit="return confirm('Approve this appointment?');">
+                                            <form action="{{ route('appointments.updateStatus', $appointment->id) }}"
+                                                method="POST" onsubmit="return confirm('Approve this appointment?');">
                                                 @csrf
                                                 @method('PATCH')
                                                 <input type="hidden" name="appstatus" value="approved">
-                                                <button type="submit" class="fas fa-check bg-green-500 rounded-sm p-2 text-white cursor-pointer mx-2" title="Approve"></button>
+                                                <button type="submit"
+                                                    class="fas fa-check bg-green-500 rounded-sm p-2 text-white cursor-pointer mx-2"
+                                                    title="Approve"></button>
                                             </form>
 
                                             <!--reject-->
-                                            <form action="{{ route('appointments.updateStatus', $appointment->id) }}" method="POST" onsubmit="return confirm('Reject this appointment?');">
+                                            <form action="{{ route('appointments.updateStatus', $appointment->id) }}"
+                                                method="POST" onsubmit="return confirm('Reject this appointment?');">
                                                 @csrf
                                                 @method('PATCH')
                                                 <input type="hidden" name="appstatus" value="rejected">
-                                                <button type="submit" class="fas fa-close bg-orange-500 rounded-sm p-2 text-white cursor-pointer mx-2" title="Reject"></button>
+                                                <button type="submit"
+                                                    class="fas fa-close bg-orange-500 rounded-sm p-2 text-white cursor-pointer mx-2"
+                                                    title="Reject"></button>
                                             </form>
 
                                             <!--Delete-->
-                                            <form action="{{ route('appointments.destroy', $appointment->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this appointment?');">
+                                            <form action="{{ route('appointments.destroy', $appointment->id) }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Are you sure you want to delete this appointment?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="fas fa-trash bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2"></button>
+                                                <button type="submit"
+                                                    class="fas fa-trash bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2"></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -117,12 +136,14 @@
     <!-- Add CSS for print only -->
     <style>
         @media print {
+
             /* Hide everything except the table container */
             body * {
                 visibility: hidden;
             }
 
-            #tableContainer, #tableContainer * {
+            #tableContainer,
+            #tableContainer * {
                 visibility: visible;
             }
 

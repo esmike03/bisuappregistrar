@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Change the background and text color of the selected item */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #700074 !important; /* Background color for selected items */
+    color: #ffc800 !important; /* Text color for selected items */
+}
+
+/* Change the border color of the selected items */
+.select2-container--default .select2-selection--multiple {
+    border: 1px solid #4A90E2 !important; /* Optional: border color for selected items */
+}
+
 ::-webkit-scrollbar {
     height: .5rem;
     width: 1rem;
@@ -70,48 +81,58 @@
 /* Define the fade-in keyframes */
 @keyframes fadeIn {
     from {
-      opacity: 0; /* Start with the element completely transparent */
+        opacity: 0;
+        /* Start with the element completely transparent */
     }
-    to {
-      opacity: 1; /* End with the element fully opaque */
-    }
-  }
 
-  /* Apply the animation to the element */
-  .fade-in {
-    animation: fadeIn 0.6s ease-in; /* Adjust duration and easing as needed */
-  }
+    to {
+        opacity: 1;
+        /* End with the element fully opaque */
+    }
+}
+
+/* Apply the animation to the element */
+.fade-in {
+    animation: fadeIn 0.6s ease-in;
+    /* Adjust duration and easing as needed */
+}
+
 /* Define the pop keyframes */
 @keyframes pop {
     0% {
-      transform: scale(1); /* Start at normal size */
+        transform: scale(1);
+        /* Start at normal size */
     }
+
     50% {
-      transform: scale(1.1); /* Scale up */
+        transform: scale(1.1);
+        /* Scale up */
     }
+
     100% {
-      transform: scale(1); /* Return to normal size */
+        transform: scale(1);
+        /* Return to normal size */
     }
-  }
-
-  /* Apply the animation to the element */
-  .pop {
-    animation: pop 0.3s ease-in-out; /* Duration and easing can be adjusted */
-  }
-
-  @media only screen and (orientation: portrait) {
-    .bg-mobile-portrait {
-      display: block;
-    }
-  }
-
-  @media only screen and (orientation: landscape) {
-    .bg-mobile-portrait {
-      display: none;
-    }
-  }
-  .gradient-black-to-transparent {
-    background: linear-gradient(to right, purple, transparent);
 }
 
+/* Apply the animation to the element */
+.pop {
+    animation: pop 0.3s ease-in-out;
+    /* Duration and easing can be adjusted */
+}
 
+@media only screen and (orientation: portrait) {
+    .bg-mobile-portrait {
+        display: block;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    .bg-mobile-portrait {
+        display: none;
+    }
+}
+
+.gradient-black-to-transparent {
+    background: linear-gradient(to right, purple, transparent);
+}

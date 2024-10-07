@@ -74,6 +74,31 @@
                     </a>
 
                 </div>
+
+                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs ">
+                    <div
+                        class="p-3 mr-4 text-teal-500 shadow-md
+                     bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
+                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2h-2v2H4V4h2V2h4v4h8v2h2V4a2 2 0 0 0-2-2h-2zm8 8l-4 4-2-2-1.414 1.414L10 13l4 4 6-6-1.414-1.414-4 4z"/>
+                    </svg>
+
+
+
+                    </div>
+                    <a href="/approved" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 ">
+                                Approved Appointments
+                            </p>
+                            <p class="text-lg font-semibold text-gray-700 ">
+                                35
+                            </p>
+                        </div>
+                    </a>
+
+                </div>
+
                 <!-- Card -->
                 <div class="flex items-center p-4 bg-white rounded-lg shadow-xs ">
                     <div
@@ -97,29 +122,7 @@
 
                 </div>
                 <!-- Card -->
-                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs ">
-                    <div
-                        class="p-3 mr-4 text-teal-500 shadow-md
-                     bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M8 2v2H5v3H4v12h16V7h-1V4h-3V2H8zm0 2h8v2H8V4zm-4 5h16v10H4V9zm2 2v6h2v-6H6zm4 0v6h2v-6h-2zm4 0v6h2v-6h-2z">
-                            </path>
-                        </svg>
 
-                    </div>
-                    <a href="/archive" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
-                        <div>
-                            <p class="mb-2 text-sm font-medium text-gray-600 ">
-                                Archive
-                            </p>
-                            <p class="text-lg font-semibold text-gray-700 ">
-                                35
-                            </p>
-                        </div>
-                    </a>
-
-                </div>
             </div>
 
 
@@ -165,7 +168,7 @@
                             @php
                                 // Filter appointments based on the category
                                 $filteredAppointments = $appointments->filter(function ($appointment) use ($category) {
-                                    return $appointment->campus === $category;
+                                    return $appointment->campus === $category && $appointment->appstatus === 'pending';
                                 });
                             @endphp
 
@@ -185,7 +188,7 @@
                                             </div>
                                         </td>
                                         <td class="px-4 py-3 text-sm font-bold text-purple-800">
-                                            {{ $appointment->request }}
+                                            {{ Str::words($appointment->request, 5, '...') }}
                                         </td>
                                         <td class="px-4 py-3 text-xs">
                                             <span x-data="{ status: '{{ $appointment->appstatus }}' }"

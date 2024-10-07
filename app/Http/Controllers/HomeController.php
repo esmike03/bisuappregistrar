@@ -31,33 +31,34 @@ class HomeController extends Controller
             'ismis' => 'nullable', // Optional field, assuming ISMIS ID is numeric
             'status' => 'required', // Ensure 'status' is correctly validated
             'campus' => 'required', // Add validation for the campus field
-            'request' => 'required', // Validate the request field
+            'request' => 'required|array', // Validate the request field
+            'request.*' => 'string',
             'appdate' => 'required|date', // Ensure appdate is validated as a date
         ]);
 
+        // Convert names to uppercase
         $formFields['fName'] = strtoupper($formFields['fName']);
         $formFields['lName'] = strtoupper($formFields['lName']);
         $formFields['mName'] = $formFields['mName'] ? strtoupper($formFields['mName']) : null;
 
         // Check if a record with the same fName and lName already exists
-        $nameexists = Appointment::where('fName', $request->input('fName'))
+        $nameExists = Appointment::where('fName', $request->input('fName'))
             ->where('lName', $request->input('lName'))
+            ->where('status', 'pending') // Check only for pending status to avoid duplicates for other statuses
             ->exists();
 
-        // Corrected check for ISMIS existence
-
-        $emailexists = Appointment::where('email', $request->input('email'))
+        $emailExists = Appointment::where('email', $request->input('email'))
+            ->where('status', 'pending') // Only check for pending status
             ->exists();
 
-        if ($nameexists) {
+        if ($nameExists) {
             // If the combination exists, return back with an error message
             return back()->withErrors(['duplicate' => 'We have found that this name is associated with a pending appointment.'])
                 ->withInput(); // Keeps the current form input
         }
 
-
-        if ($emailexists) {
-            // If ISMIS ID already exists, return back with an error message
+        if ($emailExists) {
+            // If the email already exists, return back with an error message
             return back()->withErrors(['duplicate' => 'We have found that this email address is associated with a pending appointment.'])
                 ->withInput(); // Keeps the current form input
         }
@@ -70,13 +71,19 @@ class HomeController extends Controller
         // Add the generated tracking code to the form fields
         $formFields['tracking_code'] = $trackingCode;
 
+        // Handle the request (multiple select field) by concatenating it into a string before saving
+        $formFields['request'] = implode(', ', $request->input('request')); // Convert array to a comma-separated string for storage
+
+
         // Create the appointment with the form fields including the tracking code
-        Appointment::create($formFields);
+        $appointment = Appointment::create($formFields);
 
         // Prepare data for the email
-        $data = $request->only(['fName', 'lName', 'email', 'status', 'campus', 'request', 'appdate']);
+        $data = $request->only(['fName', 'lName', 'email', 'status', 'campus', 'appdate']);
         $data['tracking_code'] = $trackingCode;
+        $data['request'] = implode(', ', $request->input('request')); // Convert array back to a string for the email
 
+        // Send confirmation email
         Mail::to($request->email)->send(new AppointmentConfirmation($data));
 
         return redirect('/')->with('formData', $formFields)->with('message', 'Appointment Set Successfully!');

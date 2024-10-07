@@ -35,6 +35,14 @@
     <!--html2canvas for taking screenshot-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
+    <!-- Add jQuery before Select2 JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- Include Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <title>BISU Registrar Appointment</title>
     <style>
         [x-cloak] {
@@ -45,6 +53,15 @@
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.slide-in').forEach(element => {
                 element.classList.add('slide-in');
+            });
+        });
+
+        $(document).ready(function() {
+            $('#request').select2({
+                placeholder: "Select up to 3 requests only",
+                maximumSelectionLength: 3,
+                allowClear: true,
+                width: '100%'
             });
         });
     </script>

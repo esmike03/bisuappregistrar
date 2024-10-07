@@ -4,7 +4,7 @@
     <div class="h-full overflow-y-auto">
         <div class="container px-6 mx-auto grid">
             <a href="/admin/dashboard">
-                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                <h2 class="my-6 text-2xl font-semibold text-gray-100">
                     <i class="fa fa-arrow-left text-xl"></i> Details
                 </h2>
             </a>
@@ -15,10 +15,18 @@
                             <h4 class="text-gray-500 pb-2">Tracking Code</h4>
                             <p class="text-amber-700 text-xl">{{ $appointment->tracking_code }}</p>
                         </div>
+
                         <div class="">
-                            <h4 class="text-gray-500 pb-2">Request</h4>
-                            <p class="text-amber-700 text-xl">{{ $appointment->request }}</p>
+                            <h4 class="text-gray-500 pb-2">Requests</h4>
+                            @foreach (explode(',', $appointment->request) as $requests)
+                                <p class="bg-amber-100 p-2 text-sm rounded border-b mx-6 border-black text-black mb-2">
+                                    {{ trim($requests) }}
+                                </p>
+                            @endforeach
                         </div>
+
+
+
                         <div class="">
                             <h4 class="text-gray-500 pb-2">Appointment Date</h4>
                             <p class="text-amber-700 text-xl">{{ $appointment->appdate }}</p>

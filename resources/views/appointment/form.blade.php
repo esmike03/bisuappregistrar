@@ -210,9 +210,9 @@
                                 <label for="request" class="mb-3 block text-base font-medium text-[#07074D]">
                                     Request <span class="text-red-400  text-md">*</span>
                                 </label>
-                                <select required multiple name="request" id="request"
-                                    class="w-full bg-gray-50 border font-bold border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-gray-500">
-                                    <option value="" disabled selected>Request</option>
+                                <select required name="request[]" multiple id="request"
+                                    class=" w-full bg-gray-50 border font-bold border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-gray-500">
+
                                     <option value="Transcript of Records for Board Exam"
                                         {{ old('request') == 'Transcript of Records for Board Exam' ? 'selected' : '' }}>
                                         Transcript of Records for Board Exam
@@ -269,7 +269,7 @@
                                 <input @click="calendarOpen = true" type="text" x-model="selectedDate" name="appdate"
                                     id="date" placeholder="Month/Day/Year" value="{{ old('appdate') }}" required
                                     readonly
-                                    class="w-full text-green-600 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium  outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                    class="w-full font-extrabold text-green-600 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base  outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                 @error('appdate')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
                                         {{ $message }}
