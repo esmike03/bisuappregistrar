@@ -9,11 +9,11 @@
             </p>
         </div>
 
-            <!-- RSS Widget Section -->
-            <div class="mt-8">
-                <rssapp-wall id="SUvhTh7tJugfuHTA"></rssapp-wall>
-                <script src="https://widget.rss.app/v1/wall.js" type="text/javascript" async></script>
-            </div>
+        <!-- RSS Widget Section -->
+        <div class="mt-8">
+            <rssapp-wall id="Mlrff4l06oTNxqmS"></rssapp-wall>
+            <script src="https://widget.rss.app/v1/wall.js" type="text/javascript" async></script>
         </div>
+    </div>
     </div>
 </section>
