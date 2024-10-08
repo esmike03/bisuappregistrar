@@ -9,7 +9,7 @@
 
     <div style="clear: both;"></div>
     <p style="color: #555;">Your appointment has been rejected. Please contact the registrar for more information.</p>
-
+    <p><br>If you have any questions please message the registrar thru here bisuregistrar.rf.gd</p>
     <a
         style="text-decoration: none; color: inherit; display: block; background: linear-gradient(to right, #6f0091, transparent); padding: 10px; border-radius: 5px; width: 100%;">
         <img src="https://i.imgur.com/RWwanDk.png" alt=""
