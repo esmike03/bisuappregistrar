@@ -63,6 +63,17 @@ class HomeController extends Controller
                 ->withInput(); // Keeps the current form input
         }
 
+        // Check if there are already 10 appointments on the same date
+        $appointmentCount = Appointment::whereDate('appdate', $request->input('appdate'))
+            ->where('appdate', $request->input('appdate')) // Only count pending appointments
+            ->count();
+
+        if ($appointmentCount >= 2) {
+            // Return an error if there are already 10 appointments
+            return back()->withErrors(['datefull' => 'We apologize, but the maximum appointments for the chosen date has been reached. Kindly choose another date for your appointment.'])
+                ->withInput(); // Keeps the current form input
+        }
+
         // Generate a unique 6-character tracking code
         do {
             $trackingCode = strtoupper(substr(uniqid(), -6)); // Generates a unique 6-character code

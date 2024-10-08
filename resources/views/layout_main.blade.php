@@ -304,8 +304,16 @@
 
     @if ($errors->has('duplicate'))
         <x-modal x-cloak>
-            <p @click="modalError = false" class="font-semibold text-gray-400 p-4">
+            <p @click="modalError = false" class="font-semibold text-gray-200 p-4">
                 {{ $errors->first('duplicate') }}
+            </p>
+        </x-modal>
+    @endif
+
+    @if ($errors->has('datefull'))
+        <x-modal x-cloak>
+            <p @click="modalError = false" class="font-semibold text-gray-200 p-4">
+                {{ $errors->first('datefull') }}
             </p>
         </x-modal>
     @endif
