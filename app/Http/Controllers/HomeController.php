@@ -94,6 +94,13 @@ class HomeController extends Controller
     //Show Appointment Form
     public function form()
     {
+
+        // Check if the email exists in the session
+        if (!session()->has('email') || empty(session('email'))) {
+            // Redirect to home if email is not in the session
+            return redirect('/')->with('message', 'Please complete email verification first.');
+        }
+
         return view('appointment.form');
     }
 
