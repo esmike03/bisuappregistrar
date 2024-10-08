@@ -67,7 +67,7 @@ class Verify extends Controller
             return redirect('/appointment/form')->with([
                 'message' => 'Verification successful!',
                 'email' => $email, // Send the email to the appointment form
-            ]);
+            ])->cookie('email', $email, 3);;
         } else {
             // Increment the attempts counter
             $currentAttempts++;

@@ -44,11 +44,11 @@ class HomeController extends Controller
         // Check if a record with the same fName and lName already exists
         $nameExists = Appointment::where('fName', $request->input('fName'))
             ->where('lName', $request->input('lName'))
-            ->where('status', 'pending') // Check only for pending status to avoid duplicates for other statuses
+            ->where('appstatus', 'pending') // Check only for pending status to avoid duplicates for other statuses
             ->exists();
 
         $emailExists = Appointment::where('email', $request->input('email'))
-            ->where('status', 'pending') // Only check for pending status
+            ->where('appstatus', 'pending') // Only check for pending status
             ->exists();
 
         if ($nameExists) {
@@ -94,15 +94,21 @@ class HomeController extends Controller
     //Show Appointment Form
     public function form()
     {
-
         // Check if the email exists in the session
-        if (!session()->has('email') || empty(session('email'))) {
-            // Redirect to home if email is not in the session
-            return redirect('/')->with('message', 'Please complete email verification first.');
+        $email = request()->cookie('email');
+
+        if (empty($email)) {
+            // Redirect to home if email is not found in cookie
+            return redirect('/send-email')->with('message', 'Please complete email verification first.');
         }
 
+        // Store it in the session for easy access later (optional)
+        session(['email' => $email]);
+
+        // Proceed to show the appointment form
         return view('appointment.form');
     }
+
 
     //search appointment
     public function search(Request $request)

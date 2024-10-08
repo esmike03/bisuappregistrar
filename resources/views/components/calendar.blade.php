@@ -98,6 +98,7 @@
 
                 const dateToCheck = new Date(this.currentYear, this.currentMonth, day);
 
+
                 if (dateToCheck < currentDate || dateToCheck.getDay() === 0 || dateToCheck.getDay() === 6 || this.isHoliday(dateToCheck)) {
                     dayElement.classList.add('disabled-day');
                 }
