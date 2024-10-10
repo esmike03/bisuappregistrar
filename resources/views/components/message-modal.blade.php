@@ -56,7 +56,7 @@
                         <label for="message" class="block mb-2 text-sm font-medium text-white">Message</label>
                         <textarea name="message" id="message"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 h-20 dark:border-gray-500 dark:placeholder-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            maxlength="100" minlength="10" placeholder="Message" required></textarea>
+                            maxlength="100" minlength="10" placeholder="Message" required>Message</textarea>
 
                     </div>
 

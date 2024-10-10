@@ -97,7 +97,7 @@ class HomeController extends Controller
         // Send confirmation email
         Mail::to($request->email)->send(new AppointmentConfirmation($data));
 
-        return redirect('/')->with('formData', $formFields)->with('message', 'Appointment Set Successfully!');
+        return redirect('/')->with('formData', $formFields)->with('message', 'Appointment Set Successfully!')->withoutCookie('email');
     }
 
 

@@ -114,6 +114,7 @@
         @yield('completed')
         @yield('archive')
         @yield('show')
+        @yield('email')
     </main>
 
     <!-- Calendar Component -->

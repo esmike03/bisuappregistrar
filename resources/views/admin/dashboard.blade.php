@@ -187,9 +187,10 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="px-4 py-3 text-sm font-bold text-purple-800">
-                                            {{ Str::words($appointment->request, 5, '...') }}
+                                        <td class="px-4 py-3 text-sm font-bold text-purple-800 whitespace-normal max-w-xs">
+                                            {{ Str::words($appointment->request, 40, '...') }}
                                         </td>
+
                                         <td class="px-4 py-3 text-xs">
                                             <span x-data="{ status: '{{ $appointment->appstatus }}' }"
                                                 :class="{

@@ -11,6 +11,7 @@ use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\MessageController;
 
+
 //User
 //Home
 Route::get('/', [HomeController::class, 'index']);
@@ -73,6 +74,10 @@ Route::delete('/holidays/{id}', [HolidayController::class, 'destroy'])->name('ho
 //Show Appointment
 Route::get('/appointment/{appointment}', [AdminController::class, 'show']);
 
+//Send Message to the user
+Route::get('/email-user/{email}/{subject}/{message}', [MessageController::class, 'emailUser'])->name('email-user');
+Route::post('/send-emailuser', [MessageController::class, 'sendEmailUser'])->name('send.emailuser');
+
 //Send Message
 Route::post('/message', [MessageController::class, 'message']);
 
@@ -86,3 +91,6 @@ Route::get('/send-email', [Verify::class, 'sendemail']);
 //send code and verify
 Route::post('/send-verification', [Verify::class, 'sendVerificationCode'])->name('send.verification');
 Route::post('/verify-code', [Verify::class, 'verifyCode'])->name('verify.code');
+
+//Delete Messages
+Route::delete('/messages/{id}', [MessageController::class, 'destroy'])->name('messages.destroy');
