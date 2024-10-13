@@ -26,7 +26,7 @@
 
             </div>
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
-                <div class="w-full overflow-x-auto">
+                <div class="w-full overflow-x-auto" id="tableContainer">
                     <table class="w-full whitespace-no-wrap">
                         <thead>
                             <tr
@@ -92,7 +92,7 @@
                                         </td>
 
                                         <td class="px-4 py-3 text-sm">
-                                            <a href="/appointment/{{ $appointment->id }}">
+                                            <a href="/completed/{{ $appointment->id }}">
                                                 <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
                                             </a>
                                         </td>

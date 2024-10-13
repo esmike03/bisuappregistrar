@@ -35,19 +35,14 @@ class AppointmentController extends Controller
             // Optionally delete the original appointment
             $appointment->delete();
 
-            return response()->json(['message' => 'Appointment marked as completed'], 200);
+            return redirect('/approved')->with('message', 'Appointment marked as completed.');
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             // Log or return detailed error message
 
-            return response()->json(['message' => 'Appointment not found', 'error' => $e->getMessage()], 404);
+            return redirect('/approved')->with('message', 'Appointment not found.');
         } catch (\Exception $e) {
             // Log or return detailed error message
-
-            return response()->json([
-                'message' => 'Failed to mark appointment as completed',
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString(), // Optional: include stack trace for debugging
-            ], 500);
+            return redirect('/approved')->with('message', 'Failed to mark appointment as completed');
         }
     }
 }

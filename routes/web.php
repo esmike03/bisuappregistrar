@@ -60,6 +60,12 @@ Route::get('/approved', [AdminController::class, 'approved']);
 //To delete data
 Route::delete('/appointments/{id}', [AdminController::class, 'destroy'])->name('appointments.destroy');
 
+//To delete data in archive
+Route::delete('/appointments-d/{id}', [AdminController::class, 'destroyer'])->name('appointments.destroyer');
+
+//Delete all in archive
+Route::delete('/delete-all', [AdminController::class, 'deleteAll'])->name('appointments.deleteAll');
+
 //To Approve Appointmnet
 Route::patch('/appointments/{id}/status', [AdminController::class, 'updateStatus'])->name('appointments.updateStatus');
 
@@ -74,6 +80,8 @@ Route::delete('/holidays/{id}', [HolidayController::class, 'destroy'])->name('ho
 
 //Show Appointment
 Route::get('/appointment/{appointment}', [AdminController::class, 'show']);
+//Show Completed
+Route::get('/completed/{completed}', [AdminController::class, 'showCompleted']);
 
 //Send Message to the user
 Route::get('/email-user/{email}/{subject}/{message}', [MessageController::class, 'emailUser'])->name('email-user');

@@ -79,9 +79,10 @@
                     <div
                         class="p-3 mr-4 text-teal-500 shadow-md
                      bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
-                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M6 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2h-2v2H4V4h2V2h4v4h8v2h2V4a2 2 0 0 0-2-2h-2zm8 8l-4 4-2-2-1.414 1.414L10 13l4 4 6-6-1.414-1.414-4 4z"/>
-                    </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M6 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2h-2v2H4V4h2V2h4v4h8v2h2V4a2 2 0 0 0-2-2h-2zm8 8l-4 4-2-2-1.414 1.414L10 13l4 4 6-6-1.414-1.414-4 4z" />
+                        </svg>
 
 
 
@@ -92,7 +93,7 @@
                                 Approved Appointments
                             </p>
                             <p class="text-lg font-semibold text-gray-700 ">
-                                35
+                                {{ $approvedCount }}
                             </p>
                         </div>
                     </a>
@@ -115,7 +116,7 @@
                                 Completed
                             </p>
                             <p class="text-lg font-semibold text-gray-700 ">
-                                376
+                                {{ $completedCount }}
                             </p>
                         </div>
                     </a>
@@ -180,7 +181,8 @@
                                                 <!-- Avatar with inset shadow -->
                                                 <div>
                                                     <p class="font-semibold text-black uppercase">{{ $appointment->lname }},
-                                                        {{ $appointment->fname }} {{ $appointment->suffix}} {{ $appointment->mname }}</p>
+                                                        {{ $appointment->fname }} {{ $appointment->suffix }}
+                                                        {{ $appointment->mname }}</p>
                                                     <p class="text-xs text-gray-600 dark:text-gray-400">
                                                         {{ $appointment->created_at }}
                                                     </p>
@@ -226,18 +228,55 @@
                                                 </button>
                                             </form>
 
-                                            <!--reject-->
-                                            <form action="{{ route('appointments.updateStatus', $appointment->id) }}"
-                                                method="POST" onsubmit="return confirm('Reject this appointment?');">
-                                                @csrf
-                                                @method('PATCH')
-                                                <input type="hidden" name="appstatus" value="rejected">
-                                                <button type="submit"
+                                            <!-- Alpine.js setup for modal state -->
+                                            <div x-data="{ modalConfirm: false }">
+                                                <!-- Reject Button to Open Modal -->
+                                                <button @click="modalConfirm = true"
                                                     class="fas fa-close bg-orange-500 rounded-sm p-2 text-white cursor-pointer mx-2"
                                                     title="Reject">
                                                     <!-- SVG for check icon -->
                                                 </button>
-                                            </form>
+
+                                                <!-- Confirm Modal -->
+                                                <x-confirm-reject x-show="modalConfirm" x-cloak
+                                                    class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+                                                    <div class="rounded-lg shadow-lg p-6 w-full">
+                                                        <form
+                                                            action="{{ route('appointments.updateStatus', $appointment->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <div class="mb-5">
+                                                                <textarea name="reason"
+                                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 h-20 dark:border-gray-500 dark:placeholder-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                                    maxlength="100" minlength="5" placeholder="Reason for Rejection..." required></textarea>
+                                                                @error('fName')
+                                                                    <div class="text-xs text-red-800 sm:text-base lg:text-md">
+                                                                        {{ $message }}
+                                                                    </div>
+                                                                @enderror
+                                                            </div>
+
+                                                            <div class="w-full flex justify-end pb-4 px-2">
+                                                                <button @click="modalConfirm = false"
+                                                                    class="bg-gray-300 px-6 text-black rounded-md p-2 mx-2">
+                                                                    Cancel
+                                                                </button>
+
+                                                                <!-- Reject Form -->
+                                                                <input type="hidden" name="appstatus" value="rejected">
+
+                                                                <button type="submit"
+                                                                    class="bg-amber-500 px-6 text-white rounded-md p-2 mx-2">
+                                                                    Confirm
+                                                                </button>
+
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </x-confirm-reject>
+                                            </div>
+
 
                                             <!--Delete-->
                                             <form action="{{ route('appointments.destroy', $appointment->id) }}"

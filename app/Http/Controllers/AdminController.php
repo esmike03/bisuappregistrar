@@ -8,6 +8,7 @@ use App\Mail\RejectMail;
 use App\Mail\ApprovedMail;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use App\Models\RejectedAppointment;
 use App\Models\CompletedAppointment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -36,7 +37,12 @@ class AdminController extends Controller
 
         $appointmentCount = Appointment::where('campus', $category)
             ->where('appstatus', 'pending')
-
+            ->count();
+        $approvedCount = Appointment::where('campus', $category)
+            ->where('appstatus', 'approved')
+            ->count();
+        $completedCount = CompletedAppointment::where('campus', $category)
+            ->where('appstatus', 'COMPLETED')
             ->count();
 
         // Initialize the query
@@ -53,7 +59,7 @@ class AdminController extends Controller
         // Paginate the filtered appointments
         $appointments = $query->orderBy('created_at', 'desc')->paginate(100); // Adjust the number of items per page as needed
 
-        return view('admin.dashboard', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount, 'messages' => $messages,]);
+        return view('admin.dashboard', ['appointments' => $appointments, 'completedCount' => $completedCount, 'appointmentCount' => $appointmentCount, 'approvedCount' => $approvedCount, 'messages' => $messages,]);
     }
 
 
@@ -134,20 +140,19 @@ class AdminController extends Controller
         }
         $category = auth()->guard('admin')->user()->campus; // Get the category for the current admin
 
-        $appointmentCount = Appointment::where('campus', $category)
-            ->where('appstatus', 'pending')
+        $appointmentCount = RejectedAppointment::where('campus', $category)
+            ->where('appstatus', 'REJECTED')
             ->count();
 
         // Paginate the appointments with filtering by category
-        $appointments = Appointment::where('campus', $category)
-            ->orderBy('created_at', 'desc')
+        $appointments = RejectedAppointment::where('campus', $category)
             ->paginate(3); // Adjust the number of items per page as needed
 
         return view('admin.partials.archive', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount]);
     }
 
     //approved page
-    public function approved()
+    public function approved(Request $request)
     {
         if (!auth()->guard('admin')->check()) {
             // Redirect to the login page if not authenticated
@@ -159,11 +164,24 @@ class AdminController extends Controller
             ->where('appstatus', 'pending')
             ->count();
 
+
+
         // Paginate the appointments with filtering by category
         $appointments = Appointment::where('campus', $category)
             ->orderBy('created_at', 'desc')
             ->paginate(3); // Adjust the number of items per page as needed
 
+        // Initialize the query
+        $query = Appointment::where('campus', $category);
+
+        // Check for search input and filter by tracking_code
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('tracking_code', 'LIKE', "%{$searchTerm}%");
+        }
+
+        // Paginate the filtered appointments
+        $appointments = $query->orderBy('created_at', 'desc')->paginate(100); // Adjust the number of items per page as needed
         return view('admin.partials.approved', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount]);
     }
 
@@ -173,6 +191,35 @@ class AdminController extends Controller
     {
 
         $appointment = Appointment::findOrFail($id);
+
+        // Move data to the rejectedtable
+        RejectedAppointment::create([
+            'fname' => $appointment->fname,
+            'lname' => $appointment->lname,
+            'mname' => $appointment->mname,
+            'suffix' => $appointment->suffix,
+            'email' => $appointment->email,
+            'ygrad' => $appointment->ygrad,
+            'ismis' => $appointment->ismis,
+            'campus' => $appointment->campus,
+            'status' => $appointment->status,
+            'appdate' => $appointment->appdate,
+            'appstatus' => 'DELETED', // Set the correct status
+            'request' => $appointment->request,
+            // Properly formatted date
+            'tracking_code' => $appointment->tracking_code,
+        ]);
+        $appointment->delete();
+
+        return redirect('/admin/dashboard')->with('message', 'Appointment deleted successfully.');
+    }
+
+    //Delete Table row/ appointments
+    public function destroyer($id)
+    {
+
+        $appointment = RejectedAppointment::findOrFail($id);
+
         $appointment->delete();
 
         return redirect('/admin/dashboard')->with('message', 'Appointment deleted successfully.');
@@ -181,6 +228,12 @@ class AdminController extends Controller
     //Approved Appointment
     public function updateStatus(Request $request, $id)
     {
+        $request->validate([
+            'reason' => 'required|min:5|max:100',
+        ]);
+
+        $reason = $request->input('reason');
+
         // Find the appointment using the provided ID
         $appointment = Appointment::findOrFail($id);
 
@@ -198,12 +251,35 @@ class AdminController extends Controller
             'campus' => $appointment->campus,
             'request' => $appointment->request,
             'appdate' => $appointment->appdate,
+            'reason' => $request->input('reason'),
         ];
 
         // Check if appstatus is 'rejected' before sending the email
         if ($request->input('appstatus') === 'rejected') {
             // Send rejected email
             Mail::to($data['email'])->send(new RejectMail($data));
+            // Move data to the rejectedtable
+            RejectedAppointment::create([
+                'fname' => $appointment->fname,
+                'lname' => $appointment->lname,
+                'mname' => $appointment->mname,
+                'suffix' => $appointment->suffix,
+                'email' => $appointment->email,
+                'ygrad' => $appointment->ygrad,
+                'ismis' => $appointment->ismis,
+                'campus' => $appointment->campus,
+                'status' => $appointment->status,
+                'appdate' => $appointment->appdate,
+                'appstatus' => 'REJECTED', // Set the correct status
+                'request' => $appointment->request,
+                // Properly formatted date
+                'tracking_code' => $appointment->tracking_code,
+            ]);
+
+            // Optionally delete the original appointment
+            $appointment->delete();
+            // Store the reason in the session
+            session(['reason' => $data['reason']]);
         } else if ($request->input('appstatus') === 'approved') {
             // Send approved email
             Mail::to($data['email'])->send(new ApprovedMail($data));
@@ -221,5 +297,24 @@ class AdminController extends Controller
         return view('admin.partials.show', [
             'appointment' => $appointment,
         ]);
+    }
+    //Show Appointment
+    public function showCompleted(CompletedAppointment $completed, Request $request)
+    {
+
+        return view('admin.partials.showCompleted', [
+            'appointment' => $completed,
+        ]);
+    }
+    public function deleteAll(Request $request)
+    {
+        $category = auth()->guard('admin')->user()->campus;
+
+        // Delete all appointments that match the admin's category and have status REJECTED or DELETED
+        RejectedAppointment::where('campus', $category)
+            ->whereIn('appstatus', ['REJECTED', 'DELETED'])
+            ->delete();
+
+        return redirect()->back()->with('message', 'All rejected and deleted appointments have been removed.');
     }
 }

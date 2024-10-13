@@ -3,13 +3,17 @@
 @section('show')
     <div class="h-full overflow-y-auto">
         <div class="container px-6 mx-auto grid">
-            <a href="/admin/dashboard">
+            <a href="/completed">
                 <h2 class="my-6 text-2xl font-semibold text-gray-100">
                     <i class="fa fa-arrow-left text-xl"></i> Details
                 </h2>
             </a>
             <div class="w-full overflow-hidden bg-slate-50 rounded-md shadow-xs">
+                <p class="text-center flext content-center p-2 text-xl font-semibold text-white bg-green-500">Completed</p>
                 <div class="grid grid-cols-1 gap-4">
+
+
+
                     <div class="grid grid-cols-4 bg-blue-100 p-6 border-b-2 border-dashed border-gray-300">
                         <div class="">
                             <h4 class="text-gray-500 pb-2">Tracking Code</h4>
@@ -30,16 +34,6 @@
                         <div class="">
                             <h4 class="text-gray-500 pb-2">Appointment Date</h4>
                             <p class="text-amber-700 text-xl">{{ $appointment->appdate }}</p>
-                        </div>
-                        <div class="">
-                            <form class="flex justify-end" action="{{ route('appointments.destroy', $appointment->id) }}" method="POST"
-                                onsubmit="return confirm('Are you sure you want to delete this appointment?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
-                                    class="fas fa-trash bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2"> Delete</button>
-                            </form>
                         </div>
                     </div>
 
@@ -77,21 +71,6 @@
                     </div>
 
                 </div>
-                <div class="flex justify-end">
-                    <form action="{{ route('appointments.complete', $appointment->id) }}" method="POST"
-                        class="inline-block">
-                        @csrf
-                        @method('PUT')
-                        <button type="submit"
-                            class="mt-2 m-6 hover:shadow-form rounded-md bg-[#500862] py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                            <i class="fa fa-check"></i> Mark as Completed
-                        </button>
-                    </form>
-
-
-                </div>
-
-
 
             </div>
         </div>
