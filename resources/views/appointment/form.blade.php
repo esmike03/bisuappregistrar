@@ -131,6 +131,7 @@
                                 <select name="suffix" id="suffix"
                                     class="mt-4 bg-gray-50 border font-bold border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-gray-500">
                                     <option value="" disabled selected>...</option>
+                                    <option value="N/A" {{ old('suffix') == 'Jr.' ? 'selected' : '' }}>N/A</option>
                                     <option value="Jr." {{ old('suffix') == 'Jr.' ? 'selected' : '' }}>Jr.</option>
                                     <option value="Sr." {{ old('suffix') == 'Sr.' ? 'selected' : '' }}>Sr.</option>
                                     <option value="II" {{ old('suffix') == 'II' ? 'selected' : '' }}>II</option>

@@ -8,6 +8,7 @@ use App\Mail\RejectMail;
 use App\Mail\ApprovedMail;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use App\Models\CompletedAppointment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AppointmentConfirmation;
@@ -113,13 +114,12 @@ class AdminController extends Controller
         }
         $category = auth()->guard('admin')->user()->campus; // Get the category for the current admin
 
-        $appointmentCount = Appointment::where('campus', $category)
-            ->where('appstatus', 'pending')
+        $appointmentCount = CompletedAppointment::where('campus', $category)
+            ->where('appstatus', 'COMPLETED')
             ->count();
 
         // Paginate the appointments with filtering by category
-        $appointments = Appointment::where('campus', $category)
-            ->orderBy('created_at', 'desc')
+        $appointments = CompletedAppointment::where('campus', $category)
             ->paginate(3); // Adjust the number of items per page as needed
 
         return view('admin.partials.completed', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount]);

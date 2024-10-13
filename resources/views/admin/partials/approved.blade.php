@@ -18,7 +18,7 @@
 
             </div>
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
-                <div class="w-full overflow-x-auto" id="tableContainer">
+                <div class="w-full overflow-x-auto">
                     <table class="w-full whitespace-no-wrap">
                         <thead>
                             <tr
@@ -28,36 +28,38 @@
                                 <th class="px-4 py-3">Status</th>
                                 <th class="px-4 py-3">Appointment Date</th>
                                 <th class="px-4 py-3">Code</th>
-                                <th class="px-4 py-3">Action</th>
+                                <th class="px-4 py-3">Expand</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y dark:divide-gray-200 ">
+
                             @php
                                 // Filter appointments based on the category
                                 $filteredAppointments = $appointments->filter(function ($appointment) use ($category) {
-                                    return $appointment->campus === $category;
+                                    return $appointment->campus === $category && $appointment->appstatus === 'approved';
                                 });
                             @endphp
 
                             @if ($filteredAppointments->isNotEmpty())
                                 @foreach ($filteredAppointments as $appointment)
-                                    <tr class="text-gray-700 hover:cursor-pointer"
-                                        @click="window.location='/appointment/{{ $appointment->id }}'">
+                                    <tr class="text-gray-700 ">
                                         <td class="px-4 py-3">
                                             <div class="flex items-center text-sm">
                                                 <!-- Avatar with inset shadow -->
                                                 <div>
                                                     <p class="font-semibold text-black uppercase">{{ $appointment->lname }},
-                                                        {{ $appointment->fname }} {{ $appointment->mname }}</p>
+                                                        {{ $appointment->fname }} {{ $appointment->suffix }}
+                                                        {{ $appointment->mname }}</p>
                                                     <p class="text-xs text-gray-600 dark:text-gray-400">
                                                         {{ $appointment->created_at }}
                                                     </p>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="px-4 py-3 text-sm font-bold text-purple-800">
-                                            {{ $appointment->request }}
+                                        <td class="px-4 py-3 text-sm font-bold text-purple-800 whitespace-normal max-w-xs">
+                                            {{ Str::words($appointment->request, 40, '...') }}
                                         </td>
+
                                         <td class="px-4 py-3 text-xs">
                                             <span x-data="{ status: '{{ $appointment->appstatus }}' }"
                                                 :class="{
@@ -68,6 +70,7 @@
                                                 class="uppercase px-2 py-1 font-semibold leading-tight text-white rounded-full">
                                                 {{ ucfirst($appointment->appstatus) }}
                                             </span>
+
                                         </td>
                                         <td class="px-4 py-3 text-sm">
                                             {{ $appointment->appdate }}
@@ -76,51 +79,30 @@
                                             <p
                                                 class="bg-amber-400 text-center text-purple-900 p-1 rounded-md font-semibold">
                                                 {{ $appointment->tracking_code }}</p>
+
                                         </td>
-                                        <td class="px-4 py-3 text-sm flex items-center justify-center h-16">
-                                            <!-- Status Change Form -->
-                                            <form action="{{ route('appointments.updateStatus', $appointment->id) }}"
-                                                method="POST" onsubmit="return confirm('Approve this appointment?');">
-                                                @csrf
-                                                @method('PATCH')
-                                                <input type="hidden" name="appstatus" value="approved">
-                                                <button type="submit"
-                                                    class="fas fa-check bg-green-500 rounded-sm p-2 text-white cursor-pointer mx-2"
-                                                    title="Approve"></button>
-                                            </form>
 
-                                            <!--reject-->
-                                            <form action="{{ route('appointments.updateStatus', $appointment->id) }}"
-                                                method="POST" onsubmit="return confirm('Reject this appointment?');">
-                                                @csrf
-                                                @method('PATCH')
-                                                <input type="hidden" name="appstatus" value="rejected">
-                                                <button type="submit"
-                                                    class="fas fa-close bg-orange-500 rounded-sm p-2 text-white cursor-pointer mx-2"
-                                                    title="Reject"></button>
-                                            </form>
-
-                                            <!--Delete-->
-                                            <form action="{{ route('appointments.destroy', $appointment->id) }}"
-                                                method="POST"
-                                                onsubmit="return confirm('Are you sure you want to delete this appointment?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="fas fa-trash bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2"></button>
-                                            </form>
+                                        <td class="px-4 py-3 text-sm">
+                                            <a href="/appointment/{{ $appointment->id }}">
+                                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
                             @else
-                                <p class="text-amber-500">No Appointment Found.</p>
+                                <p class="text-amber-500">No Approved Appointments Found.</p>
                             @endif
+
+
+
                         </tbody>
                     </table>
                 </div>
-                <div class="p-4 bg-white">
-                    {{ $appointments->links() }}
+                <div class=" p-4 bg-gray-100">
+                    {{ $appointments->links('vendor.pagination.tailwind') }}
+
                 </div>
+
             </div>
         </div>
     </div>

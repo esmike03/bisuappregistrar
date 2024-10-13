@@ -19,7 +19,7 @@
         </svg>
         <rect width="100%" height="100%" stroke-width="0" fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)"></rect>
     </svg>
-    <div class="py-8 px-3 mx-auto max-w-screen-xl lg:py-16 lg:px-24">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-24">
         <!-- Registrar Heading with Location List -->
 
         <div class=" mx-auto mt-24 lg:mt-14 mb-10 text-left bg-purple-to-transparent">

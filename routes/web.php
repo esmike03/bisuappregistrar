@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\AppointmentController;
 
 
 //User
@@ -94,3 +95,7 @@ Route::post('/verify-code', [Verify::class, 'verifyCode'])->name('verify.code');
 
 //Delete Messages
 Route::delete('/messages/{id}', [MessageController::class, 'destroy'])->name('messages.destroy');
+
+//Transfer to Completed table
+Route::put('/appointments/{id}/complete', [AppointmentController::class, 'markAsCompleted'])->name('appointments.complete');
+

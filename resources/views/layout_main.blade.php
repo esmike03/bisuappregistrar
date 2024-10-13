@@ -96,6 +96,13 @@
             </label>
             <nav aria-label="Header Navigation" class="peer-checked:block hidden pl-2 py-6 sm:block sm:py-0">
                 <ul class="flex flex-col gap-y-4 sm:flex-row sm:gap-x-8">
+                    <li>
+                        <a href="#faq">
+                            <button class="text-gray-100 hover:text-amber-600"><i class="fas fa-question-circle"></i>
+                                FAQs</button>
+                        </a>
+
+                    </li>
                     <li @click="messageOpen = true">
                         <button class="text-gray-100 hover:text-amber-600"><i class="fa-solid fa-envelope"></i>
                             Message</button>
@@ -134,22 +141,13 @@
                     </a>
                 </div>
                 <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-                    <div>
-                        <h2 class="mb-6 text-sm font-semibold  uppercase text-white">Resources</h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                            <li class="mb-4">
-                                <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
-                            </li>
-                            <li>
-                                <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
-                            </li>
-                        </ul>
-                    </div>
+
                     <div>
                         <h2 class="mb-6 text-sm font-semibold uppercase text-white">Follow us</h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium ">
                             <li class="mb-4">
-                                <a href="https://github.com/themesberg/flowbite" class="hover:underline ">BISU Main</a>
+                                <a href="https://github.com/themesberg/flowbite" class="hover:underline ">BISU
+                                    Main</a>
                             </li>
                             <li class="mb-4">
                                 <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">BISU Bilar</a>

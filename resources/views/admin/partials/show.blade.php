@@ -68,12 +68,20 @@
 
                 </div>
                 <div class="flex justify-end">
-                    <button
-                        class="mt-2 m-6 hover:shadow-form rounded-md bg-[#500862] py-3 px-8 text-center text-base font-semibold text-white outline-none"
-                        @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
-                        <i class="fa fa-check"> </i> Mark as Completed
-                    </button>
+                    <form action="{{ route('appointments.complete', $appointment->id) }}" method="POST"
+                        class="inline-block">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit"
+                            class="mt-2 m-6 hover:shadow-form rounded-md bg-[#500862] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                            <i class="fa fa-check"></i> Mark as Completed
+                        </button>
+                    </form>
+
+
                 </div>
+
+
 
             </div>
         </div>
