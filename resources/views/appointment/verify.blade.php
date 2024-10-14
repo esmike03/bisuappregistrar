@@ -7,7 +7,7 @@
             <header class="mb-8">
                 <h1 class="text-2xl font-bold mb-1 text-white justify-center flex items-center">
                     <i class="fas fa-envelope mr-2"></i>
-                    Email Verification {{session('email')}}
+                    Email Verification
                 </h1>
 
                 <p class="text-[15px] text-slate-300">Enter the 4-digit verification code that was sent to your email.
