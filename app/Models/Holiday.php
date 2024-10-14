@@ -15,6 +15,7 @@ class Holiday extends Model
     protected $fillable = [
         'holiday_date',
         'name',
+        'campus',
     ];
 
     // Specify the attributes that should be cast to native types

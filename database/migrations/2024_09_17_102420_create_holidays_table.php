@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('holiday_date');
             $table->string('name');
+            $table->string('campus');
             $table->timestamps();
         });
     }

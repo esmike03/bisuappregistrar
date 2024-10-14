@@ -26,4 +26,3 @@ document.getElementById('screenshotButton').addEventListener('click', function (
         console.error('Screenshot capture failed:', error);
     });
 });
-

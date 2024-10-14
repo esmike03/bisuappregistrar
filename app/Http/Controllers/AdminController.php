@@ -256,6 +256,8 @@ class AdminController extends Controller
 
         // Check if appstatus is 'rejected' before sending the email
         if ($request->input('appstatus') === 'rejected') {
+            // Store the reason in the session
+            session(['reason' => $data['reason']]);
             // Send rejected email
             Mail::to($data['email'])->send(new RejectMail($data));
             // Move data to the rejectedtable
@@ -278,13 +280,12 @@ class AdminController extends Controller
 
             // Optionally delete the original appointment
             $appointment->delete();
-            // Store the reason in the session
-            session(['reason' => $data['reason']]);
         } else if ($request->input('appstatus') === 'approved') {
             // Send approved email
             Mail::to($data['email'])->send(new ApprovedMail($data));
         }
 
+        session()->forget('reason');
         return redirect('/admin/dashboard')->with('message', 'Appointment status updated successfully.');
     }
 

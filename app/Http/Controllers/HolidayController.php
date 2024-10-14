@@ -16,6 +16,8 @@ class HolidayController extends Controller
 
     public function date(Request $request)
     {
+        // $campus = auth()->guard('admin')->user()->campus;
+
         // Validate the request data
         $request->validate([
             'holiday_date' => 'required',
@@ -26,6 +28,8 @@ class HolidayController extends Controller
         Holiday::create([
             'holiday_date' => $request->input('holiday_date'),
             'name' => $request->input('name'),
+            // 'campus' => $campus
+
         ]);
 
         return redirect('/records')->with('message', 'Date Set Successfully!');
