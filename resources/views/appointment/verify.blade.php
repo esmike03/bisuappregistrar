@@ -7,7 +7,7 @@
             <header class="mb-8">
                 <h1 class="text-2xl font-bold mb-1 text-white justify-center flex items-center">
                     <i class="fas fa-envelope mr-2"></i>
-                    Email Verification
+                    Email Verification {{session('email')}}
                 </h1>
 
                 <p class="text-[15px] text-slate-300">Enter the 4-digit verification code that was sent to your email.
@@ -44,7 +44,8 @@
             </form>
             <form method="POST" action="/send-verification">
                 @csrf
-                <button type="submit">
+                <input type="hidden" name="email" value="{{ session('email')}}"/>
+                <button type="submit" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
                      <div class="text-sm text-slate-300 mt-4">Didn't receive code? <a
                     class="font-medium text-indigo-500 hover:text-indigo-600">Resend</a></div>
                 </button>

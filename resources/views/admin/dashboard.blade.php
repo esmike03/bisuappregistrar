@@ -221,7 +221,7 @@
                                                 @csrf
                                                 @method('PATCH')
                                                 <input type="hidden" name="appstatus" value="approved">
-                                                <button type="submit"
+                                                <button type="submit" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
                                                     class="fas fa-check bg-green-500 rounded-sm p-2 text-white cursor-pointer mx-2"
                                                     title="Approve">
                                                     <!-- SVG for check icon -->
@@ -258,7 +258,7 @@
                                                             </div>
 
                                                             <div class="w-full flex justify-end pb-4 px-2">
-                                                                <button @click="modalConfirm = false"
+                                                                <button @click="modalConfirm = false" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
                                                                     class="bg-gray-300 px-6 text-black rounded-md p-2 mx-2">
                                                                     Cancel
                                                                 </button>
@@ -284,7 +284,7 @@
                                                 onsubmit="return confirm('Are you sure you want to delete this appointment?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit"
+                                                <button type="submit" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
                                                     class="fas fa-trash bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2"></button>
                                             </form>
                                         </td>
