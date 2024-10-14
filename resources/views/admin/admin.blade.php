@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ modallist:false, notifications: false, message: false, modalError: true, open: false, modalOpen: false, calendarOpen: false, loading: false, success: false }" x-cloak>
+<html lang="en" x-data="{ modalConfirm: false, modallist:false, notifications: false, message: false, modalError: true, open: false, modalOpen: false, calendarOpen: false, loading: false, success: false }" x-cloak>
 
 <head>
     <meta charset="UTF-8" />

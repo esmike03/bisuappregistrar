@@ -251,15 +251,19 @@ class AdminController extends Controller
             'campus' => $appointment->campus,
             'request' => $appointment->request,
             'appdate' => $appointment->appdate,
+        ];
+
+        $reason = [
+            'email' => $appointment->email,
             'reason' => $request->input('reason'),
         ];
 
         // Check if appstatus is 'rejected' before sending the email
         if ($request->input('appstatus') === 'rejected') {
             // Store the reason in the session
-            session(['reason' => $data['reason']]);
+            session(['reason' => $reason['reason']]);
             // Send rejected email
-            Mail::to($data['email'])->send(new RejectMail($data));
+            Mail::to($reason['email'])->send(new RejectMail($reason));
             // Move data to the rejectedtable
             RejectedAppointment::create([
                 'fname' => $appointment->fname,
@@ -287,6 +291,34 @@ class AdminController extends Controller
 
         session()->forget('reason');
         return redirect('/admin/dashboard')->with('message', 'Appointment status updated successfully.');
+    }
+
+    //Approved Appointment
+    public function approvedStatus(Request $request, $id)
+    {
+        // Find the appointment using the provided ID
+        $appointment = Appointment::findOrFail($id);
+
+        // Update the appointment status
+        $appointment->update([
+            'appstatus' => $request->input('appstatus'),
+        ]);
+
+        // Prepare data for the email using the appointment data
+        $data = [
+            'fName' => $appointment->fName,
+            'lName' => $appointment->lName,
+            'email' => $appointment->email,
+            'status' => $appointment->appstatus,  // Updated status
+            'campus' => $appointment->campus,
+            'request' => $appointment->request,
+            'appdate' => $appointment->appdate,
+        ];
+        if ($request->input('appstatus') === 'approved') {
+            // Send approved email
+            Mail::to($data['email'])->send(new ApprovedMail($data));
+        }
+        return redirect('/admin/dashboard')->with('message', 'Appointment approved successfully.');
     }
 
 

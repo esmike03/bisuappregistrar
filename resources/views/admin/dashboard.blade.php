@@ -216,7 +216,7 @@
                                         </td>
                                         <td class="px-4 py-3 text-sm flex items-center justify-center h-16">
                                             <!-- Status Change Form -->
-                                            <form action="{{ route('appointments.updateStatus', $appointment->id) }}"
+                                            <form action="{{ route('approved.appointments', $appointment->id) }}"
                                                 method="POST" onsubmit="return confirm('Approve this appointment?');">
                                                 @csrf
                                                 @method('PATCH')
@@ -229,7 +229,7 @@
                                             </form>
 
                                             <!-- Alpine.js setup for modal state -->
-                                            <div x-data="{ modalConfirm: false }">
+                                            <div>
                                                 <!-- Reject Button to Open Modal -->
                                                 <button @click="modalConfirm = true"
                                                     class="fas fa-close bg-orange-500 rounded-sm p-2 text-white cursor-pointer mx-2"
@@ -285,7 +285,6 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                    @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
                                                     class="fas fa-trash bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2"></button>
                                             </form>
                                         </td>
@@ -299,9 +298,6 @@
                             @else
                                 <p class="text-amber-500">No Appointment Found.</p>
                             @endif
-
-
-
                         </tbody>
                     </table>
                 </div>

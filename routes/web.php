@@ -69,6 +69,9 @@ Route::delete('/delete-all', [AdminController::class, 'deleteAll'])->name('appoi
 //To Approve Appointmnet
 Route::patch('/appointments/{id}/status', [AdminController::class, 'updateStatus'])->name('appointments.updateStatus');
 
+//To Approve Appointmnet
+Route::patch('/appointments/{id}/approved', [AdminController::class, 'approvedStatus'])->name('approved.appointments');
+
 //Calendar Holiday
 Route::get('/holidays', [HolidayController::class, 'getHolidays']);
 

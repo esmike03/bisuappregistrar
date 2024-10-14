@@ -101,8 +101,6 @@ class HomeController extends Controller
         return redirect('/')->with('formData', $formFields)->with('message', 'Appointment Set Successfully!')->withoutCookie('email');
     }
 
-
-
     //Show Appointment Form
     public function form()
     {
