@@ -112,7 +112,7 @@ class AdminController extends Controller
 
 
     //completed page
-    public function completed()
+    public function completed(Request $request)
     {
         if (!auth()->guard('admin')->check()) {
             // Redirect to the login page if not authenticated
@@ -128,11 +128,22 @@ class AdminController extends Controller
         $appointments = CompletedAppointment::where('campus', $category)
             ->paginate(3); // Adjust the number of items per page as needed
 
+        // Initialize the query
+        $query = CompletedAppointment::where('campus', $category);
+
+        // Check for search input and filter by tracking_code
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('tracking_code', 'LIKE', "%{$searchTerm}%");
+        }
+        // Paginate the filtered appointments
+        $appointments = $query->orderBy('created_at', 'desc')->paginate(100); // Adjust the number of items per page as needed
+
         return view('admin.partials.completed', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount]);
     }
 
     //archive page
-    public function archive()
+    public function archive(Request $request)
     {
         if (!auth()->guard('admin')->check()) {
             // Redirect to the login page if not authenticated
@@ -147,6 +158,18 @@ class AdminController extends Controller
         // Paginate the appointments with filtering by category
         $appointments = RejectedAppointment::where('campus', $category)
             ->paginate(3); // Adjust the number of items per page as needed
+
+        // Initialize the query
+        $query = RejectedAppointment::where('campus', $category);
+
+        // Check for search input and filter by tracking_code
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('tracking_code', 'LIKE', "%{$searchTerm}%");
+        }
+
+        // Paginate the filtered appointments
+        $appointments = $query->orderBy('created_at', 'desc')->paginate(100); // Adjust the number of items per page as needed
 
         return view('admin.partials.archive', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount]);
     }
@@ -277,6 +300,7 @@ class AdminController extends Controller
                 'status' => $appointment->status,
                 'appdate' => $appointment->appdate,
                 'appstatus' => 'REJECTED', // Set the correct status
+                'reason' => $request->input('reason'),
                 'request' => $appointment->request,
                 // Properly formatted date
                 'tracking_code' => $appointment->tracking_code,

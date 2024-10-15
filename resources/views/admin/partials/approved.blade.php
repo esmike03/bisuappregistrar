@@ -13,6 +13,16 @@
                         <i class="fa fa-arrow-left text-xl"></i> Approved Appointments
                     </h2>
                 </a>
+                <a href="/approved"
+                    class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:text-gray-400 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
+                    aria-label="{{ __('Refresh') }}">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path
+                            d="M12 4V1L8 5l4 4V6c4.41 0 8 3.59 8 8s-3.59 8-8 8-8-3.59-8-8h2c0 3.31 2.69 6 6 6s6-2.69 6-6-2.69-6-6-6z" />
+                    </svg>
+
+                </a>
                 <!-- Added id to the print link -->
 
 

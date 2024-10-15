@@ -6,6 +6,7 @@ use App\Events\RealTime;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Models\RejectedAppointment;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AppointmentConfirmation;
@@ -66,6 +67,7 @@ class HomeController extends Controller
 
         // Check if there are already 10 appointments on the same date
         $appointmentCount = Appointment::whereDate('appdate', $request->input('appdate'))
+            ->where('campus', $request->input('campus'))
             ->where('appdate', $request->input('appdate')) // Only count pending appointments
             ->count();
 
@@ -120,20 +122,30 @@ class HomeController extends Controller
     }
 
 
-    //search appointment
+    // Search appointment
     public function search(Request $request)
     {
         $search_text = $request->query('query');
         $search_campus = $request->query('campus');
 
-        // Fetch a single appointment
+        // Try to find an appointment in both models
         $code = Appointment::where('tracking_code', 'LIKE', '%' . $search_text . '%')
             ->where('campus', 'LIKE', '%' . $search_campus . '%')
             ->first();
+
+        if (!$code) {
+            // If not found in Appointment, search in RejectedAppointment
+            $code = RejectedAppointment::where('tracking_code', 'LIKE', '%' . $search_text . '%')
+                ->where('campus', 'LIKE', '%' . $search_campus . '%')
+                ->first();
+        }
+
+        // If still not found, return with a message
         if (!$code) {
             return back()->with('message', 'No record found.');
         }
 
+        // Pass the found appointment to the view
         return view('appointment.track', compact('code'));
     }
 

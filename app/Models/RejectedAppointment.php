@@ -9,5 +9,5 @@ class RejectedAppointment extends Model
 {
 
     use HasFactory;
-    protected $fillable = ['fname', 'lname', 'mname', 'suffix', 'email', 'ygrad', 'ismis', 'campus', 'status', 'appstatus', 'request', 'appdate', 'tracking_code'];
+    protected $fillable = ['fname', 'lname', 'mname', 'suffix', 'email', 'ygrad', 'ismis', 'campus', 'status', 'appstatus', 'reason', 'request', 'appdate', 'tracking_code'];
 }

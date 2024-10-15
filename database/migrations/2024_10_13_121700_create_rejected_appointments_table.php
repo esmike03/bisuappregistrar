@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('appdate');
             $table->string('tracking_code');
             $table->string('appstatus')->default('PENDING');
+            $table->string('reason')->nullable();
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@
                         :class="{
                             'bg-amber-600': status === 'pending',
                             'bg-green-500': status === 'approved',
-                            'bg-red-500': status === 'rejected'
+                            'bg-red-500': status === 'REJECTED'
                         }"
                         class="bg-amber-400 rounded-md px-3 py-1 text-purple-200 uppercase">
                         {{ ucfirst($code->appstatus) }}

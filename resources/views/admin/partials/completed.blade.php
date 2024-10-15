@@ -22,9 +22,39 @@
                     <a href="javascript:void(0);" id="printTable" class="mx-2">
                         <i class="fa-solid fa-print text-white"> Print</i>
                     </a>
+                    <a href="/completed"
+                        class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:text-gray-400 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
+                        aria-label="{{ __('Refresh') }}">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path
+                                d="M12 4V1L8 5l4 4V6c4.41 0 8 3.59 8 8s-3.59 8-8 8-8-3.59-8-8h2c0 3.31 2.69 6 6 6s6-2.69 6-6-2.69-6-6-6z" />
+                        </svg>
+
+                    </a>
                 </div>
 
             </div>
+            <form action="/completed" method="GET" class="w-full mx-auto">
+                @csrf
+                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        </svg>
+                    </div>
+                    <input type="search" name="search" id="default-search" value="{{ request()->input('search') }}"
+                        class="uppercase block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 mb-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Tracking Code" />
+                    <button type="submit"
+                        class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Search
+                    </button>
+                </div>
+            </form>
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
                 <div class="w-full overflow-x-auto" id="tableContainer">
                     <table class="w-full whitespace-no-wrap">
@@ -33,7 +63,6 @@
                                 class="text-xs font-semibold tracking-wide text-left text-gray-800 uppercase border-b border-gray-300 bg-gray-50 ">
                                 <th class="px-4 py-3">Client</th>
                                 <th class="px-4 py-3">Request</th>
-                                <th class="px-4 py-3">Status</th>
                                 <th class="px-4 py-3">Appointment Date</th>
                                 <th class="px-4 py-3">Code</th>
                                 <th class="px-4 py-3">Expand</th>
@@ -44,7 +73,8 @@
                             @php
                                 // Filter appointments based on the category
                                 $filteredAppointments = $appointments->filter(function ($appointment) use ($category) {
-                                    return $appointment->campus === $category && $appointment->appstatus === 'COMPLETED';
+                                    return $appointment->campus === $category &&
+                                        $appointment->appstatus === 'COMPLETED';
                                 });
                             @endphp
 
@@ -68,7 +98,7 @@
                                             {{ Str::words($appointment->request, 40, '...') }}
                                         </td>
 
-                                        <td class="px-4 py-3 text-xs">
+                                        {{-- <td class="px-4 py-3 text-xs">
                                             <span x-data="{ status: '{{ $appointment->appstatus }}' }"
                                                 :class="{
                                                     'bg-amber-600': status === 'pending',
@@ -80,7 +110,7 @@
                                                 {{ ucfirst($appointment->appstatus) }}
                                             </span>
 
-                                        </td>
+                                        </td> --}}
                                         <td class="px-4 py-3 text-sm">
                                             {{ $appointment->appdate }}
                                         </td>
@@ -99,7 +129,7 @@
                                     </tr>
                                 @endforeach
                             @else
-                                <p class="text-amber-500">No Approved Appointments Found.</p>
+                                <p class="text-amber-500">No Completed Appointments Found.</p>
                             @endif
 
 
