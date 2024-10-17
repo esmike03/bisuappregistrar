@@ -160,7 +160,7 @@
                                 <th class="px-4 py-3">Status</th>
                                 <th class="px-4 py-3">Appointment Date</th>
                                 <th class="px-4 py-3">Code</th>
-                                <th class="px-4 py-3">Action</th>
+                                {{-- <th class="px-4 py-3">Action</th> --}}
                                 <th class="px-4 py-3">Expand</th>
                             </tr>
                         </thead>
@@ -214,7 +214,7 @@
                                                 {{ $appointment->tracking_code }}</p>
 
                                         </td>
-                                        <td class="px-4 py-3 text-sm flex items-center justify-center h-16">
+                                        {{-- <td class="px-4 py-3 text-sm flex items-center justify-center h-16">
                                             <!-- Status Change Form -->
                                             <form action="{{ route('approved.appointments', $appointment->id) }}"
                                                 method="POST" onsubmit="return confirm('Approve this appointment?');">
@@ -287,10 +287,10 @@
                                                 <button type="submit" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
                                                     class="fas fa-trash bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2"></button>
                                             </form>
-                                        </td>
+                                        </td> --}}
                                         <td class="px-4 py-3 text-sm">
-                                            <a href="/appointment/{{ $appointment->id }}">
-                                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                            <a href="/appointment/{{ $appointment->id }}" class="text-sm text-white bg-purple-800 p-2 rounded-md">
+                                               <i class="fas fa-eye"></i> View
                                             </a>
                                         </td>
                                     </tr>

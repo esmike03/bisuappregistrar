@@ -9,6 +9,15 @@
                 </h2>
             </a>
             <div class="w-full overflow-hidden bg-slate-50 rounded-md shadow-xs">
+                <p x-data="{ status: '{{ $appointment->appstatus }}' }"
+                    :class="{
+                        'bg-amber-600': status === 'pending',
+                        'bg-green-500': status === 'approved',
+                        'bg-red-500': status === 'rejected'
+                    }"
+                    class="uppercase text-center flext content-center p-2 text-xl font-semibold text-white">
+                    {{ ucfirst($appointment->appstatus) }}
+                </p>
                 <div class="grid grid-cols-1 gap-4">
                     <div class="grid grid-cols-4 bg-blue-100 p-6 border-b-2 border-dashed border-gray-300">
                         <div class="">
@@ -32,13 +41,15 @@
                             <p class="text-amber-700 text-xl">{{ $appointment->appdate }}</p>
                         </div>
                         <div class="">
-                            <form class="flex justify-end" action="{{ route('appointments.destroy', $appointment->id) }}" method="POST"
+                            <form class="flex justify-end" action="{{ route('appointments.destroy', $appointment->id) }}"
+                                method="POST"
                                 onsubmit="return confirm('Are you sure you want to delete this appointment?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
                                     @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
-                                    class="fas fa-trash bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2"> Delete</button>
+                                    class="fas fa-trash bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2">
+                                    Delete</button>
                             </form>
                         </div>
                     </div>
@@ -77,22 +88,79 @@
                     </div>
 
                 </div>
-                <div class="flex justify-end">
-                    <form action="{{ route('appointments.complete', $appointment->id) }}" method="POST"
-                        class="inline-block">
-                        @csrf
-                        @method('PUT')
-                        <button type="submit"
-                            class="mt-2 m-6 hover:shadow-form rounded-md bg-[#500862] py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                            <i class="fa fa-check"></i> Mark as Completed
-                        </button>
-                    </form>
+                <div class="flex justify-end content-center flex-wrap items-center pr-4 pb-6">
+                    <div class="flex-wrap flex">
 
+                        <!-- If appstatus is 'approved', show Delete and Mark as Completed buttons -->
+                        @if ($appointment->appstatus === 'approved')
+                            <div>
+                                <form action="{{ route('appointments.complete', $appointment->id) }}" method="POST"
+                                    class="inline-block">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit">
+                                        <i class="fas fa-check bg-green-500 rounded-sm p-2 text-white cursor-pointer mx-2">
+                                            Mark as Completed
+                                        </i>
+                                    </button>
+                                </form>
+                            </div>
 
+                            <!-- If appstatus is 'pending', show Approve and Reject buttons -->
+                        @elseif ($appointment->appstatus === 'pending')
+                            <div>
+                                <form action="{{ route('approved.appointments', $appointment->id) }}" method="POST"
+                                    onsubmit="return confirm('Approve this appointment?');">
+                                    @csrf
+                                    @method('PATCH')
+                                    <input type="hidden" name="appstatus" value="approved">
+                                    <button type="submit"
+                                        class="fas fa-check bg-green-500 rounded-sm p-2 text-white cursor-pointer mx-2"
+                                        title="Approve">
+                                        Approve
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div>
+                                <button @click="modalConfirm = true"
+                                    class="fas fa-close bg-orange-500 rounded-sm p-2 text-white cursor-pointer mx-2"
+                                    title="Reject">
+                                    Reject
+                                </button>
+
+                                <!-- Confirm Modal -->
+                                <x-confirm-reject x-show="modalConfirm" x-cloak
+                                    class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+                                    <div class="rounded-lg shadow-lg p-6 w-full">
+                                        <form action="{{ route('appointments.updateStatus', $appointment->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            <div class="mb-5">
+                                                <textarea name="reason"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 h-20"
+                                                    maxlength="100" minlength="5" placeholder="Reason for Rejection..." required></textarea>
+                                            </div>
+                                            <div class="w-full flex justify-end pb-4 px-2">
+                                                <button @click="modalConfirm = false"
+                                                    class="bg-gray-300 px-6 text-black rounded-md p-2 mx-2">
+                                                    Cancel
+                                                </button>
+                                                <input type="hidden" name="appstatus" value="rejected">
+                                                <button type="submit"
+                                                    class="bg-amber-500 px-6 text-white rounded-md p-2 mx-2">
+                                                    Confirm
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </x-confirm-reject>
+                            </div>
+                        @endif
+
+                    </div>
                 </div>
-
-
-
             </div>
         </div>
     </div>

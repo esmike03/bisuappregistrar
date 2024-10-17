@@ -113,8 +113,8 @@
                                         </td>
 
                                         <td class="px-4 py-3 text-sm">
-                                            <a href="/appointment/{{ $appointment->id }}">
-                                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                            <a href="/appointment/{{ $appointment->id }}" class="text-sm text-white bg-purple-800 p-2 rounded-md">
+                                                <i class="fas fa-eye"> View</i>
                                             </a>
                                         </td>
                                     </tr>

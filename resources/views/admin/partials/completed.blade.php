@@ -64,7 +64,6 @@
                                 <th class="px-4 py-3">Client</th>
                                 <th class="px-4 py-3">Request</th>
                                 <th class="px-4 py-3">Appointment Date</th>
-                                <th class="px-4 py-3">Code</th>
                                 <th class="px-4 py-3">Expand</th>
                             </tr>
                         </thead>
@@ -114,16 +113,11 @@
                                         <td class="px-4 py-3 text-sm">
                                             {{ $appointment->appdate }}
                                         </td>
-                                        <td class="px-4 py-3 text-sm">
-                                            <p
-                                                class="bg-amber-400 text-center text-purple-900 p-1 rounded-md font-semibold">
-                                                {{ $appointment->tracking_code }}</p>
 
-                                        </td>
 
                                         <td class="px-4 py-3 text-sm">
-                                            <a href="/completed/{{ $appointment->id }}">
-                                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                            <a href="/completed/{{ $appointment->id }}" class="text-sm text-white bg-purple-800 p-2 rounded-md">
+                                                <i class="fas fa-eye"> View</i>
                                             </a>
                                         </td>
                                     </tr>

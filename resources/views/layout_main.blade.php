@@ -258,24 +258,30 @@
                     </p>
 
                     <div x-data="{
-                        amount: '{{ session('formData.request') }}',
+                        requests: '{{ session('formData.request') }}'.split(','),
                         messages: {
-                            'Certificate of Good Moral': 'P30',
-                            'Certificate of Transfer of Credentials': 'P40',
-                            'Course Prospectus': 'P50',
-                            'Transcript of Records for Board Exam': 'P70',
-                            'Transcript of Records for Employment': 'P70',
-                            'Transcript of Records for Transfer': 'P70',
-                            'Client Request Slip': 'P20',
-                            'Certificate of Graduation': 'P50',
+                            'Certificate of Good Moral': 30,
+                            'Certificate of Transfer of Credentials': 40,
+                            'Course Prospectus': 50,
+                            'Transcript of Records for Board Exam': 70,
+                            'Transcript of Records for Employment': 70,
+                            'Transcript of Records for Transfer': 70,
+                            'Client Request Slip': 20,
+                            'Certificate of Graduation': 50,
+                        },
+                        get totalAmount() {
+                            return this.requests.reduce((sum, request) => {
+                                let trimmedRequest = request.trim();
+                                return sum + (this.messages[trimmedRequest] || 0);
+                            }, 0);
                         }
                     }">
                         <p class="text-gray-400">
                             Amount Payable:
-                            <span x-text="messages[amount]" x-show="messages[amount]"
-                                class="text-green-500 font-extrabold"></span>
+                            <span x-text="'P' + totalAmount" class="text-green-500 font-extrabold"></span>
                         </p>
                     </div>
+
                 </div>
                 <div class="w-full flex justify-center">
                     <button id="screenshotButton"
