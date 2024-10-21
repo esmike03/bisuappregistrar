@@ -156,7 +156,7 @@
                                 <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
                                     Email <span class="text-red-400  text-md">*</span>
                                 </label>
-                                <input type="email" name="email" id="email" placeholder="abc@gmail.com"
+                                <input readonly type="email" name="email" id="email" placeholder="abc@gmail.com"
                                     value="{{ session('email') ?? old('email') }}" required
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#181818] outline-none focus:border-[#6A64F1] focus:shadow-md" />
 
