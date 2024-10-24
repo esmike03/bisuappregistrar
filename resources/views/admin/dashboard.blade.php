@@ -51,30 +51,6 @@
                     </a>
 
                 </div>
-                <!-- Card -->
-                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs ">
-                    <div
-                        class="p-3 mr-4 text-green-500 shadow-md bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
-                        <svg class="w-6 h-6 " fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true">
-                            <path fill-rule="evenodd"
-                                d="M6 2a1 1 0 011-1h1a1 1 0 110 2H7v1H5V3a1 1 0 011-1zm10 0a1 1 0 011-1h1a1 1 0 110 2h-1v1h-2V3a1 1 0 011-1zM5 6h14a2 2 0 012 2v11a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2zm0 2v11h14V8H5zm3 3a1 1 0 100 2h2a1 1 0 100-2H8zm4 0a1 1 0 100 2h2a1 1 0 100-2h-2zm-4 4a1 1 0 100 2h2a1 1 0 100-2H8zm4 0a1 1 0 100 2h2a1 1 0 100-2h-2z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <a href="/records" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
-                        <div>
-                            <p class="mb-2 text-sm font-medium text-gray-600 ">
-                                Set None Available Date
-                            </p>
-                            <p class="text-lg font-semibold text-gray-700 ">
-                                Appointment Calendar
-                            </p>
-                        </div>
-                    </a>
-
-                </div>
-
                 <div class="flex items-center p-4 bg-white rounded-lg shadow-xs ">
                     <div
                         class="p-3 mr-4 text-teal-500 shadow-md
@@ -94,6 +70,31 @@
                             </p>
                             <p class="text-lg font-semibold text-gray-700 ">
                                 {{ $approvedCount }}
+                            </p>
+                        </div>
+                    </a>
+
+                </div>
+
+
+                <!-- Card -->
+                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs ">
+                    <div
+                        class="p-3 mr-4 text-green-500 shadow-md bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
+                        <svg class="w-6 h-6 " fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M6 2a1 1 0 011-1h1a1 1 0 110 2H7v1H5V3a1 1 0 011-1zm10 0a1 1 0 011-1h1a1 1 0 110 2h-1v1h-2V3a1 1 0 011-1zM5 6h14a2 2 0 012 2v11a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2zm0 2v11h14V8H5zm3 3a1 1 0 100 2h2a1 1 0 100-2H8zm4 0a1 1 0 100 2h2a1 1 0 100-2h-2zm-4 4a1 1 0 100 2h2a1 1 0 100-2H8zm4 0a1 1 0 100 2h2a1 1 0 100-2h-2z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <a href="/records" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 ">
+                                Set None Available Date
+                            </p>
+                            <p class="text-lg font-semibold text-gray-700 ">
+                                Appointment Calendar
                             </p>
                         </div>
                     </a>

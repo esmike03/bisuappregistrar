@@ -154,13 +154,13 @@ class HomeController extends Controller
     {
         // Fetch a single appointment by tracking_code
         $code = Appointment::where('tracking_code', $tracking_code)->first();
-
+        $req = explode(', ', $code->request);
         // If no appointment found, return with a message
         if (!$code) {
             return back()->with('message', 'Appointment not found.');
         }
 
-        return view('appointment.edit', compact('code'));
+        return view('appointment.edit', compact('code', 'req'));
     }
 
     public function update(Request $request, $code)
@@ -184,7 +184,7 @@ class HomeController extends Controller
 
         // Dump the form fields and the current appointment instance for debugging
 
-
+        $formFields['request'] = implode(', ', $formFields['request']);
         // Perform the update operation
         $appointment->update($formFields);
 

@@ -61,9 +61,9 @@
 
         <div class=" flex flex-col mb-12 lg:mb-16 space-y-4 sm:flex-row sm:justify-start sm:space-y-0 sm:space-x-4">
             <a href="/send-email" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
-                class=" inline-flex gap-2 justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:ring-amber-500 dark:focus:ring-primary-900 slide-in">
-                <span class="text-amber-500"> |</span> Request an Appointment
-                <i class="fa-solid fa-angles-right"> </i>
+                class="text-black inline-flex gap-2 justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:ring-amber-500 dark:focus:ring-primary-900 slide-in">
+                <i class="fa-solid fa-calendar"> </i> Request an Appointment
+
             </a>
         </div>
     </div>

@@ -6,7 +6,7 @@
         <div class="flex items-center justify-center p-4">
             <!-- Author: FormBold Team -->
             <!-- Learn More: https://formbold.com -->
-            <div class="mx-auto w-full max-w-[550px] bg-white p-6 rounded-lg" x-data="{
+            <div class="mx-auto w-fit bg-white p-6 rounded-lg" x-data="{
                 selectedDate: @js(old('date') ?: ''),
                 status: @js(old('status') ?: ''),
                 isGraduated() { return this.status === 'Graduated'; }
@@ -27,7 +27,7 @@
                                 <div class="flex items-center">
                                     <input type="radio" id="status-graduated" name="status" value="Graduated"
                                         class="h-4 w-4" @if ($code->status == 'Graduated') checked @endif />
-                                    <label for="status-graduated" class="pl-1 text-base text-sm font-medium text-[#07074D]">
+                                    <label for="status-graduated" class="pl-1 text-xs font-medium xl:text-lg text-[#07074D]">
                                         Graduated
                                     </label>
                                 </div>
@@ -35,7 +35,7 @@
                                 <div class="flex items-center">
                                     <input type="radio" id="status-enrolled" name="status" value="Enrolled"
                                         class="h-4 w-4" @if ($code->status == 'Enrolled') checked @endif />
-                                    <label for="status-enrolled" class="pl-1 text-base text-sm font-medium text-[#07074D]">
+                                    <label for="status-enrolled" class="pl-1 text-xs font-medium xl:text-lg text-[#07074D]">
                                         Enrolled
                                     </label>
                                 </div>
@@ -43,7 +43,7 @@
                                 <div class="flex items-center">
                                     <input type="radio" id="status-not-enrolled" name="status" value="Not Enrolled"
                                         class="h-4 w-4" @if ($code->status == 'Not Enrolled') checked @endif />
-                                    <label for="status-not-enrolled" class="pl-1 text-base text-sm font-medium text-[#07074D]">
+                                    <label for="status-not-enrolled" class="pl-1 text-xs font-medium xl:text-lg text-[#07074D]">
                                         Not Enrolled <span class="text-red-400  text-md">*</span>
                                     </label>
                                 </div>
@@ -89,8 +89,8 @@
                     </div>
 
                     <!-- Personal Details -->
-                    <div class="-mx-3 flex flex-wrap">
-                        <div class="w-full px-3 sm:w-1/3">
+                    <div class="-mx-3 flex flex-wrap justify-between">
+                        <div class="w-full px-3 sm:w-1/4">
                             <div class="mb-5">
                                 <label for="fName" class="mb-3 block text-base font-medium text-[#07074D]">
                                     First Name <span class="text-red-400  text-md">*</span>
@@ -105,7 +105,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="w-full px-3 sm:w-1/3">
+                        <div class="w-full px-3 sm:w-1/4">
                             <div class="mb-5">
                                 <label for="lName" class="mb-3 block text-base font-medium text-[#07074D]">
                                     Last Name <span class="text-red-400  text-md">*</span>
@@ -120,7 +120,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="w-full px-3 sm:w-1/3">
+                        <div class="w-full px-3 sm:w-1/4">
                             <div class="mb-5">
                                 <label for="mName" class="mb-3 block text-base font-medium text-[#07074D]">
                                     Middle Name
@@ -135,17 +135,41 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="w-full px-2 sm:w-1/6">
+                            <div class="mb-5">
+                                <label for="suffix" class="mb-3 block text-base font-medium text-[#07074D]">
+                                    Suffix
+                                </label>
+                                <select name="suffix" id="suffix"
+                                    class="mt-4 bg-gray-50 border font-bold border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-gray-500">
+                                    <option value="" disabled selected>...</option>
+                                    <option value="N/A" {{ old('suffix') == 'Jr.' ? 'selected' : '' }}>N/A</option>
+                                    <option value="Jr." {{ old('suffix') == 'Jr.' ? 'selected' : '' }}>Jr.</option>
+                                    <option value="Sr." {{ old('suffix') == 'Sr.' ? 'selected' : '' }}>Sr.</option>
+                                    <option value="II" {{ old('suffix') == 'II' ? 'selected' : '' }}>II</option>
+                                    <option value="III" {{ old('suffix') == 'III' ? 'selected' : '' }}>III</option>
+                                    <option value="IV" {{ old('suffix') == 'IV' ? 'selected' : '' }}>IV</option>
+                                    <option value="V" {{ old('suffix') == 'V' ? 'selected' : '' }}>V</option>
+                                </select>
+
+                                @error('suffix')
+                                    <div class="text-xs text-red-800 sm:text-base lg:text-md">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
 
                     </div>
 
                     <!-- Email and Year Graduated -->
                     <div class="-mx-3 flex flex-wrap">
-                        <div class="w-full px-3 sm:w-1/2">
+                        <div class="w-full px-3 sm:w-1/3">
                             <div class="mb-5">
                                 <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
                                     Email <span class="text-red-400  text-md">*</span>
                                 </label>
-                                <input type="email" name="email" id="email" placeholder="abc@gmail.com"
+                                <input type="email" readonly name="email" id="email" placeholder="abc@gmail.com"
                                     value="{{ $code->email }}" required
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                 @error('email')
@@ -155,7 +179,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="w-full px-3 sm:w-1/2">
+                        <div class="w-full px-3 sm:w-1/3">
                             <div class="mb-5">
                                 <label for="ygrad" class="mb-3 block text-base font-medium text-[#07074D]">
                                     Year Graduated <span class="text-red-400  text-md">*</span>
@@ -171,11 +195,7 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-
-                    <!-- ISMIS ID and Request -->
-                    <div class="-mx-3 flex flex-wrap">
-                        <div class="w-full px-3 sm:w-1/2">
+                        <div class="w-full px-3 sm:w-1/3">
                             <div class="mb-5">
                                 <label for="ismis" class="mb-3 block text-base font-medium text-[#07074D]">
                                     ISMIS ID
@@ -190,46 +210,69 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="w-full px-3 sm:w-1/2">
+                    </div>
+
+                    <!-- ISMIS ID and Request -->
+                    <div class="-mx-3 flex flex-wrap">
+                        <div class="w-full px-3">
                             <div class="mb-5">
                                 <label for="request" class="mb-3 block text-base font-medium text-[#07074D]">
-                                    Request <span class="text-red-400  text-md">*</span>
+                                    Request <span class="text-red-400 text-md">*</span>
                                 </label>
-                                <select required name="request" id="request"
-                                    class="w-full bg-gray-50 border font-bold border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-gray-500">
+                                <select required name="request[]" multiple id="request"
+                                    class="w-full bg-gray-50 border font-bold border-gray-300 text-gray-900 text-sm rounded-lg
+                                           focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:border-gray-600
+                                           dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-gray-500">
 
-                                    <option value="" disabled
-                                        {{ is_null(old('request', $code->request)) ? 'selected' : '' }}>Request</option>
+                                    <option value="Transcript of Records for Board Exam"
+                                        {{ in_array('Transcript of Records for Board Exam', $req) ? 'selected' : '' }}>
+                                        Transcript of Records for Board Exam
+                                    </option>
 
-                                    <option value="Transcript of Records"
-                                        {{ old('request', $code->request) == 'Transcript of Records' ? 'selected' : '' }}>
-                                        Transcript of Records
+                                    <option value="Transcript of Records for Employment"
+                                        {{ in_array('Transcript of Records for Employment', $req) ? 'selected' : '' }}>
+                                        Transcript of Records for Employment
+                                    </option>
+
+                                    <option value="Transcript of Records for Transfer"
+                                        {{ in_array('Transcript of Records for Transfer', $req) ? 'selected' : '' }}>
+                                        Transcript of Records for Transfer
                                     </option>
 
                                     <option value="Certificate of Good Moral"
-                                        {{ old('request', $code->request) == 'Certificate of Good Moral' ? 'selected' : '' }}>
+                                        {{ in_array('Certificate of Good Moral', $req) ? 'selected' : '' }}>
                                         Certificate of Good Moral
                                     </option>
 
                                     <option value="Certificate of Transfer of Credentials"
-                                        {{ old('request', $code->request) == 'Certificate of Transfer of Credentials' ? 'selected' : '' }}>
+                                        {{ in_array('Certificate of Transfer of Credentials', $req) ? 'selected' : '' }}>
                                         Certificate of Transfer of Credentials
                                     </option>
 
+                                    <option value="Certificate of Graduation"
+                                        {{ in_array('Certificate of Graduation', $req) ? 'selected' : '' }}>
+                                        Certificate of Graduation
+                                    </option>
+
+                                    <option value="Course Prospectus"
+                                        {{ in_array('Course Prospectus', $req) ? 'selected' : '' }}>
+                                        Course Prospectus
+                                    </option>
+
                                     <option value="Clients Request Slip"
-                                        {{ old('request', $code->request) == 'Clients Request Slip' ? 'selected' : '' }}>
+                                        {{ in_array('Clients Request Slip', $req) ? 'selected' : '' }}>
                                         Clients Request Slip
                                     </option>
                                 </select>
 
-
                                 @error('request')
-                                    <div class="text-xs text-red-800 sm:text-base lg:text-md">
+                                    <div class="text-xs text-red-800 sm:text-base lg:text-md mt-2">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                         </div>
+
                     </div>
 
                     <!-- Appointment Date -->
@@ -237,7 +280,7 @@
                         <div class="w-full px-3 sm:w-1/1">
                             <div class="mb-5">
                                 <label for="date" class="mb-3 block text-base font-medium text-[#07074D]">
-                                    Appointment Date <span class="text-red-400  text-md">*</span>
+                                    Appointment Date <span class="text-red-400  text-md">*</span> - <span class="text-amber-600 font-bold">{{$code->appdate}}</span>
                                 </label>
                                 <input @click="calendarOpen = true" type="text" x-model="selectedDate" name="appdate"
                                     id="date" placeholder="Month/Day/Year" value="{{ $code->appdate }}" required
