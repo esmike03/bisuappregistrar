@@ -97,11 +97,17 @@
             <nav aria-label="Header Navigation" class="peer-checked:block hidden pl-2 py-6 sm:block sm:py-0">
                 <ul class="flex flex-col gap-y-4 sm:flex-row sm:gap-x-8">
                     <li>
+                        <a href="#news">
+                            <button class="text-gray-100 hover:text-amber-600"><i class="fas fa-newspaper"></i>
+                                News & Events</button>
+                        </a>
+
+                    </li>
+                    <li>
                         <a href="#faq">
                             <button class="text-gray-100 hover:text-amber-600"><i class="fas fa-question-circle"></i>
                                 FAQs</button>
                         </a>
-
                     </li>
                     <li @click="messageOpen = true">
                         <button class="text-gray-100 hover:text-amber-600"><i class="fa-solid fa-envelope"></i>

@@ -170,7 +170,7 @@
                                 <th class="px-4 py-3">Appointment Date</th>
                                 <th class="px-4 py-3">Code</th>
                                 {{-- <th class="px-4 py-3">Action</th> --}}
-                                <th class="px-4 py-3">Expand</th>
+                                <th class="px-4 py-3">Action</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y dark:divide-gray-200 ">
@@ -297,11 +297,73 @@
                                                     class="fas fa-trash bg-red-500 rounded-sm p-2 text-white cursor-pointer mx-2"></button>
                                             </form>
                                         </td> --}}
-                                        <td class="px-4 py-3 text-sm">
-                                            <a href="/appointment/{{ $appointment->id }}"
-                                                class="text-sm text-white bg-purple-800 p-2 rounded-md">
-                                                <i class="fas fa-eye"></i> View
-                                            </a>
+                                        <td class="px-4 py-3 text-sm flex items-center justify-center h-16">
+                                            <form action="{{ route('approved.appointments', $appointment->id) }}"
+                                                method="POST" onsubmit="return confirm('Approve this appointment?');">
+                                                @csrf
+                                                @method('PATCH')
+                                                <input type="hidden" name="appstatus" value="approved">
+                                                <button type="submit" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
+                                                    class="fas fa-check bg-green-500 rounded-sm p-3 text-white cursor-pointer mx-2"
+                                                    title="Approve">
+                                                    <!-- SVG for check icon -->
+                                                </button>
+                                            </form>
+                                            <div>
+                                                <!-- Reject Button to Open Modal -->
+                                                <button @click="modalConfirm = true"
+                                                    class="fas fa-close bg-orange-500 rounded-sm p-3 text-white cursor-pointer mx-2"
+                                                    title="Reject">
+                                                    <!-- SVG for check icon -->
+                                                </button>
+
+                                                <!-- Confirm Modal -->
+                                                <x-confirm-reject x-show="modalConfirm" x-cloak
+                                                    class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+                                                    <div class="rounded-lg shadow-lg p-6 w-full">
+                                                        <form
+                                                            action="{{ route('appointments.updateStatus', $appointment->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <div class="mb-5">
+                                                                <textarea name="reason"
+                                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 h-20 dark:border-gray-500 dark:placeholder-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                                    maxlength="100" minlength="5" placeholder="Reason for Rejection..." required></textarea>
+                                                                @error('fName')
+                                                                    <div class="text-xs text-red-800 sm:text-base lg:text-md">
+                                                                        {{ $message }}
+                                                                    </div>
+                                                                @enderror
+                                                            </div>
+
+                                                            <div class="w-full flex justify-end pb-4 px-2">
+                                                                <button @click="modalConfirm = false"
+                                                                    @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
+                                                                    class="bg-gray-300 px-6 text-black rounded-md p-2 mx-2">
+                                                                    Cancel
+                                                                </button>
+
+                                                                <!-- Reject Form -->
+                                                                <input type="hidden" name="appstatus" value="rejected">
+
+                                                                <button type="submit"
+                                                                    class="bg-amber-500 px-6 text-white rounded-md p-2 mx-2">
+                                                                    Confirm
+                                                                </button>
+
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </x-confirm-reject>
+                                            </div>
+                                            <div>
+                                                <a href="/appointment/{{ $appointment->id }}"
+                                                    class="text-sm ml-1.5 text-white bg-purple-800 p-2 rounded-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            </div>
+
                                         </td>
                                     </tr>
                                 @endforeach

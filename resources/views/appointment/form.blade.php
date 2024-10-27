@@ -83,7 +83,7 @@
                                     First Name <span class="text-red-400  text-md">*</span>
                                 </label>
                                 <input type="text" name="fName" id="fName" placeholder="First Name"
-                                    value="{{ old('fName') }}" required pattern="[A-Za-z\s]+"
+                                    value="{{ old('fName') }}" required pattern="[A-Za-zÑñ\s]+"
                                     class="uppercase w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#181818] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                 @error('fName')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
@@ -98,7 +98,7 @@
                                     Last Name <span class="text-red-400  text-md">*</span>
                                 </label>
                                 <input type="text" name="lName" id="lName" placeholder="Last Name" required
-                                    value="{{ old('lName') }}" pattern="[A-Za-z\s]+"
+                                    value="{{ old('lName') }}" pattern="[A-Za-zÑñ\s]+"
                                     class="uppercase w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#181818] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                 @error('lName')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
@@ -114,7 +114,7 @@
                                     Middle Name
                                 </label>
                                 <input type="text" name="mName" id="mName" placeholder="Middle Name"
-                                    value="{{ old('mName') }}" pattern="[A-Za-z\s]+"
+                                    value="{{ old('mName') }}" pattern="[A-Za-zÑñ\s]+"
                                     class="uppercase w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#181818] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                 @error('mName')
                                     <div class="text-xs text-red-800 sm:text-base lg:text-md">
