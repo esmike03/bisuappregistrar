@@ -79,7 +79,8 @@
                 @click="loading = true; fetch('/api/endpoint').then(() => loading = false)">
                 <img src="/images/logo.png" class="h-11 w-11 mr-2" alt="BISU Logo" />
                 <div class="flex flex-col items-start">
-                    <span class="text-lg text-neutral-200 font-normal" @click="success = false">Bohol Island State University</span>
+                    <span class="text-lg text-neutral-200 font-normal" @click="success = false">Bohol Island State
+                        University</span>
                     <span class="text-sm text-neutral-400 font-light">Registrar Appointment</span>
                 </div>
 
@@ -206,7 +207,7 @@
     <x-calendar x-show="calendarOpen" x-cloak />
 
     <!-- Background Image -->
-    <img src="/images/gate (1).png" class="h-fit w-full bg-cover absolute mt-6 opacity-80 -z-10"
+    <img src="/images/gate (1).png" class="h-fit w-full bottom-0 absolute mt-6 opacity-80 -z-10"
         alt="Background Image" />
 
     <!-- Loading Spinner -->

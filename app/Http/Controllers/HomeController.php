@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Maximum;
 use App\Events\RealTime;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
@@ -46,7 +47,6 @@ class HomeController extends Controller
         // Check if a record with the same fName and lName already exists
         $nameExists = Appointment::where('fName', $request->input('fName'))
             ->where('lName', $request->input('lName'))
-            ->where('appstatus', 'pending') // Check only for pending status to avoid duplicates for other statuses
             ->exists();
 
         $emailExists = Appointment::where('email', $request->input('email'))
@@ -71,7 +71,10 @@ class HomeController extends Controller
             ->where('appdate', $request->input('appdate')) // Only count pending appointments
             ->count();
 
-        if ($appointmentCount >= 2) {
+        $max = Maximum::where('campus', $request->input('campus'))->first();
+        $numAsInteger = (int) $max->num;
+
+        if ($appointmentCount >= $numAsInteger) {
             // Return an error if there are already 10 appointments
             return back()->withErrors(['datefull' => 'We apologize, but the maximum appointments for the chosen date has been reached. Kindly choose another date for your appointment.'])
                 ->withInput(); // Keeps the current form input

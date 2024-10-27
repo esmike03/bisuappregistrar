@@ -11,18 +11,27 @@
                 <h2 class=" text-2xl font-semibold text-gray-200">
                     Dashboard
                 </h2>
-                <a href="/admin/dashboard"
-                    class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:text-gray-400 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
-                    aria-label="{{ __('Refresh') }}">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path fill="none" d="M0 0h24v24H0z" />
-                        <path
-                            d="M12 4V1L8 5l4 4V6c4.41 0 8 3.59 8 8s-3.59 8-8 8-8-3.59-8-8h2c0 3.31 2.69 6 6 6s6-2.69 6-6-2.69-6-6-6z" />
-                    </svg>
+                <div class="flex item-center gap-2">
+                    <a href="/admin/dashboard"
+                        class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:text-gray-400 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
+                        aria-label="{{ __('Refresh') }}">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path
+                                d="M12 4V1L8 5l4 4V6c4.41 0 8 3.59 8 8s-3.59 8-8 8-8-3.59-8-8h2c0 3.31 2.69 6 6 6s6-2.69 6-6-2.69-6-6-6z" />
+                        </svg>
 
-                </a>
+                    </a>
 
+                    <a href="/admin/settings"
+                        class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:text-gray-400 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
+                        aria-label="{{ __('Settings') }}">
+                        <i class="fa fa-gear"></i>
+                    </a>
+                </div>
             </div>
+
+
 
             <!-- Cards -->
             <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
@@ -126,7 +135,6 @@
                 <!-- Card -->
 
             </div>
-
 
             <form action="/admin/dashboard" method="GET" class="w-full mx-auto">
                 @csrf
@@ -290,8 +298,9 @@
                                             </form>
                                         </td> --}}
                                         <td class="px-4 py-3 text-sm">
-                                            <a href="/appointment/{{ $appointment->id }}" class="text-sm text-white bg-purple-800 p-2 rounded-md">
-                                               <i class="fas fa-eye"></i> View
+                                            <a href="/appointment/{{ $appointment->id }}"
+                                                class="text-sm text-white bg-purple-800 p-2 rounded-md">
+                                                <i class="fas fa-eye"></i> View
                                             </a>
                                         </td>
                                     </tr>

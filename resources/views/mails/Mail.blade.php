@@ -24,7 +24,7 @@
 
         <p style="margin-top: 20px; font-size: 0.875rem; color: #777;">If you have any questions, please message the registrar at <a href="mailto:bisuregistrar.rf.gd" style="color: #6f0091;">bisuregistrar.rf.gd</a>.</p>
 
-        <a href="#" style="text-decoration: none; display: block; background: linear-gradient(to right, #6f0091, transparent); padding: 10px; border-radius: 5px; color: #fdfdfd; margin-top: 20px;">
+        <a href="#" style="text-decoration: none; display: block; background: linear-gradient(to right, #60027c, transparent); padding: 10px; border-radius: 5px; color: #fdfdfd; margin-top: 20px;">
             <img src="https://i.imgur.com/RWwanDk.png" alt="Bohol Island State University" style="display: block; height: 2.1rem; float: left; margin-right: 10px;">
             <span style="font-size: 1rem; color: #fdfdfd; font-weight: 400; display: block;">BOHOL ISLAND STATE UNIVERSITY</span>
             <span style="font-size: 0.875rem; color: #dadada; font-weight: 300;">

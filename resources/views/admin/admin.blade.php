@@ -73,15 +73,15 @@
             <nav aria-label="Header Navigation" class="peer-checked:block hidden pl-2 py-6 sm:block sm:py-0">
                 <ul class="flex flex-col gap-y-4 sm:flex-row sm:gap-x-8">
                     @auth('admin')
-                        <li @click="modalOpen = true">
+                        {{-- <li @click="modalOpen = true">
                             <button @click="notifications = true" class="text-gray-100 hover:text-blue-600"><i
                                     class="fa-solid fa-bell"> </i>
                                 Notifications</button>
-                        </li>
+                        </li> --}}
                         <li>
                             <button @click="message = true" class="text-gray-100 hover:text-blue-600"><i
                                     class="fa-solid fa-message"> </i>
-                                Message</button>
+                                Messages</button>
                         </li>
                         <form method="POST" action="/logout">
                             @csrf
@@ -96,7 +96,7 @@
                             </li>
                         </form>
                     @else
-                        <h1 class="text-white font-[Bangers] font-semibold text-lg tracking-widest">BOHOL ISLAND STATE
+                        <h1 class="text-white font-extrabold text-lg tracking-widest">BOHOL ISLAND STATE
                             UNIVERSITY</h1>
                     @endauth
 
@@ -105,7 +105,11 @@
         </div>
     </header>
 
+
+
+
     <main class="mt-[80px]">
+
         <!--sections-->
         @yield('dashboard')
         @yield('admin-content')
@@ -115,6 +119,7 @@
         @yield('archive')
         @yield('show')
         @yield('email')
+        @yield('settings')
     </main>
 
     <!-- Calendar Component -->

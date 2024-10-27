@@ -37,6 +37,7 @@ Route::get('/admin', [AdminController::class, 'admin']);
 
 //Dashboard
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
+Route::get('/admin/settings', [AdminController::class, 'settings']);
 
 
 //login admin
@@ -77,6 +78,7 @@ Route::get('/holidays', [HolidayController::class, 'getHolidays']);
 
 //Add Date
 Route::post('/date', [HolidayController::class, 'date']);
+Route::post('/max', [HolidayController::class, 'max']);
 
 //Delete Holiday
 Route::delete('/holidays/{id}', [HolidayController::class, 'destroy'])->name('holidays.destroy');

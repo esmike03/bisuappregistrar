@@ -12,7 +12,7 @@
     <p style="color: #f80000;">Reason: {{ session('reason') }}</p>
     <p><br>If you have any questions please message the registrar thru here bisuregistrar.rf.gd</p>
     <a
-        style="text-decoration: none; color: inherit; display: block; background: linear-gradient(to right, #6f0091, transparent); padding: 10px; border-radius: 5px; width: 100%;">
+        style="text-decoration: none; color: inherit; display: block; background: linear-gradient(to right, #60027c, transparent); padding: 10px; border-radius: 5px; width: 100%;">
         <img src="https://i.imgur.com/RWwanDk.png" alt=""
             style="display: block; height: 2.1rem; float: left; margin-right: 10px;">
         <div style="display: block;">

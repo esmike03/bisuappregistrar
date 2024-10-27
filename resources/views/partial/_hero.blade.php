@@ -5,7 +5,7 @@
         <img src="/images/QMS_cert_9108658239_en.webp" class="h-10" />
     </div>
 
-    <svg class="absolute inset-0 -z-10 h-full w-full stroke-white/30 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+    {{-- <svg class="absolute inset-0 -z-10 h-full w-full stroke-white/30 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
         aria-hidden="true">
         <defs>
             <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc" width="200" height="200" x="100%" y="-1"
@@ -18,7 +18,7 @@
                 stroke-width="0"></path>
         </svg>
         <rect width="100%" height="100%" stroke-width="0" fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)"></rect>
-    </svg>
+    </svg> --}}
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-24">
         <!-- Registrar Heading with Location List -->
 

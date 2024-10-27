@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Holiday;
+use App\Models\Maximum;
 use App\Models\Message;
 use App\Mail\RejectMail;
 use App\Mail\ApprovedMail;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\RejectedAppointment;
 use App\Models\CompletedAppointment;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +26,15 @@ class AdminController extends Controller
             return redirect('/admin/dashboard')->with('message', 'Already log in to this page.'); // Change 'dashboard' to the name of your dashboard route
         }
         return view('admin.login.admin-index');
+    }
+
+    public function settings(Request $request)
+    {
+        $campus = auth()->guard('admin')->user()->campus;
+
+        $maximum = Maximum::where('campus', $campus)->first();
+
+        return view('admin.partials.settings', compact('maximum'));
     }
 
     public function dashboard(Request $request)
@@ -58,6 +69,7 @@ class AdminController extends Controller
 
         // Paginate the filtered appointments
         $appointments = $query->orderBy('created_at', 'desc')->paginate(100); // Adjust the number of items per page as needed
+
 
         return view('admin.dashboard', ['appointments' => $appointments, 'completedCount' => $completedCount, 'appointmentCount' => $appointmentCount, 'approvedCount' => $approvedCount, 'messages' => $messages,]);
     }
