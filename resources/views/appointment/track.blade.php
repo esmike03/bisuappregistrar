@@ -10,14 +10,15 @@
                 <!-- Modal header -->
                 <div
                     class="bg-purple-950 flex items-center justify-between p-4 md:p-5 border-b rounded-md dark:border-gray-600">
-                    <h3 class="text-lg font-semibold text-gray-100">
+                    <h3 class="text-lg font-semibold text-gray-50">
                         Appointment Status
                     </h3>
                     <p x-data="{ status: '{{ $code->appstatus }}' }"
                         :class="{
                             'bg-amber-600': status === 'pending',
                             'bg-green-500': status === 'approved',
-                            'bg-red-500': status === 'REJECTED'
+                            'bg-green-500': status === 'Ready to Pick-up',
+                            'bg-red-500': status === 'REJECTED',
                         }"
                         class="bg-amber-400 rounded-md px-3 py-1 text-purple-200 uppercase">
                         {{ ucfirst($code->appstatus) }}

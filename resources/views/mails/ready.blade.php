@@ -2,15 +2,13 @@
 <html>
 
 <head>
-    <title>Appointment Approved</title>
+    <title>Appointment Ready to Pick-up</title>
 </head>
 
 <body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4;">
 
     <div style="clear: both;"></div>
-    <p style="color: #555;">Your appointment has been approved. We are now processing your request.</p>
-    <p style="color: #555;">Please wait for an email if your request is ready to pick up.</p>
-    <p>Appointment Date: <strong>{{ $data['appdate'] }}</strong></p>
+    <p style="color: #555;">Your request is now ready for pick-up. Kindly proceed to the registrar's office at your earliest convenience.</p>
     <p>Request: <strong>{{ $data['request'] }}</strong></p>
     <p><br>If you have any questions please message the registrar thru here bisuregistrar.rf.gd</p>
     <a

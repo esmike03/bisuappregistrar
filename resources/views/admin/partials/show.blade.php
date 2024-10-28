@@ -13,6 +13,7 @@
                     :class="{
                         'bg-amber-600': status === 'pending',
                         'bg-green-500': status === 'approved',
+                        'bg-green-500': status === 'Ready to Pick-up',
                         'bg-red-500': status === 'rejected'
                     }"
                     class="uppercase text-center flext content-center p-2 text-xl font-semibold text-white">
@@ -20,13 +21,23 @@
                 </p>
                 <div class="grid grid-cols-1 gap-4">
                     <div class="grid grid-cols-4 bg-blue-100 p-6 border-b-2 border-dashed border-gray-300">
-                        <div class="">
-                            <h4 class="text-gray-500 pb-2">Tracking Code</h4>
-                            <p class="text-amber-700 text-xl">{{ $appointment->tracking_code }}</p>
+                        <div class="grid grid-cols-1">
+                            <div>
+                                <h4 class="text-gray-500 pb-2">Tracking Code</h4>
+                                <p class="text-amber-700 text-xl">{{ $appointment->tracking_code }}</p>
+                            </div>
+                            <div>
+                                <h4 class="text-gray-500 pb-2">Course</h4>
+                                <p class="text-amber-700 text-xl">{{ $appointment->course }}</p>
+                            </div>
+
                         </div>
 
                         <div class="">
-                            <h4 class="text-gray-500 pb-2">Requests</h4>
+                            <h4 class="text-gray-500 pb-2">Requests <span
+                                    class="text-green-500 font-extrabold">x{{ $appointment->copy }}</span></h4>
+                            <h4 class="text-gray-500 pb-2">Reason: <span
+                                    class="text-green-500">{{ $appointment->reason }}</span></h4>
                             @foreach (explode(',', $appointment->request) as $requests)
                                 <p class="bg-amber-100 p-2 text-sm rounded border-b mx-6 border-black text-black mb-2">
                                     {{ trim($requests) }}
@@ -34,11 +45,17 @@
                             @endforeach
                         </div>
 
+                        <div class="grid grid-cols-1">
+                            <div>
+                                <h4 class="text-gray-500 pb-2">Appointment Date</h4>
+                                <p class="text-amber-700 text-xl">{{ $appointment->appdate }}</p>
+                            </div>
+                            <div class="mt-4">
+                                <h2 class="text-gray-500">Valid ID:</h2>
+                                <img src="{{ asset('storage/' . $appointment->picture) }}" alt="Uploaded Picture"
+                                    class="w-1/2 rounded-md shadow-md cursor-pointer" id="thumbnail">
+                            </div>
 
-
-                        <div class="">
-                            <h4 class="text-gray-500 pb-2">Appointment Date</h4>
-                            <p class="text-amber-700 text-xl">{{ $appointment->appdate }}</p>
                         </div>
                         <div class="">
                             <form class="flex justify-end" action="{{ route('appointments.destroy', $appointment->id) }}"
@@ -94,7 +111,22 @@
                         <!-- If appstatus is 'approved', show Delete and Mark as Completed buttons -->
                         @if ($appointment->appstatus === 'approved')
                             <div>
+                                <form action="{{ route('appointments.ready', $appointment->id) }}" method="POST"
+                                    onsubmit="return confirm('Are you sure you want to mark this appointment as ready?');"
+                                    class="inline-block">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit">
+                                        <i class="fas fa-check bg-green-500 rounded-sm p-2 text-white cursor-pointer mx-2">
+                                            Request is Ready
+                                        </i>
+                                    </button>
+                                </form>
+                            </div>
+                        @elseif($appointment->appstatus === 'Ready to Pick-up')
+                            <div>
                                 <form action="{{ route('appointments.complete', $appointment->id) }}" method="POST"
+                                    onsubmit="return confirm('Are you sure you want to mark this appointment as completed?');"
                                     class="inline-block">
                                     @csrf
                                     @method('PUT')
@@ -105,7 +137,6 @@
                                     </button>
                                 </form>
                             </div>
-
                             <!-- If appstatus is 'pending', show Approve and Reject buttons -->
                         @elseif ($appointment->appstatus === 'pending')
                             <div>

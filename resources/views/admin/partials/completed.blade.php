@@ -16,13 +16,13 @@
                 <!-- Added id to the print link -->
                 <div>
                     <a href="/archive" class="mx-2">
-                        <i class="fa-solid fa-trash text-white"> Archive</i>
+                        <i class="fa-solid fa-trash text-red-400"> Archive</i>
                     </a>
 
-                    <a href="javascript:void(0);" id="printTable" class="mx-2">
-                        <i class="fa-solid fa-print text-white"> Print</i>
+                    <a href="{{ route('completed.pdf')}}" class="mx-2">
+                        <i class="fa-solid fa-print text-green-400"> Print Report</i>
                     </a>
-                    <a href="/completed"
+                    {{-- <a href="/completed"
                         class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:text-gray-400 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
                         aria-label="{{ __('Refresh') }}">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -31,10 +31,19 @@
                                 d="M12 4V1L8 5l4 4V6c4.41 0 8 3.59 8 8s-3.59 8-8 8-8-3.59-8-8h2c0 3.31 2.69 6 6 6s6-2.69 6-6-2.69-6-6-6z" />
                         </svg>
 
-                    </a>
+                    </a> --}}
                 </div>
 
             </div>
+            <div>
+                <ul class="grid grid-cols-3">
+                    @foreach ($requestCounts as $requestName => $count)
+                        <li class="text-white p-3 bg-gradient-to-r from-purple-800 via-purple6500 to-purple-800 m-1.5 rounded-md">{{ $requestName }}: <span class="text-amber-500 font-extrabold text-xl">{{ $count }}</span> </li>
+                    @endforeach
+                </ul>
+            </div>
+
+
             <form action="/completed" method="GET" class="w-full mx-auto">
                 @csrf
                 <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
@@ -116,7 +125,8 @@
 
 
                                         <td class="px-4 py-3 text-sm">
-                                            <a href="/completed/{{ $appointment->id }}" class="text-sm text-white bg-purple-800 p-2 rounded-md">
+                                            <a href="/completed/{{ $appointment->id }}"
+                                                class="text-sm text-white bg-purple-800 p-2 rounded-md">
                                                 <i class="fas fa-eye"> View</i>
                                             </a>
                                         </td>

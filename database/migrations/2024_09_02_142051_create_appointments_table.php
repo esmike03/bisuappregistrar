@@ -21,8 +21,12 @@ return new class extends Migration
             $table->integer('ygrad')->nullable()->change();
             $table->integer('ismis')->nullable()->change();
             $table->string('campus');
+            $table->string('picture');
             $table->string('status');
             $table->string('request');
+            $table->string('course');
+            $table->string('reason')->nullable()->change();;
+            $table->string('copy');
             $table->string('appdate');
             $table->string('tracking_code');
             $table->string('appstatus')->default('PENDING');

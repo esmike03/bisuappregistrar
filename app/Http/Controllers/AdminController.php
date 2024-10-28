@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReadyMail;
 use App\Models\Holiday;
 use App\Models\Maximum;
 use App\Models\Message;
@@ -9,6 +10,7 @@ use App\Mail\RejectMail;
 use App\Mail\ApprovedMail;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Models\RejectedAppointment;
 use App\Models\CompletedAppointment;
@@ -130,6 +132,7 @@ class AdminController extends Controller
             // Redirect to the login page if not authenticated
             return redirect('/admin')->with('message', 'Please log in to access this page.');
         }
+
         $category = auth()->guard('admin')->user()->campus; // Get the category for the current admin
 
         $appointmentCount = CompletedAppointment::where('campus', $category)
@@ -150,8 +153,49 @@ class AdminController extends Controller
         }
         // Paginate the filtered appointments
         $appointments = $query->orderBy('created_at', 'desc')->paginate(100); // Adjust the number of items per page as needed
+        $requestCounts = [];
 
-        return view('admin.partials.completed', ['appointments' => $appointments, 'appointmentCount' => $appointmentCount]);
+        // Loop through appointments and split each request into individual items
+        foreach ($appointments as $appointment) {
+            $requests = explode(',', $appointment->request); // Assuming requests are comma-separated
+            foreach ($requests as $req) {
+                $req = trim($req); // Trim any extra spaces
+                if (!empty($req)) {
+                    if (isset($requestCounts[$req])) {
+                        $requestCounts[$req]++;
+                    } else {
+                        $requestCounts[$req] = 1;
+                    }
+                }
+            }
+        }
+
+        return view('admin.partials.completed', ['requestCounts' => $requestCounts, 'appointments' => $appointments, 'appointmentCount' => $appointmentCount]);
+    }
+
+
+    public function generatePDF()
+    {
+        $category = auth()->guard('admin')->user()->campus;
+
+        $appointments = CompletedAppointment::where('campus', $category)
+            ->where('appstatus', 'COMPLETED')
+            ->get();
+
+        $requestCounts = [];
+
+        foreach ($appointments as $appointment) {
+            $requests = explode(',', $appointment->request);
+            foreach ($requests as $req) {
+                $req = trim($req);
+                if (!empty($req)) {
+                    $requestCounts[$req] = isset($requestCounts[$req]) ? $requestCounts[$req] + 1 : 1;
+                }
+            }
+        }
+
+        $pdf = Pdf::loadView('admin.partials.completed_pdf', compact('requestCounts', 'appointments'));
+        return $pdf->download('AppointmentReport.pdf');
     }
 
     //archive page
@@ -196,10 +240,8 @@ class AdminController extends Controller
         $category = auth()->guard('admin')->user()->campus; // Get the category for the current admin
 
         $appointmentCount = Appointment::where('campus', $category)
-            ->where('appstatus', 'pending')
+            ->where('appstatus', 'Ready to Pick-up')
             ->count();
-
-
 
         // Paginate the appointments with filtering by category
         $appointments = Appointment::where('campus', $category)
@@ -355,6 +397,34 @@ class AdminController extends Controller
             Mail::to($data['email'])->send(new ApprovedMail($data));
         }
         return redirect('/admin/dashboard')->with('message', 'Appointment approved successfully.');
+    }
+
+    public function ready(Request $request, $id)
+    {
+        // Find the appointment or fail if not found
+        $appointment = Appointment::findOrFail($id);
+
+        // Update the appointment status
+        $appointment->update([
+            'appstatus' => 'Ready to Pick-up',
+        ]);
+
+        // Prepare the data for the email
+        $data = [
+            'fName' => $appointment->fName,
+            'lName' => $appointment->lName,
+            'email' => $appointment->email,
+            'status' => $appointment->appstatus,  // Updated status
+            'campus' => $appointment->campus,
+            'request' => $appointment->request,
+            'appdate' => $appointment->appdate,
+        ];
+
+        // Send ready to pickup email
+        Mail::to($data['email'])->send(new ReadyMail($data));
+
+        // Redirect to the correct route
+        return redirect("/appointment/{$id}")->with('message', 'Appointment is Ready to Pick-up.');
     }
 
 

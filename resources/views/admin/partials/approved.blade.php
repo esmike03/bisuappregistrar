@@ -66,7 +66,7 @@
                             @php
                                 // Filter appointments based on the category
                                 $filteredAppointments = $appointments->filter(function ($appointment) use ($category) {
-                                    return $appointment->campus === $category && $appointment->appstatus === 'approved';
+                                    return $appointment->campus === $category && $appointment->appstatus === 'approved' || $appointment->appstatus === 'Ready to Pick-up';
                                 });
                             @endphp
 

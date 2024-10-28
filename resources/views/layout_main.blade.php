@@ -59,10 +59,10 @@
 
         $(document).ready(function() {
             $('#request').select2({
-                placeholder: "Select up to 3 requests only",
-                maximumSelectionLength: 3,
+                placeholder: "Select requests",
+                maximumSelectionLength: 12,
                 allowClear: true,
-                width: '100%'
+                width: '100%',
             });
         });
     </script>

@@ -46,6 +46,9 @@ Route::get('/admin/authenticate', [AdminController::class, 'authenticate'] );
 //Logout admin
 Route::post('/logout', [AdminController::class, 'logout']);
 
+//Print Report
+Route::get('/completed/pdf', [AdminController::class, 'generatePDF'])->name('completed.pdf');
+
 //To records
 Route::get('/records', [AdminController::class, 'records']);
 
@@ -57,6 +60,9 @@ Route::get('/archive', [AdminController::class, 'archive']);
 
 //To approved appointments
 Route::get('/approved', [AdminController::class, 'approved']);
+
+//To approved appointments
+Route::put('/appointments/{id}/ready', [AdminController::class, 'ready'])->name('appointments.ready');
 
 //To delete data
 Route::delete('/appointments/{id}', [AdminController::class, 'destroy'])->name('appointments.destroy');

@@ -1,27 +1,11 @@
 <section class="bg-transparent mt-0 relative">
-
-    <div class="animate__animated animate__fadeIn right-0 pr-8 wrap flex gap-4 py-2 top-2 absolute bg-gradient-to-l from-amber-400 to-transparent">
+    <div
+        class="animate__animated animate__fadeIn right-0 pr-8 wrap flex gap-4 py-2 top-2 absolute bg-gradient-to-l from-amber-400 to-transparent">
         <img src="/images/Bagong_Pilipinas_logo.webp" class="h-10" />
         <img src="/images/QMS_cert_9108658239_en.webp" class="h-10" />
     </div>
-
-    {{-- <svg class="absolute inset-0 -z-10 h-full w-full stroke-white/30 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
-        aria-hidden="true">
-        <defs>
-            <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc" width="200" height="200" x="100%" y="-1"
-                patternUnits="userSpaceOnUse">
-                <path d="M.5 200V.5H200" fill="none"></path>
-            </pattern>
-        </defs>
-        <svg x="50%" y="-1" class="overflow-visible fill-gray-800/20">
-            <path d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
-                stroke-width="0"></path>
-        </svg>
-        <rect width="100%" height="100%" stroke-width="0" fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)"></rect>
-    </svg> --}}
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-24">
         <!-- Registrar Heading with Location List -->
-
         <div class=" mx-auto mt-24 lg:mt-14 mb-10 text-left bg-purple-to-transparent">
             <div
                 class="animate__animated animate__fadeIn font-extrabold text-4xl md:text-4xl sm:text-2xl [text-wrap:balance] bg-clip-text text-transparent bg-gradient-to-r from-slate-300/70 to-10% to-slate-100">
@@ -40,10 +24,6 @@
                 </span>
             </div>
         </div>
-
-
-
-
 
         <!-- Business Hours -->
         <a class="slide-in gap-1 flex mb-2 text-left mt-4 items-center text-sm text-gray-400" role="alert">
