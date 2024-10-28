@@ -12,9 +12,9 @@
                 <p x-data="{ status: '{{ $appointment->appstatus }}' }"
                     :class="{
                         'bg-amber-600': status === 'pending',
-                        'bg-green-500': status === 'approved',
+                        'bg-cyan-500': status === 'approved',
                         'bg-green-500': status === 'Ready to Pick-up',
-                        'bg-red-500': status === 'rejected'
+                        'bg-red-500': status === 'rejected',
                     }"
                     class="uppercase text-center flext content-center p-2 text-xl font-semibold text-white">
                     {{ ucfirst($appointment->appstatus) }}
