@@ -36,7 +36,7 @@ class HomeController extends Controller
             'campus' => 'required', // Add validation for the campus field
             'course' => 'required',
             'reason' => 'nullable',
-            'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+
             'copy' => 'required',
             'request' => 'required|array', // Validate the request field
             'request.*' => 'string',
@@ -108,9 +108,10 @@ class HomeController extends Controller
         }
 
         // Prepare data for the email
-        $data = $request->only(['fName', 'lName', 'email', 'status', 'campus', 'appdate', 'course', 'copy', 'reason']);
+        $data = $request->only(['fName', 'lName', 'email', 'status', 'campus', 'appdate']);
         $data['tracking_code'] = $trackingCode;
         $data['request'] = implode(', ', $request->input('request')); // Convert array back to a string for the email
+
 
         // Send confirmation email
         Mail::to($request->email)->send(new AppointmentConfirmation($data));
