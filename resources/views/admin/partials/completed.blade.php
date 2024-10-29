@@ -27,31 +27,32 @@
             </div>
 
             <!-- Month/Year Filters -->
-            <form action="/completed" method="GET" class="w-full mx-auto mb-4">
+            <form action="/completed" method="GET" class="w-full mx-auto mb-6  p-6 rounded-lg shadow-md">
                 @csrf
-                <div class="flex gap-4 items-center">
+                <div class="flex gap-6 items-center justify-center">
                     <div class="w-1/3">
-                        <label for="month" class="block text-sm font-medium text-gray-100">Month</label>
+                        <label for="month" class="block text-sm font-medium text-gray-300 mb-1">Month</label>
                         <input type="number" name="month" id="month" min="1" max="12"
                                value="{{ request()->input('month', now()->month) }}"
-                               class="w-full p-2 rounded-lg border border-gray-300">
+                               class="w-full p-3 rounded-lg border border-gray-400 bg-gray-700 text-gray-200 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
                     </div>
 
                     <div class="w-1/3">
-                        <label for="year" class="block text-sm font-medium text-gray-100">Year</label>
+                        <label for="year" class="block text-sm font-medium text-gray-300 mb-1">Year</label>
                         <input type="number" name="year" id="year" min="2000" max="{{ now()->year }}"
                                value="{{ request()->input('year', now()->year) }}"
-                               class="w-full p-2 rounded-lg border border-gray-300">
+                               class="w-full p-3 rounded-lg border border-gray-400 bg-gray-700 text-gray-200 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
                     </div>
 
-                    <div class="w-1/3 flex items-end">
+                    <div class="w-1/3 flex items-end mt-6">
                         <button type="submit"
-                                class="text-white bg-blue-700 hover:bg-blue-800 p-2 rounded-lg w-full">
+                                class="flex items-center justify-center text-white bg-amber-600 hover:bg-blue-700 p-3 rounded-lg w-full transition duration-200 ease-in-out transform hover:scale-105">
                             Filter
                         </button>
                     </div>
                 </div>
             </form>
+
 
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
                 <div class="w-full overflow-x-auto" id="tableContainer">
