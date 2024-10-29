@@ -35,7 +35,7 @@
 
         h1 {
             margin: 0;
-            font-size: 18px;
+            font-size: 12px;
             text-align: center;
         }
 
@@ -50,6 +50,7 @@
             border: 1px solid black;
             padding: 6px;
             text-align: left;
+            font-size: 12px;
         }
 
         th {

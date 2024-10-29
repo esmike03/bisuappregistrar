@@ -15,5 +15,4 @@
             <script src="https://widget.rss.app/v1/imageboard.js" type="text/javascript" async></script>
         </div>
     </div>
-    </div>
 </section>

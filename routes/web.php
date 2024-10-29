@@ -118,3 +118,6 @@ Route::delete('/messages/{id}', [MessageController::class, 'destroy'])->name('me
 //Transfer to Completed table
 Route::put('/appointments/{id}/complete', [AppointmentController::class, 'markAsCompleted'])->name('appointments.complete');
 
+Route::get('/post', [MessageController::class, 'post']);
+Route::post('/post', [MessageController::class, 'postAnnouncement'])->name('send.post');
+Route::delete('/posts/{id}', [MessageController::class, 'postdestroy'])->name('posts.destroy');

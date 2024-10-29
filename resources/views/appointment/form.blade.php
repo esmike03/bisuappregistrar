@@ -62,7 +62,7 @@
                         <div class="w-full px-2 sm:w-1/2">
                             <div class="mb-5">
                                 <select required name="campus" id="campus"
-                                    class="w-full bg-amber-300 border font-bold border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-gray-500">
+                                    class="w-full bg-gray-200 border font-bold border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-gray-500">
                                     <option value="" disabled selected>Campus <span
                                             class="text-red-400 text-md">*</span>
                                     </option>
@@ -80,7 +80,7 @@
                         <div class="w-full px-2 sm:w-1/2">
                             <div class="mb-5">
                                 <select required name="course" id="course"
-                                    class=" w-full bg-amber-300 border font-bold border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-gray-500">
+                                    class=" w-full bg-gray-200 border font-bold border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-gray-500">
                                     <option value="" disabled selected>Course <span
                                             class="text-red-400 text-md">*</span>
                                     </option>
@@ -230,6 +230,11 @@
                                 <select required name="request[]" multiple id="request"
                                     class=" w-full bg-gray-50 border font-bold border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-gray-500">
 
+                                    <option value="Certification of Authentication and Verification"
+                                        {{ old('request') == 'Certification of Authentication and Verification' ? 'selected' : '' }}>
+                                        Certification of Authentication and Verification
+                                    </option>
+
                                     <option value="Transcript of Records"
                                         {{ old('request') == 'Transcript of Records' ? 'selected' : '' }}>
                                         Transcript of Records
@@ -238,8 +243,7 @@
                                         {{ old('request') == 'Honorable Dismissal' ? 'selected' : '' }}>
                                         Honorable Dismissal
                                     </option>
-                                    <option value="Diploma"
-                                        {{ old('request') == 'Diploma' ? 'selected' : '' }}>
+                                    <option value="Diploma" {{ old('request') == 'Diploma' ? 'selected' : '' }}>
                                         Diploma
                                     </option>
                                     <option value="Certificate of Good Moral"
@@ -276,8 +280,8 @@
                                 <label for="reason" class="mb-3 block text-base font-medium text-[#07074D]">
                                     Reason <span class="text-red-400  text-md">*</span>
                                 </label>
-                                <input type="text" name="reason" id="reason" placeholder="reason for request"
-                                    value="{{ old('reason') }}" pattern="[A-Za-zÑñ\s]+"
+                                <input required type="text" name="reason" id="reason"
+                                    placeholder="reason for request" value="{{ old('reason') }}" pattern="[A-Za-zÑñ\s]+"
                                     class="uppercase w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#181818] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                             </div>
                         </div>
@@ -316,7 +320,8 @@
                         <div class="w-full px-3 sm:w-1/2">
                             <div class="mb-5">
                                 <label for="picture" class="mb-3 block text-base font-medium text-[#07074D]">
-                                   <i class="fa fa-id-card"></i> Upload Valid ID <span class="text-red-400 text-md">*</span>
+                                    <i class="fa fa-id-card"></i> Upload Valid ID <span
+                                        class="text-red-400 text-md">*</span>
                                 </label>
                                 <input type="file" name="picture" id="picture" accept="image/*" required
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-6 text-base font-medium text-[#484848] outline-none focus:border-[#6A64F1] focus:shadow-md" />
@@ -361,45 +366,165 @@
         // Define the course options for each campus
         const courses = {
             MAIN: [{
-                    value: 'BSCS',
-                    text: 'Bachelor of Science in Computer Science'
+                    value: 'BSCE',
+                    text: 'Bachelor of Science in Civil Engineering'
                 },
                 {
-                    value: 'BSBA',
-                    text: 'Bachelor of Science in Business Administration'
+                    value: 'BSCpE',
+                    text: 'Bachelor of Science in Computer Engineering'
+                },
+                {
+                    value: 'BSEE',
+                    text: 'Bachelor of Science in Electrical Engineering'
+                },
+                {
+                    value: 'BSME',
+                    text: 'Bachelor of Science in Mechanical Engineering'
+                },
+                {
+                    value: 'BSArch',
+                    text: 'Bachelor of Science in Architecture'
+                },
+                {
+                    value: 'BSFA',
+                    text: 'Bachelor of Science in Fine Arts (Industrial Design)'
+                },
+                {
+                    value: 'BSPSY',
+                    text: 'Bachelor of Science in Psychology'
+                },
+                {
+                    value: 'BSENT',
+                    text: 'Bachelor of Science in Entrepreneurship'
+                },
+                {
+                    value: 'BSHM',
+                    text: 'Bachelor of Science in Hospitality Management'
+                },
+                {
+                    value: 'BSTM',
+                    text: 'Bachelor of Science in Tourism Management'
+                },
+                {
+                    value: 'BSOA',
+                    text: 'Bachelor of Science in Office Administration'
                 }
             ],
             BALILIHAN: [{
-                    value: 'BSED',
-                    text: 'Bachelor of Secondary Education'
-                },
-                {
-                    value: 'BSHRM',
-                    text: 'Bachelor of Science in Hospitality Management'
-                }
-            ],
-            BILAR: [{
                     value: 'BSIT',
                     text: 'Bachelor of Science in Information Technology'
                 },
                 {
+                    value: 'BSCS',
+                    text: 'Bachelor of Science in Computer Science'
+                },
+                {
+                    value: 'BSEE',
+                    text: 'Bachelor of Science in Electrical Technology'
+                },
+                {
+                    value: 'BSElecT',
+                    text: 'Bachelor of Science in Electronics Technology'
+                },
+                {
+                    value: 'BSIndTech',
+                    text: 'Bachelor of Science in Industrial Technology'
+                },
+                {
+                    value: 'BSCrim',
+                    text: 'Bachelor of Science in Criminology'
+                }
+            ],
+            BILAR: [{
                     value: 'BSA',
-                    text: 'Bachelor of Science in Accountancy'
+                    text: 'Bachelor of Science in Agriculture'
+                },
+                {
+                    value: 'BSABE',
+                    text: 'Bachelor of Science in Agricultural and Biosystems Engineering'
+                },
+                {
+                    value: 'BSEnvSci',
+                    text: 'Bachelor of Science in Environmental Science'
+                },
+                {
+                    value: 'BSFor',
+                    text: 'Bachelor of Science in Forestry'
+                },
+                {
+                    value: 'BSIndTech',
+                    text: 'Bachelor of Science in Industrial Technology'
+                },
+                {
+                    value: 'BSEd',
+                    text: 'Bachelor of Secondary Education'
                 }
             ],
             CANDIJAY: [{
-                value: 'BSE',
-                text: 'Bachelor of Science in Engineering'
-            }],
+                    value: 'BSFish',
+                    text: 'Bachelor of Science in Fisheries'
+                },
+                {
+                    value: 'BSMB',
+                    text: 'Bachelor of Science in Marine Biology'
+                },
+                {
+                    value: 'BSEnvSci',
+                    text: 'Bachelor of Science in Environmental Science (Coastal Resource Management)'
+                },
+                {
+                    value: 'BSCS',
+                    text: 'Bachelor of Science in Computer Science'
+                },
+                {
+                    value: 'BSHM',
+                    text: 'Bachelor of Science in Hospitality Management'
+                }
+            ],
             CLARIN: [{
-                value: 'BSED',
-                text: 'Bachelor of Secondary Education'
-            }],
+                    value: 'BSEd',
+                    text: 'Bachelor of Secondary Education (Mathematics)'
+                },
+                {
+                    value: 'BTLED',
+                    text: 'Bachelor of Technology and Livelihood Education (Home Economics)'
+                },
+                {
+                    value: 'BSCS',
+                    text: 'Bachelor of Science in Computer Science'
+                },
+                {
+                    value: 'BSHM',
+                    text: 'Bachelor of Science in Hospitality Management'
+                },
+                {
+                    value: 'BSEnvSci',
+                    text: 'Bachelor of Science in Environmental Science (Coastal Resource Management)'
+                }
+            ],
             CALAPE: [{
-                value: 'BSBA',
-                text: 'Bachelor of Science in Business Administration'
-            }]
+                    value: 'BSEd',
+                    text: 'Bachelor of Secondary Education'
+                },
+                {
+                    value: 'BSCS',
+                    text: 'Bachelor of Science in Computer Science'
+                },
+                {
+                    value: 'BSFish',
+                    text: 'Bachelor of Science in Fisheries'
+                },
+                {
+                    value: 'BSIndTech',
+                    text: 'Bachelor of Science in Industrial Technology'
+                },
+                {
+                    value: 'BSMid',
+                    text: 'Bachelor of Science in Midwifery'
+                }
+            ]
         };
+
 
         // Function to update the course select based on the selected campus
         function updateCourseOptions() {
@@ -427,26 +552,23 @@
         // Add event listener to the campus select
         document.getElementById('campus').addEventListener('change', updateCourseOptions);
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const requestSelect = document.getElementById('request');
-            const reasonInput = document.getElementById('reason');
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const requestSelect = document.getElementById('request');
+        //     const reasonInput = document.getElementById('reason');
 
-            function updateReasonRequirement() {
-                const selectedOptions = Array.from(requestSelect.selectedOptions).map(option => option.value);
-                const isTranscriptSelected = selectedOptions.includes('Transcript of Records');
+        //     function updateReasonRequirement() {
+        //         const selectedOptions = Array.from(requestSelect.selectedOptions).map(option => option.value);
+        //         const isTranscriptSelected = selectedOptions.includes('Transcript of Records');
 
-                // Set the required attribute based on the selection
-                if (isTranscriptSelected) {
-                    reasonInput.setAttribute('required', 'required');
-                } else {
-                    reasonInput.removeAttribute('required');
-                }
-            }
+        //         // Toggle the 'required' attribute based on the "Transcript of Records" selection
+        //         reasonInput.required = isTranscriptSelected; // Set required directly
+        //     }
 
-            // Listen for changes on the select element
-            requestSelect.addEventListener('change', updateReasonRequirement);
-            // Initialize on page load
-            updateReasonRequirement();
-        });
+        //     // Listen for changes on the request select element
+        //     requestSelect.addEventListener('change', updateReasonRequirement);
+
+        //     // Initialize the requirement check on page load
+        //     updateReasonRequirement();
+        // });
     </script>
 @endsection

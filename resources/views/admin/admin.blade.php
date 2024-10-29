@@ -79,6 +79,11 @@
                                 Notifications</button>
                         </li> --}}
                         <li>
+                            <a href="/post" class="text-gray-100 hover:text-blue-600"><i
+                                    class="fa-solid fa-square-plus"> </i>
+                                Post</a>
+                        </li>
+                        <li>
                             <button @click="message = true" class="text-gray-100 hover:text-blue-600"><i
                                     class="fa-solid fa-message"> </i>
                                 Messages</button>

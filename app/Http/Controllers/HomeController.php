@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Maximum;
 use App\Events\RealTime;
 use App\Models\Appointment;
@@ -18,7 +19,9 @@ class HomeController extends Controller
     public function index()
     {
 
-        return view('appointment.index');
+        $posts = Post::paginate(3);
+
+        return view('appointment.index', compact('posts'));
     }
 
     public function store(Request $request)

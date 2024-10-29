@@ -97,6 +97,13 @@
             <nav aria-label="Header Navigation" class="peer-checked:block hidden pl-2 py-6 sm:block sm:py-0">
                 <ul class="flex flex-col gap-y-4 sm:flex-row sm:gap-x-8">
                     <li>
+                        <a href="#announcement">
+                            <button class="text-gray-100 hover:text-amber-600"><i class="fas fa-bullhorn"></i>
+                                Announcement</button>
+                        </a>
+
+                    </li>
+                    <li>
                         <a href="#news">
                             <button class="text-gray-100 hover:text-amber-600"><i class="fas fa-newspaper"></i>
                                 News & Events</button>
@@ -257,8 +264,7 @@
                     </div>
                     <p class="text-gray-500">Tracking Code</p>
                     <p class="mb-1 text-4xl font-bold text-amber-500">{{ session('formData.tracking_code') }}</p>
-                    <p class="text-amber-400">Please note your tracking code. You will need to present it on the day of
-                        your appointment.</p>
+                    <p class="text-amber-400">Please take note of your tracking code. You will receive an email notification once your request is ready for pick-up.</p>
                     <p class="text-gray-400">{{ session('formData.appdate') }}</p>
                     <p class="text-gray-400"> <span class="font-extrabold">{{ session('formData.request') }}</span>
                     </p>
