@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Mail\ReadyMail;
 use App\Models\Holiday;
 use App\Models\Maximum;
@@ -174,29 +175,48 @@ class AdminController extends Controller
     }
 
 
-    public function generatePDF()
-    {
-        $category = auth()->guard('admin')->user()->campus;
+    public function generatePDF(Request $request)
+{
+    $category = auth()->guard('admin')->user()->campus;
 
-        $appointments = CompletedAppointment::where('campus', $category)
-            ->where('appstatus', 'COMPLETED')
-            ->get();
+    // Retrieve optional month and year from the request
+    $month = $request->input('month');
+    $year = $request->input('year');
 
-        $requestCounts = [];
+    // Retrieve all appointments and filter them manually
+    $appointments = CompletedAppointment::where('campus', $category)
+        ->where('appstatus', 'COMPLETED')
+        ->get()
+        ->filter(function ($appointment) use ($month, $year) {
+            // Parse the appdate using Carbon
+            $appointmentDate = Carbon::parse($appointment->appdate);
 
-        foreach ($appointments as $appointment) {
-            $requests = explode(',', $appointment->request);
-            foreach ($requests as $req) {
-                $req = trim($req);
-                if (!empty($req)) {
-                    $requestCounts[$req] = isset($requestCounts[$req]) ? $requestCounts[$req] + 1 : 1;
-                }
+            // Apply the month/year filter if both are provided
+            return (!$month || $appointmentDate->month == $month) &&
+                   (!$year || $appointmentDate->year == $year);
+        });
+
+    // Count the requests
+    $requestCounts = [];
+    foreach ($appointments as $appointment) {
+        $requests = explode(',', $appointment->request);
+        foreach ($requests as $req) {
+            $req = trim($req);
+            if (!empty($req)) {
+                $requestCounts[$req] = ($requestCounts[$req] ?? 0) + 1;
             }
         }
-
-        $pdf = Pdf::loadView('admin.partials.completed_pdf', compact('requestCounts', 'appointments'));
-        return $pdf->download('AppointmentReport.pdf');
     }
+
+    // Generate PDF
+    $pdf = Pdf::loadView('admin.partials.completed_pdf', compact('requestCounts', 'appointments', 'month', 'year'));
+
+    // Add dynamic filename with month and year if provided
+    $filename = 'AppointmentReport' . ($month && $year ? "_{$month}_{$year}" : '') . '.pdf';
+
+    return $pdf->download($filename);
+}
+
 
     //archive page
     public function archive(Request $request)

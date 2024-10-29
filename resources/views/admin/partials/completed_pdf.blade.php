@@ -67,6 +67,13 @@
         </div>
 
     </div>
+    @php
+        use Carbon\Carbon;
+
+        // Convert numeric month to word (e.g., 11 -> November)
+        $monthInWords = $month ? Carbon::createFromDate(null, $month)->format('F') : 'N/A';
+    @endphp
+    <h1>Report for the Month of {{ $monthInWords }}</h1>
 
     <table>
         <thead>
