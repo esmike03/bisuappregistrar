@@ -239,6 +239,7 @@
                                         {{ old('request') == 'Transcript of Records' ? 'selected' : '' }}>
                                         Transcript of Records
                                     </option>
+
                                     <option value="Honorable Dismissal"
                                         {{ old('request') == 'Honorable Dismissal' ? 'selected' : '' }}>
                                         Honorable Dismissal

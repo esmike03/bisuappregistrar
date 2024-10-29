@@ -197,6 +197,9 @@ class HomeController extends Controller
             'ismis' => 'nullable',
             'status' => 'required',
             'campus' => 'required',
+            'reason' => 'required',
+            'copy' => 'required',
+            'course' => 'required',
             'request' => 'required',
             'appdate' => 'required|date',
         ]);

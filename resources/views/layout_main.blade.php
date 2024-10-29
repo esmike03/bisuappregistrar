@@ -272,14 +272,14 @@
                     <div x-data="{
                         requests: '{{ session('formData.request') }}'.split(','),
                         messages: {
-                            'Certificate of Good Moral': 30,
-                            'Certificate of Transfer of Credentials': 40,
-                            'Course Prospectus': 50,
-                            'Transcript of Records for Board Exam': 70,
+                            'Certificate of Good Moral': 0,
+                            'Certificate of Transfer of Credentials': 0,
+                            'Course Prospectus': 0,
+                            'Transcript of Records': 70,
                             'Transcript of Records for Employment': 70,
                             'Transcript of Records for Transfer': 70,
-                            'Client Request Slip': 20,
-                            'Certificate of Graduation': 50,
+                            'Client Request Slip': 0,
+                            'Certificate of Graduation': 0,
                         },
                         get totalAmount() {
                             return this.requests.reduce((sum, request) => {
