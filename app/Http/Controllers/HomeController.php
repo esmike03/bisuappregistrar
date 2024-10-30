@@ -12,6 +12,7 @@ use App\Models\RejectedAppointment;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AppointmentConfirmation;
+use App\Models\is_students;
 
 class HomeController extends Controller
 {
@@ -39,7 +40,6 @@ class HomeController extends Controller
             'campus' => 'required', // Add validation for the campus field
             'course' => 'required',
             'reason' => 'nullable',
-
             'copy' => 'required',
             'request' => 'required|array', // Validate the request field
             'request.*' => 'string',
@@ -59,6 +59,18 @@ class HomeController extends Controller
         $emailExists = Appointment::where('email', $request->input('email'))
             ->where('appstatus', 'pending') // Only check for pending status
             ->exists();
+
+            $isStudents = is_students::where('fname', strtolower($request->input('fName')))
+            ->where('lname', strtolower($request->input('lName')))
+            ->where('campus', $request->input('campus'))
+            ->exists();
+
+
+        if (!$isStudents) {
+            // If the combination exists, return back with an error message
+            return back()->withErrors(['duplicate' => 'We cant find your record. Please contact the registrar.'])
+                ->withInput(); // Keeps the current form input
+        }
 
         if ($nameExists) {
             // If the combination exists, return back with an error message

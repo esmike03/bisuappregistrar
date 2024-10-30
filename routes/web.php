@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\IsStudentController;
 use App\Http\Controllers\AppointmentController;
 
 
@@ -121,3 +122,5 @@ Route::put('/appointments/{id}/complete', [AppointmentController::class, 'markAs
 Route::get('/post', [MessageController::class, 'post']);
 Route::post('/post', [MessageController::class, 'postAnnouncement'])->name('send.post');
 Route::delete('/posts/{id}', [MessageController::class, 'postdestroy'])->name('posts.destroy');
+
+Route::post('/upload', [IsStudentController::class, 'upload'])->name('is_students.upload');

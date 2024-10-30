@@ -23,8 +23,8 @@
                             <div class="flex items-center space-x-3">
                                 <input type="number" name="change" placeholder="" value="{{ $maximum->num }}" required
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                                    <input type="text" hidden name="campus"
-                                    placeholder="" value="{{ $maximum->campus }}" required
+                                <input type="text" hidden name="campus" placeholder="" value="{{ $maximum->campus }}"
+                                    required
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                             </div>
                         </div>
@@ -45,12 +45,47 @@
 
                         </div>
                     </div>
+
+                    @if (session('success'))
+                        <div>{{ session('success') }}</div>
+                    @endif
                 </div>
             </form>
+            <div class="w-fit">
+                <form action="{{ route('is_students.upload') }}" method="POST" enctype="multipart/form-data"
+                    class=" mx-auto p-6 bg-white shadow-md rounded-lg">
+                    @csrf
+                    <h2 class="text-2xl font-semibold mb-4 text-center">Upload Student Data</h2>
 
+                    <div class="mb-4">
+                        <label for="file" class="block text-gray-700 font-medium mb-2">Select CSV File:</label>
+                        <input type="file" name="file" id="file" required
+                            class="border border-gray-300 rounded-lg py-2 px-4 w-full focus:outline-none focus:ring focus:ring-blue-500">
+                        @error('file')
+                            <span class="text-red-500 text-sm mt-2">{{ $message }}</span>
+                        @enderror
+                    </div>
 
+                    <button type="submit"
+                        class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 transition duration-200">
+                        Upload
+                    </button>
 
+                    @if (session('success'))
+                        <div class="mt-4 text-green-500 text-center">{{ session('success') }}</div>
+                    @endif
 
+                    @if ($errors->any())
+                        <div class="mt-4 text-red-500 text-center">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </form>
+            </div>
 
 
         </div>
@@ -64,7 +99,7 @@
             // Extract the year, month, and day
             const year = date.getFullYear();
             const month = String(date.getMonth() + 1).padStart(2,
-            '0'); // Months are 0-based, so add 1 and pad with leading zero if needed
+                '0'); // Months are 0-based, so add 1 and pad with leading zero if needed
             const day = String(date.getDate()).padStart(2, '0'); // Pad with leading zero if needed
 
             // Return the formatted date

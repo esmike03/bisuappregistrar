@@ -14,33 +14,12 @@
                         </h2>
                     </div>
                     <div class="accordion-group" id="accordionGroup">
-                        <div class="accordion pb-8 border-b border-solid border-gray-200">
-                            <button
-                                class="accordion-toggle group inline-flex items-center justify-between text-xl font-normal leading-8 text-gray-600 w-full transition duration-500 hover:text-indigo-600"
-                                aria-controls="collapseOne" onclick="toggleAccordion('collapseOne')">
-                                <h5 class="text-white">How to create an account?</h5>
-                                <svg class="text-gray-300 transition duration-500 group-hover:text-amber-600"
-                                    width="22" height="22" viewBox="0 0 22 22" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M16.5 8.25L12.4142 12.3358C11.7475 13.0025 11.4142 13.3358 11 13.3358C10.5858 13.3358 10.2525 13.0025 9.58579 12.3358L5.5 8.25"
-                                        stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-                                        stroke-linejoin="round"></path>
-                                </svg>
-                            </button>
-                            <div id="collapseOne" class="accordion-content w-full px-0 overflow-hidden"
-                                style="max-height: 0; transition: max-height 0.5s ease;">
-                                <p class="text-base font-normal text-gray-300">To create an account, find the 'Sign up'
-                                    or 'Create account' button, fill out the registration form with your personal
-                                    information, and click 'Create account' or 'Sign up.' Verify your email address if
-                                    needed, and then log in to start using the platform.</p>
-                            </div>
-                        </div>
+
                         <div class="accordion py-8 border-b border-solid border-gray-200">
                             <button
                                 class="accordion-toggle group inline-flex items-center justify-between font-normal text-xl leading-8 text-gray-600 w-full transition duration-500 hover:text-indigo-600"
                                 aria-controls="collapseTwo" onclick="toggleAccordion('collapseTwo')">
-                                <h5 class="text-white">Have any trust issue?</h5>
+                                <h5 class="text-white">Processing Time</h5>
                                 <svg class="text-gray-300 transition duration-500 group-hover:text-amber-600"
                                     width="22" height="22" viewBox="0 0 22 22" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -52,16 +31,14 @@
                             </button>
                             <div id="collapseTwo" class="accordion-content w-full px-0 overflow-hidden"
                                 style="max-height: 0; transition: max-height 0.5s ease;">
-                                <p class="text-base text-gray-300 font-normal">Our focus on providing robust and
-                                    user-friendly content management capabilities ensures that you can manage your
-                                    content with confidence and achieve your content marketing goals with ease.</p>
+                                <p class="text-base text-gray-300 font-normal">You will receive and email if your request is already available.</p>
                             </div>
                         </div>
                         <div class="accordion py-8 border-b border-solid border-gray-200">
                             <button
                                 class="accordion-toggle group inline-flex items-center justify-between text-xl font-normal leading-8 text-gray-600 w-full transition duration-500 hover:text-indigo-600"
                                 aria-controls="collapseThree" onclick="toggleAccordion('collapseThree')">
-                                <h5 class="text-white">How can I reset my password?</h5>
+                                <h5 class="text-white">Is my data secured?</h5>
                                 <svg class="text-gray-300 transition duration-500 group-hover:text-amber-600"
                                     width="22" height="22" viewBox="0 0 22 22" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -73,9 +50,7 @@
                             </button>
                             <div id="collapseThree" class="accordion-content w-full px-0 overflow-hidden"
                                 style="max-height: 0; transition: max-height 0.5s ease;">
-                                <p class="text-base text-gray-300 font-normal">Our focus on providing robust and
-                                    user-friendly content management capabilities ensures that you can manage your
-                                    content with confidence and achieve your content marketing goals with ease.</p>
+                                <p class="text-base text-gray-300 font-normal">Yes you're data is secured, only the admin can access it.</p>
                             </div>
                         </div>
                         <div class="accordion py-8">
@@ -94,9 +69,7 @@
                             </button>
                             <div id="collapseFour" class="accordion-content w-full px-0 overflow-hidden"
                                 style="max-height: 0; transition: max-height 0.5s ease;">
-                                <p class="text-base text-gray-300 font-normal">Our focus on providing robust and
-                                    user-friendly content management capabilities ensures that you can manage your
-                                    content with confidence and achieve your content marketing goals with ease.</p>
+                                <p class="text-base text-gray-300 font-normal">Some documents have processing fee, you will pay it in the registrar.</p>
                             </div>
                         </div>
                     </div>

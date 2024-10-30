@@ -100,7 +100,10 @@
                         </div>
                         <div class="">
                             <h4 class="text-gray-500 pb-2">Email</h4>
-                            <p class="text-black text-xl">{{ $appointment->email }}</p>
+                            <a class="text-blue-500 text-xl" href="{{ route('email-user', ['email' => $appointment->email, 'subject' => $appointment->request, 'message' => $appointment->appdate]) }}">
+                                {{ $appointment->email }}
+                            </a>
+
                         </div>
                     </div>
 
