@@ -95,6 +95,7 @@
                                                 :class="{
                                                     'bg-amber-600': status === 'pending',
                                                     'bg-green-500': status === 'approved',
+                                                    'bg-green-500': status === 'Ready to Pick-up',
                                                     'bg-red-500': status === 'rejected'
                                                 }"
                                                 class="uppercase px-2 py-1 font-semibold leading-tight text-white rounded-full">

@@ -53,8 +53,12 @@ class AdminController extends Controller
             ->where('appstatus', 'pending')
             ->count();
         $approvedCount = Appointment::where('campus', $category)
-            ->where('appstatus', 'approved')
+            ->where(function ($query) {
+                $query->where('appstatus', 'approved')
+                    ->orWhere('appstatus', 'Ready to Pick-up');
+            })
             ->count();
+
         $completedCount = CompletedAppointment::where('campus', $category)
             ->where('appstatus', 'COMPLETED')
             ->count();
