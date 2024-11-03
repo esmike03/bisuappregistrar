@@ -11,8 +11,7 @@
 
         <!-- RSS Widget Section -->
         <div class="mt-8">
-            <rssapp-imageboard id="CUTh5tQyOnzSLwlh"></rssapp-imageboard>
-            <script src="https://widget.rss.app/v1/imageboard.js" type="text/javascript" async></script>
+            <rssapp-imageboard id="oEpGwCzmeKaDRfDV"></rssapp-imageboard><script src="https://widget.rss.app/v1/imageboard.js" type="text/javascript" async></script>
         </div>
     </div>
 </section>

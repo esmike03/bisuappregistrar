@@ -19,10 +19,10 @@
                         <i class="fa-solid fa-trash text-red-400"> Archive</i>
                     </a>
 
-                    <a href="{{ route('completed.pdf', ['month' => request()->input('month'), 'year' => request()->input('year')]) }}"
+                    {{-- <a href="{{ route('completed.pdf', ['month' => request()->input('month'), 'year' => request()->input('year')]) }}"
                        class="mx-2">
                         <i class="fa-solid fa-print text-green-400"> Print Report</i>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
 
@@ -45,10 +45,10 @@
                     </div>
 
                     <div class="w-1/3 flex items-end mt-6">
-                        <button type="submit"
-                                class="flex items-center justify-center text-white bg-amber-600 hover:bg-blue-700 p-3 rounded-lg w-full transition duration-200 ease-in-out transform hover:scale-105">
-                            Filter
-                        </button>
+                        <a href="{{ route('completed.pdf', ['month' => request()->input('month'), 'year' => request()->input('year')]) }}" type="submit"
+                                class="flex items-center justify-center text-white bg-green-500 hover:bg-blue-700 p-3 rounded-lg w-full transition duration-200 ease-in-out transform hover:scale-105">
+                                <i class="m-1 fa-solid fa-print text-white"> PRINT REPORT</i>
+                        </a>
                     </div>
                 </div>
             </form>
