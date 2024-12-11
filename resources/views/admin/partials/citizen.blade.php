@@ -1,9 +1,9 @@
 @extends('layout_main')
 
 @section('citizen')
-    <div class="flex items-center justify-center h-full py-12 px-12 font-[Roboto]">
+    <div class="flex items-center justify-center h-full py-12 px-28 font-[Roboto]">
 
-        <div class="h-fit w-screen bg-white rounded-xl py-6 text-black px-48">
+        <div class="h-fit w-screen bg-white rounded-xl py-6 text-black px-28">
 
             <p class="text-4xl font-bold mt-4">Citizen's Charter</p>
                 <p class="text-lg font-italic text-gray-600 mb-8">GOOD GOVERNANCE</p>
