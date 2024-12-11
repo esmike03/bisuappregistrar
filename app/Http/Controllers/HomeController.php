@@ -25,6 +25,13 @@ class HomeController extends Controller
         return view('appointment.index', compact('posts'));
     }
 
+    public function citizen()
+    {
+
+
+        return view('admin.partials.citizen');
+    }
+
     public function store(Request $request)
     {
         // Validate the form fields

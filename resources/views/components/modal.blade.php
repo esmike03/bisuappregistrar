@@ -7,8 +7,8 @@
             @click.away="modalOpen = false">
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b mx-2 rounded-t dark:border-gray-600">
-                <h3 class="text-lg font-semibold text-white">
-                    <i class="fas fa-exclamation"></i>
+                <h3 class="text-lg font-semibold text-red-500">
+                    <i class="fas fa-xmark"></i>
                     ERROR
                 </h3>
                 <button @click="modalError = false" type="button"

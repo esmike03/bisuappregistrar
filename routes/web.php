@@ -18,6 +18,8 @@ use App\Http\Controllers\AppointmentController;
 //Home
 Route::get('/', [HomeController::class, 'index']);
 
+Route::get('/citizen', [HomeController::class, 'citizen']);
+
 //Appointment Form
 Route::get('/appointment/form', [HomeController::class, 'form']);
 

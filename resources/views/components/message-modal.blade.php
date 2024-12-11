@@ -53,20 +53,35 @@
                             maxlength="50" minlength="3" placeholder="Subject" required>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
+                        <label for="template" class="block mb-2 text-sm font-medium text-white">Template</label>
+                        <select id="template" name="template"
+                            class="block w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-300 text-black"
+                            onchange="updateMessage(this.value)">
+                            <option value="">Select a template</option>
+                            <option value="Good Day! When is the date for enrollment?">Enrollment Inquiry</option>
+                            <option value="I would like to re-schedule an appointment.">Appointment Inquiry</option>
+                            <option value="Can you provide information about the ISMIS system?">ISMIS Inquiry</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-2 sm:col-span-1">
                         <label for="message" class="block mb-2 text-sm font-medium text-white">Message</label>
                         <textarea name="message" id="message"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 h-20 dark:border-gray-500 dark:placeholder-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            maxlength="100" minlength="10" placeholder="Message" required>Message</textarea>
-
+                            maxlength="100" minlength="10" placeholder="Message" required></textarea>
                     </div>
 
-                </div>
 
-                <button type="submit" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
-                    class="text-white gap-2 inline-flex items-center bg-amber-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Send <i class="fa-solid fa-paper-plane"> </i>
-                </button>
+                    <button type="submit" @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
+                        class="text-white gap-2 inline-flex items-center bg-amber-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Send <i class="fa-solid fa-paper-plane"> </i>
+                    </button>
             </form>
         </div>
     </div>
 </div>
+<script>
+    function updateMessage(value) {
+        document.getElementById('message').value = value;
+    }
+</script>

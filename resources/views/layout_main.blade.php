@@ -70,6 +70,15 @@
 </head>
 
 <body class="flex flex-col font-[Nunito] bg-gradient-to-t from-[#500862] to-[#2b0846] min-h-screen mb-2">
+    <div class="fixed bottom-0 right-0 m-6 z-[9999]">
+        <a href="http://bisuhub.test/">
+            <button
+                class="bg-blue-500 text-white p-3 rounded-[10%] shadow-md border-none cursor-pointer hover:bg-blue-600"
+            >
+                <i class="fas fa-home text-sm"> HOME</i>
+            </button>
+        </a>
+    </div>
 
     <header
         class="fixed border-b-4 border-amber-500 top-0 left-0 right-0 mb-2 px-4 shadow bg-purple-950 z-50 backdrop-filter backdrop-blur-xl bg-opacity-30">
@@ -137,6 +146,7 @@
         @yield('success')
         @yield('edit')
         @yield('verify')
+        @yield('citizen')
         @yield('send-email')
     </main>
 
@@ -190,6 +200,15 @@
                             </li>
                         </ul>
                     </div>
+                    <div>
+                        <h2 class="mb-6 text-sm font-semibold  uppercase text-white">Registrar</h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                            <li class="mb-4">
+                                <a href="/citizen" class="hover:underline">Registrar Citizen Charter</a>
+                            </li>
+
+                        </ul>
+                    </div>
                 </div>
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
@@ -208,7 +227,9 @@
                 alt="Background Image" />
         </div>
     </footer>
-
+    <!-- Background Image -->
+    <img src="/images/gate (1).png" class="h-fit w-full bottom-0 absolute mt-6 opacity-80 -z-10"
+        alt="Background Image" />
 
 
     <!-- Track Modal Component -->
@@ -219,9 +240,7 @@
     <!-- Calendar Component -->
     <x-calendar x-show="calendarOpen" x-cloak />
 
-    <!-- Background Image -->
-    <img src="/images/gate (1).png" class="h-fit w-full bottom-0 absolute mt-6 opacity-80 -z-10"
-        alt="Background Image" />
+
 
     <!-- Loading Spinner -->
     <div x-show="loading" x-cloak
