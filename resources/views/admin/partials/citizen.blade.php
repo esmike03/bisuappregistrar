@@ -1,12 +1,13 @@
 @extends('layout_main')
 
 @section('citizen')
-    <div class="flex items-center justify-center h-full py-12 px-28 font-[Roboto]">
+    <div class="flex items-center justify-center h-full py-12 px-28 font-[Roboto] font-light">
 
-        <div class="h-fit w-screen bg-white rounded-xl py-6 text-black px-28">
+        <div class="h-fit w-screen bg-white rounded-xl py-6 text-black px-20">
 
-            <p class="text-4xl font-bold mt-4">Citizen's Charter</p>
+            <p class="text-4xl font-bold mt-4">Citizen's Charter <i class="fa fa-download text-gray-300 ml-4 text-2xl"></i></fa></p>
                 <p class="text-lg font-italic text-gray-600 mb-8">GOOD GOVERNANCE</p>
+
             <div class=" text-justify text-xl">
                 <div class="mb-4">
                     <p class="text-justify">
@@ -84,10 +85,10 @@
             </div>
 
             <div class="">
-                <p class="text-4xl font-bold">DR. REGUCIVILLA A. POBAR</p>
+                <p class="text-2xl font-bold">DR. REGUCIVILLA A. POBAR</p>
                 <p class="text-xl font-italic text-gray-600">University President</p>
             </div>
-            <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6 text-black mt-16">
+            <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-lg p-6 text-black mt-16">
                 <h1 class="text-2xl font-bold text-center mb-4">BISU Balilihan Citizen's Charter</h1>
 
                 <section class="mb-8">

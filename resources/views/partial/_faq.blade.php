@@ -8,10 +8,10 @@
             </div>
             <div class="w-full lg:w-1/2">
                 <div class="lg:max-w-xl">
-                    <div class="mb-6 lg:mb-16">
-                        <h2 class="text-4xl text-center font-bold text-amber-400 leading-[3.25rem] mb-5 lg:text-left">
-                            Frequently Ask Questions
-                        </h2>
+                    <div class="mb-6 lg:mb-2">
+                        <p class="text-4xl text-center font-bold text-amber-400 leading-[2.25rem] lg:text-left">
+                            Frequently Ask Questions<br><span class="text-lg text-gray-300"> For more information please read <a href="/citizen" class="text-amber-100">Registrar Citizen's Charter</a></span>
+                        </p>
                     </div>
                     <div class="accordion-group" id="accordionGroup">
 
