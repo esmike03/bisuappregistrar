@@ -58,9 +58,9 @@
                             class="block w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-300 text-black"
                             onchange="updateMessage(this.value)">
                             <option value="">Select a template</option>
-                            <option value="Good Day! When is the date for enrollment?">Enrollment Inquiry</option>
-                            <option value="I would like to re-schedule an appointment.">Appointment Inquiry</option>
-                            <option value="Can you provide information about the ISMIS system?">ISMIS Inquiry</option>
+                            <option value="I need help about the enroment process.">Enrollment Inquiry</option>
+                            <option value="I need help with my appointment.">Appointment Inquiry</option>
+                            <option value="I need help with my ISMIS Account">ISMIS Inquiry</option>
                         </select>
                     </div>
 

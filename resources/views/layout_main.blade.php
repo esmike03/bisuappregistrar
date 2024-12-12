@@ -65,20 +65,40 @@
                 width: '100%',
             });
         });
+
+        document.getElementById('screenshotButton').addEventListener('click', function() {
+            // Select the element you want to capture
+            var captureElement = document.getElementById('capture');
+
+            // Use html2canvas to take a screenshot
+            html2canvas(captureElement).then(canvas => {
+                // Create an image from the canvas
+                var imgData = canvas.toDataURL('image/png');
+
+                // Create a link to download the image
+                var link = document.createElement('a');
+                link.href = imgData;
+                link.download = 'screenshot.png';
+
+                // Trigger the download
+                link.click();
+            }).catch(error => {
+                console.error('Screenshot capture failed:', error);
+            });
+        });
     </script>
 
 </head>
 
 <body class="flex flex-col font-[Nunito] bg-gradient-to-t from-[#500862] to-[#2b0846] min-h-screen mb-2">
-    <div class="fixed bottom-0 right-0 m-6 z-[9999]">
+    {{-- <div class="fixed bottom-0 right-0 m-6 z-[9999]">
         <a href="http://bisuhub.test/">
             <button
-                class="bg-blue-500 text-white p-3 rounded-[10%] shadow-md border-none cursor-pointer hover:bg-blue-600"
-            >
+                class="bg-blue-500 text-white p-3 rounded-[10%] shadow-md border-none cursor-pointer hover:bg-blue-600">
                 <i class="fas fa-home text-sm"> HOME</i>
             </button>
         </a>
-    </div>
+    </div> --}}
 
     <header
         class="fixed border-b-4 border-amber-500 top-0 left-0 right-0 mb-2 px-4 shadow bg-purple-950 z-50 backdrop-filter backdrop-blur-xl bg-opacity-30">
@@ -140,15 +160,50 @@
 
     <main class="mt-[80px]">
         <!--sections-->
-        @yield('content')
         @yield('steps')
+        @yield('content')
         @yield('track')
         @yield('success')
         @yield('edit')
         @yield('verify')
-        @yield('citizen')
         @yield('send-email')
+        @yield('citizen')
     </main>
+
+    <!-- Calendar Component -->
+    <x-calendar x-show="calendarOpen" x-cloak />
+    @if ($errors->has('duplicate'))
+        <x-modal x-cloak>
+            <p @click="modalError = false" class="font-semibold text-gray-200 p-4">
+                {{ $errors->first('duplicate') }}
+            </p>
+        </x-modal>
+    @endif
+
+    @if ($errors->has('datefull'))
+        <x-modal x-cloak>
+            <p @click="modalError = false" class="font-semibold text-gray-200 p-4">
+                {{ $errors->first('datefull') }}
+            </p>
+        </x-modal>
+    @endif
+    <div x-show="loading" x-cloak class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+        <img src="{{ asset('images/ball-triangle.svg') }}" alt="Loading Spinner" class="w-16 h-16" />
+    </div>
+
+
+
+
+
+
+
+    <!-- Loading Spinner -->
+
+
+    <!--Success Modal-->
+
+
+
 
 
 
@@ -227,22 +282,9 @@
                 alt="Background Image" />
         </div>
     </footer>
-    <!-- Background Image -->
-    <img src="/images/gate (1).png" class="h-fit w-full bottom-0 absolute mt-6 opacity-80 -z-10"
-        alt="Background Image" />
-
-
-    <!-- Track Modal Component -->
-    <x-track-modal x-show="modalOpen" x-cloak />
-    <!--Message Moda-->
-    <x-message-modal x-show="messageOpen" x-cloak />
-
-    <!-- Calendar Component -->
-    <x-calendar x-show="calendarOpen" x-cloak />
 
 
 
-    <!-- Loading Spinner -->
     <div x-show="loading" x-cloak
         class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
         <img src="{{ asset('images/ball-triangle.svg') }}" alt="Loading Spinner" class="w-16 h-16" />
@@ -251,7 +293,6 @@
     <!-- Flash Message -->
     <x-flash-message x-cloak />
 
-    <!--Success Modal-->
     @if (session('formData'))
         <!-- Main modal -->
         <div x-data="{ success: true }" x-show="success" x-cloak
@@ -283,7 +324,167 @@
                     </div>
                     <p class="text-gray-500">Tracking Code</p>
                     <p class="mb-1 text-4xl font-bold text-amber-500">{{ session('formData.tracking_code') }}</p>
-                    <p class="text-amber-400">Please take note of your tracking code. You will receive an email notification once your request is ready for pick-up.</p>
+                    <p class="text-amber-400">Please take note of your tracking code. You will receive an email
+                        notification once your request is ready for pick-up.</p>
+                    <p class="text-gray-400">{{ session('formData.appdate') }}</p>
+                    <p class="text-gray-400"> <span class="font-extrabold">{{ session('formData.request') }}</span>
+                    </p>
+
+                    <div x-data="{
+                        requests: '{{ session('formData.request') }}'.split(','),
+                        messages: {
+                            'Certificate of Good Moral': 0,
+                            'Certificate of Transfer of Credentials': 0,
+                            'Course Prospectus': 0,
+                            'Transcript of Records': 70,
+                            'Transcript of Records for Employment': 70,
+                            'Transcript of Records for Transfer': 70,
+                            'Client Request Slip': 0,
+                            'Certificate of Graduation': 0,
+                        },
+                        get totalAmount() {
+                            return this.requests.reduce((sum, request) => {
+                                let trimmedRequest = request.trim();
+                                return sum + (this.messages[trimmedRequest] || 0);
+                            }, 0);
+                        }
+                    }">
+                        <p class="text-gray-400">
+                            Amount Payable:
+                            <span x-text="'P' + totalAmount" class="text-green-500 font-extrabold"></span>
+                        </p>
+                    </div>
+
+                </div>
+                <div class="w-full flex justify-center">
+                    <button id="screenshotButton"
+                        class="border rounded-md hover:bg-green-300 hover:text-white mt-4 px-3 text-green-300 mb-2"><i
+                            class="fa-solid fa-save"> </i> Save</button>
+                </div>
+
+            </div>
+        </div>
+    @endif
+    @if (session('error'))
+        <div class="fixed top-4 left-1/2 transform -translate-x-1/2 p-4 mb-4 text-sm text-amber-600 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-amber-400 shadow-lg z-50 transition-transform duration-300 ease-in-out"
+            role="alert" x-data="{ show: true }" x-show="show" x-cloak
+            x-transition:enter="transform ease-out duration-300 transition"
+            x-transition:enter-start="translate-y-[-100%]" x-transition:enter-end="translate-y-0"
+            x-transition:leave="transform ease-in duration-200 transition" x-transition:leave-start="translate-y-0"
+            x-transition:leave-end="translate-y-[-100%]" x-init="setTimeout(() => show = false, 3000)">
+            <span class="font-medium">Notice:</span> {{ session('error') }}
+        </div>
+    @endif
+
+    @if (session('formData'))
+        <!-- Main modal -->
+        <div x-data="{ success: true }" x-show="success" x-cloak
+            class="fixed inset-0 flex items-center px-2 justify-center z-50 bg-black backdrop-filter backdrop-blur-lg bg-opacity-5">
+            <div x-ref="modal"
+                class="relative p-2 w-full max-w-md h-fit m-1 md:h-auto mx-2 pop fade-in bg-purple-900 backdrop-filter backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg transform transition-transform duration-300">
+                <!-- Modal content -->
+                <div id="capture" class="relative p-2 text-center">
+                    <button type="button"
+                        class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                        @click="success = false">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div
+                        class="w-12 h-12 rounded-full bg-purple-700 p-2 flex items-center justify-center mx-auto mb-3.5">
+                        <svg aria-hidden="true" class="w-8 h-8 text-green-500" fill="currentColor"
+                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Success</span>
+                    </div>
+                    <p class="text-gray-500">Tracking Code</p>
+                    <p class="mb-1 text-4xl font-bold text-amber-500">{{ session('formData.tracking_code') }}</p>
+                    <p class="text-amber-400">Please take note of your tracking code. You will receive an email
+                        notification once your request is ready for pick-up.</p>
+                    <p class="text-gray-400">{{ session('formData.appdate') }}</p>
+                    <p class="text-gray-400"> <span class="font-extrabold">{{ session('formData.request') }}</span>
+                    </p>
+
+                    <div x-data="{
+                        requests: '{{ session('formData.request') }}'.split(','),
+                        messages: {
+                            'Certificate of Good Moral': 0,
+                            'Certificate of Transfer of Credentials': 0,
+                            'Course Prospectus': 0,
+                            'Transcript of Records': 70,
+                            'Transcript of Records for Employment': 70,
+                            'Transcript of Records for Transfer': 70,
+                            'Client Request Slip': 0,
+                            'Certificate of Graduation': 0,
+                        },
+                        get totalAmount() {
+                            return this.requests.reduce((sum, request) => {
+                                let trimmedRequest = request.trim();
+                                return sum + (this.messages[trimmedRequest] || 0);
+                            }, 0);
+                        }
+                    }">
+                        <p class="text-gray-400">
+                            Amount Payable:
+                            <span x-text="'P' + totalAmount" class="text-green-500 font-extrabold"></span>
+                        </p>
+                    </div>
+
+                </div>
+                <div class="w-full flex justify-center">
+                    <button id="screenshotButton"
+                        class="border rounded-md hover:bg-green-300 hover:text-white mt-4 px-3 text-green-300 mb-2"><i
+                            class="fa-solid fa-save"> </i> Save</button>
+                </div>
+
+            </div>
+        </div>
+    @endif
+    <!-- Background Image -->
+    <img src="/images/gate (1).png" class="h-fit w-full bottom-0 absolute mt-6 opacity-80 -z-10"
+        alt="Background Image" />
+
+    @if (session('formData'))
+        <!-- Main modal -->
+        <div x-data="{ success: true }" x-show="success" x-cloak
+            class="fixed inset-0 flex items-center px-2 justify-center z-50 bg-black backdrop-filter backdrop-blur-lg bg-opacity-5">
+            <div x-ref="modal"
+                class="relative p-2 w-full max-w-md h-fit m-1 md:h-auto mx-2 pop fade-in bg-purple-900 backdrop-filter backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg transform transition-transform duration-300">
+                <!-- Modal content -->
+                <div id="capture" class="relative p-2 text-center">
+                    <button type="button"
+                        class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                        @click="success = false">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div
+                        class="w-12 h-12 rounded-full bg-purple-700 p-2 flex items-center justify-center mx-auto mb-3.5">
+                        <svg aria-hidden="true" class="w-8 h-8 text-green-500" fill="currentColor"
+                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Success</span>
+                    </div>
+                    <p class="text-gray-500">Tracking Code</p>
+                    <p class="mb-1 text-4xl font-bold text-amber-500">{{ session('formData.tracking_code') }}</p>
+                    <p class="text-amber-400">Please take note of your tracking code. You will receive an email
+                        notification once your request is ready for pick-up.</p>
                     <p class="text-gray-400">{{ session('formData.appdate') }}</p>
                     <p class="text-gray-400"> <span class="font-extrabold">{{ session('formData.request') }}</span>
                     </p>
@@ -325,34 +526,10 @@
     @endif
 
 
-
-    @if (session('error'))
-        <div class="fixed top-4 left-1/2 transform -translate-x-1/2 p-4 mb-4 text-sm text-amber-600 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-amber-400 shadow-lg z-50 transition-transform duration-300 ease-in-out"
-            role="alert" x-data="{ show: true }" x-show="show" x-cloak
-            x-transition:enter="transform ease-out duration-300 transition"
-            x-transition:enter-start="translate-y-[-100%]" x-transition:enter-end="translate-y-0"
-            x-transition:leave="transform ease-in duration-200 transition" x-transition:leave-start="translate-y-0"
-            x-transition:leave-end="translate-y-[-100%]" x-init="setTimeout(() => show = false, 3000)">
-            <span class="font-medium">Notice:</span> {{ session('error') }}
-        </div>
-    @endif
-
-    @if ($errors->has('duplicate'))
-        <x-modal x-cloak>
-            <p @click="modalError = false" class="font-semibold text-gray-200 p-4">
-                {{ $errors->first('duplicate') }}
-            </p>
-        </x-modal>
-    @endif
-
-    @if ($errors->has('datefull'))
-        <x-modal x-cloak>
-            <p @click="modalError = false" class="font-semibold text-gray-200 p-4">
-                {{ $errors->first('datefull') }}
-            </p>
-        </x-modal>
-    @endif
-
+    <!-- Track Modal Component -->
+    <x-track-modal x-show="modalOpen" x-cloak />
+    <!--Message Moda-->
+    <x-message-modal x-show="messageOpen" x-cloak />
 </body>
 
 </html>

@@ -9,9 +9,13 @@ class EmailController extends Controller
 {
     public function sendEmail()
     {
-        Mail::to('sarabiaearlmike14@gmail.com')->send(new Email());
-
-        return 'Email sent successfully!';
+        try {
+            Mail::to('sarabiaearlmike14@gmail.com')->send(new Email());
+            return redirect()->back()->with('success', 'Email sent successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back();
+        }
     }
+
 }
 

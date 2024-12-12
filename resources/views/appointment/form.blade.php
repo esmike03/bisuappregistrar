@@ -341,8 +341,8 @@
                         </p>
 
                         <div class="w-full flex justify-end pb-4 px-2 ">
-                            <button @click="modalConfirm = false"
-                                @click="loading = true; fetch('/api/endpoint').then(() => loading = false)" type="submit"
+                            <button type="submit" @click="modalConfirm = false"
+                                @click="loading = true; fetch('/api/endpoint').then(() => loading = false)"
                                 class="bg-amber-500 px-6 text-white rounded-md p-2 mx-2">
                                 Confirm
                             </button>

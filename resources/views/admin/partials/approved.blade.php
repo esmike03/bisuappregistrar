@@ -94,7 +94,7 @@
                                             <span x-data="{ status: '{{ $appointment->appstatus }}' }"
                                                 :class="{
                                                     'bg-amber-600': status === 'pending',
-                                                    'bg-green-500': status === 'approved',
+                                                    'bg-blue-300': status === 'approved',
                                                     'bg-green-500': status === 'Ready to Pick-up',
                                                     'bg-red-500': status === 'rejected'
                                                 }"
