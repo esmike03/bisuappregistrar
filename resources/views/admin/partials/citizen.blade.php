@@ -85,7 +85,7 @@
             </div>
 
             <div class="">
-                <p class="text-2xl font-bold">DR. REGUCIVILLA A. POBAR</p>
+                <p class="text-2xl font-bold uppercase">Dr. Anthony M. Penaso</p>
                 <p class="text-xl font-italic text-gray-600">University President</p>
             </div>
             <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-lg p-6 text-black mt-16">
